@@ -1,0 +1,7 @@
+C:\Users\Bsniv\Dropbox\סדנא של נקניקיות\c# version\wsep182\.vs\wsep182\lut\0\b\wsep182\bin\Debug\wsep182.exe.config
+C:\Users\Bsniv\Dropbox\סדנא של נקניקיות\c# version\wsep182\.vs\wsep182\lut\0\b\wsep182\bin\Debug\wsep182.exe
+C:\Users\Bsniv\Dropbox\סדנא של נקניקיות\c# version\wsep182\.vs\wsep182\lut\0\b\wsep182\bin\Debug\wsep182.pdb
+C:\Users\Bsniv\Dropbox\סדנא של נקניקיות\c# version\wsep182\.vs\wsep182\lut\0\i\wsep182\Debug\wsep182.csproj.CoreCompileInputs.cache
+C:\Users\Bsniv\Dropbox\סדנא של נקניקיות\c# version\wsep182\.vs\wsep182\lut\0\i\wsep182\Debug\wsep182.csproj.CopyComplete
+C:\Users\Bsniv\Dropbox\סדנא של נקניקיות\c# version\wsep182\.vs\wsep182\lut\0\i\wsep182\Debug\wsep182.exe
+C:\Users\Bsniv\Dropbox\סדנא של נקניקיות\c# version\wsep182\.vs\wsep182\lut\0\i\wsep182\Debug\wsep182.pdb

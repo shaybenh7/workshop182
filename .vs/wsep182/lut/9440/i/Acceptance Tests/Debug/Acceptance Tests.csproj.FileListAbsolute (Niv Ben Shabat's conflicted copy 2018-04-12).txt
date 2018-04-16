@@ -1,0 +1,10 @@
+C:\Users\Bsniv\Dropbox\סדנא של נקניקיות\c# version\wsep182\.vs\wsep182\lut\0\b\Acceptance Tests\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll
+C:\Users\Bsniv\Dropbox\סדנא של נקניקיות\c# version\wsep182\.vs\wsep182\lut\0\b\Acceptance Tests\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll
+C:\Users\Bsniv\Dropbox\סדנא של נקניקיות\c# version\wsep182\.vs\wsep182\lut\0\b\Acceptance Tests\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll
+C:\Users\Bsniv\Dropbox\סדנא של נקניקיות\c# version\wsep182\.vs\wsep182\lut\0\b\Acceptance Tests\bin\Debug\Acceptance Tests.dll
+C:\Users\Bsniv\Dropbox\סדנא של נקניקיות\c# version\wsep182\.vs\wsep182\lut\0\b\Acceptance Tests\bin\Debug\Acceptance Tests.pdb
+C:\Users\Bsniv\Dropbox\סדנא של נקניקיות\c# version\wsep182\.vs\wsep182\lut\0\i\Acceptance Tests\Debug\Acceptance Tests.csprojResolveAssemblyReference.cache
+C:\Users\Bsniv\Dropbox\סדנא של נקניקיות\c# version\wsep182\.vs\wsep182\lut\0\i\Acceptance Tests\Debug\Acceptance Tests.csproj.CoreCompileInputs.cache
+C:\Users\Bsniv\Dropbox\סדנא של נקניקיות\c# version\wsep182\.vs\wsep182\lut\0\i\Acceptance Tests\Debug\Acceptance Tests.csproj.CopyComplete
+C:\Users\Bsniv\Dropbox\סדנא של נקניקיות\c# version\wsep182\.vs\wsep182\lut\0\i\Acceptance Tests\Debug\Acceptance Tests.dll
+C:\Users\Bsniv\Dropbox\סדנא של נקניקיות\c# version\wsep182\.vs\wsep182\lut\0\i\Acceptance Tests\Debug\Acceptance Tests.pdb

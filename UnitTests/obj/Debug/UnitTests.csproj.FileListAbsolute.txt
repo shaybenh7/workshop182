@@ -1,0 +1,17 @@
+C:\Users\Itamar\source\repos\wsep182\UnitTests\obj\Debug\UnitTests.csprojResolveAssemblyReference.cache
+C:\Users\Itamar\source\repos\wsep182\UnitTests\obj\Debug\UnitTests.csproj.CoreCompileInputs.cache
+C:\Users\Itamar\source\repos\wsep182\UnitTests\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll
+C:\Users\Itamar\source\repos\wsep182\UnitTests\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll
+C:\Users\Itamar\source\repos\wsep182\UnitTests\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll
+C:\Users\Itamar\source\repos\wsep182\UnitTests\bin\Debug\UnitTests.dll
+C:\Users\Itamar\source\repos\wsep182\UnitTests\bin\Debug\UnitTests.pdb
+C:\Users\Itamar\source\repos\wsep182\UnitTests\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.dll
+C:\Users\Itamar\source\repos\wsep182\UnitTests\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll
+C:\Users\Itamar\source\repos\wsep182\UnitTests\bin\Debug\wsep182.exe
+C:\Users\Itamar\source\repos\wsep182\UnitTests\bin\Debug\wsep182.pdb
+C:\Users\Itamar\source\repos\wsep182\UnitTests\bin\Debug\wsep182.exe.config
+C:\Users\Itamar\source\repos\wsep182\UnitTests\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.xml
+C:\Users\Itamar\source\repos\wsep182\UnitTests\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.xml
+C:\Users\Itamar\source\repos\wsep182\UnitTests\obj\Debug\UnitTests.csproj.CopyComplete
+C:\Users\Itamar\source\repos\wsep182\UnitTests\obj\Debug\UnitTests.dll
+C:\Users\Itamar\source\repos\wsep182\UnitTests\obj\Debug\UnitTests.pdb

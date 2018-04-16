@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{FC9DBCF1-B6E6-4817-987C-56D9DA6BA700}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>wsep182</RootNamespace>
+    <AssemblyName>wsep182</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Domain\BuyHistory.cs" />
+    <Compile Include="Domain\BuyHistoryArchive.cs" />
+    <Compile Include="Domain\Coupon.cs" />
+    <Compile Include="Domain\CouponsArchive.cs" />
+    <Compile Include="Domain\Customer.cs" />
+    <Compile Include="Domain\Discount.cs" />
+    <Compile Include="Domain\DiscountsArchive.cs" />
+    <Compile Include="Domain\PaymentSystem.cs" />
+    <Compile Include="Domain\ProductArchive.cs" />
+    <Compile Include="Domain\RaffleSale.cs" />
+    <Compile Include="Domain\RaffleSalesArchive.cs" />
+    <Compile Include="Domain\Sale.cs" />
+    <Compile Include="Domain\SalesArchive.cs" />
+    <Compile Include="Domain\ShippingSystem.cs" />
+    <Compile Include="Domain\StorePremissions.cs" />
+    <Compile Include="Domain\Product.cs" />
+    <Compile Include="Domain\ProductInStore.cs" />
+    <Compile Include="Domain\StoreArchive.cs" />
+    <Compile Include="Domain\StoreManager.cs" />
+    <Compile Include="Domain\StoreOwner.cs" />
+    <Compile Include="Domain\StorePremissionsArchive.cs" />
+    <Compile Include="Domain\StoreRole.cs" />
+    <Compile Include="Domain\UserArchive.cs" />
+    <Compile Include="Domain\Admin.cs" />
+    <Compile Include="Domain\Guest.cs" />
+    <Compile Include="Domain\LogedIn.cs" />
+    <Compile Include="Domain\ShoppingCart.cs" />
+    <Compile Include="Domain\Store.cs" />
+    <Compile Include="Domain\User.cs" />
+    <Compile Include="Domain\UserCart.cs" />
+    <Compile Include="Domain\UserCartsArchive.cs" />
+    <Compile Include="Domain\UserState.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="services\sellServices.cs" />
+    <Compile Include="services\storeServices.cs" />
+    <Compile Include="services\userServices.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
