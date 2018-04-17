@@ -29,7 +29,9 @@ namespace wsep182.services
         //req 3.1 a
         public ProductInStore addProductInStore(Product p, Double price, int amount, User session, Store s)
         {
-            if (!session.getState().isLogedIn())
+            if (!session.getState().isLogedIn() || p.getProductName() ==null
+                || p.getProductName()=="" 
+                || p.getProductName()[p.getProductName().Length - 1]== ' ')
                 return null;
             StoreRole sR = StoreRole.getStoreRole(s, session);
             if (sR == null)
@@ -67,7 +69,7 @@ namespace wsep182.services
         //req 3.3 b
         public Boolean RemoveStoreOwner(Store s, User newOwner, User session)
         {
-            return null;
+            return false;
         }
 
         //req 3.4 a
