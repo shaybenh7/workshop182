@@ -67,6 +67,15 @@ namespace wsep182.Domain
             privilegesOfaUser[username].addNewCoupon(allow);
         }
 
+        public void removeDiscount(string username, Boolean allow)
+        {
+            privilegesOfaUser[username].removeDiscount(allow);
+        }
+
+        public void removeCoupon(string username, Boolean allow)
+        {
+            privilegesOfaUser[username].removeCoupon(allow);
+        }
 
         public void removeStoreManager(string username, Boolean allow)
         {

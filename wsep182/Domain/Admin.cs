@@ -13,6 +13,7 @@ namespace wsep182.Domain
             return UserArchive.getInstance().removeUser(userDeleted);
         }
 
+
         public override Boolean isLogedIn()
         {
             return true;
