@@ -22,7 +22,9 @@ namespace wsep182.services
         
         //req 2.2
         public Store createStore(String storeName, User session)
-        { 
+        {
+            if (session == null || !session.getState().isLogedIn())
+                return null;
             return session.createStore(storeName);
         }
 

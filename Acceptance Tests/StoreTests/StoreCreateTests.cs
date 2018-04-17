@@ -89,7 +89,7 @@ namespace Acceptance_Tests.StoreTests
             User zahi = us.startSession();
             us.register(zahi, "zahi", "123456");
             us.login(zahi, "zahi", "123456");
-            Store store = ss.createStore("aboim bro", zahi);
+            Store store = ss.createStore("abowim bro", zahi);
             Assert.AreEqual(store.getStoreName(), "abowim bro");
             LinkedList<StoreOwner> owners = store.getOwners();
             Assert.AreEqual(owners.Count, 1);

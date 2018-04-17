@@ -81,7 +81,7 @@ namespace wsep182.Domain
 
         public Store createStore(String storeName)
         {
-            if (storeName == null)
+            if (storeName == null || storeName.Length==0 || String.IsNullOrWhiteSpace(storeName))
                 return null;
             return this.state.createStore(storeName, this);
         }
