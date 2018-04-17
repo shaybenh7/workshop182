@@ -23,6 +23,11 @@ namespace Acceptance_Tests.StoreTests
             storeArchive.restartInstance();
             UserArchive.restartInstance();
             UserCartsArchive.restartInstance();
+            BuyHistoryArchive.restartInstance();
+            CouponsArchive.restartInstance();
+            DiscountsArchive.restartInstance();
+            RaffleSalesArchive.restartInstance();
+            StorePremissionsArchive.restartInstance();
             us = userServices.getInstance();
             ss = storeServices.getInstance();
             admin = us.startSession();
@@ -34,6 +39,7 @@ namespace Acceptance_Tests.StoreTests
 
             zahi = us.startSession();
             us.register(zahi, "zahi", "123456");
+            zahi.login("zahi", "123456");
 
             itamar = us.startSession();
             us.register(itamar, "itamar", "123456");
@@ -42,6 +48,7 @@ namespace Acceptance_Tests.StoreTests
 
             niv = us.startSession();
             us.register(niv, "niv", "123456");
+            niv.login("niv", "123456");
 
             ss.addStoreManager(store, niv, itamar);
 
@@ -57,7 +64,6 @@ namespace Acceptance_Tests.StoreTests
         [TestMethod]
         public void OwnerRemoveHimself()
         {
-            zahi.login("zahi", "123456");
             ss.addStoreOwner(store, zahi, itamar);
             Assert.IsFalse(ss.removeStoreOwner(store, zahi, zahi));
             Assert.IsFalse(ss.removeStoreOwner(store, itamar, itamar));
@@ -72,8 +78,6 @@ namespace Acceptance_Tests.StoreTests
         [TestMethod]
         public void MannegerRemoveOwner()
         {
-            zahi.login("zahi", "123456");
-            niv.login("niv", "123456");
             ss.addStoreOwner(store, zahi, itamar);
             Assert.IsFalse(ss.removeStoreOwner(store, zahi, niv));
             Assert.AreEqual(ss.getOwners(store).Count, 2);
@@ -81,9 +85,9 @@ namespace Acceptance_Tests.StoreTests
         [TestMethod]
         public void UserRemoveOwner()
         {
-            zahi.login("zahi", "123456");
             User aviad = us.startSession();
             aviad.register("aviad", "123456");
+            us.login(aviad, "aviad", "123456");
             ss.addStoreOwner(store, zahi, itamar);
             Assert.IsFalse(ss.removeStoreOwner(store, zahi, aviad));
             Assert.AreEqual(ss.getOwners(store).Count, 2);
@@ -91,7 +95,6 @@ namespace Acceptance_Tests.StoreTests
         [TestMethod]
         public void GusetRemoveOwner()
         {
-            zahi.login("zahi", "123456");
             ss.addStoreOwner(store, zahi, itamar);
             Assert.IsFalse(ss.removeStoreOwner(store, zahi, niv));
             Assert.AreEqual(ss.getOwners(store).Count, 2);

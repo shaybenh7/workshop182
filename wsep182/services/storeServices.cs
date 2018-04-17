@@ -72,8 +72,11 @@ namespace wsep182.services
         //req 3.3 b
         public Boolean removeStoreOwner(Store s, User oldOwner, User session)
         {
+            if (oldOwner == session)
+                return false;//owner cannot remove himself
             StoreRole sR = StoreRole.getStoreRole(s, session);
-            if (sR == null)
+            StoreRole sR2 = StoreRole.getStoreRole(s, oldOwner);
+            if (sR == null || !(sR2 is StoreOwner))
                 return false;
             return sR.removeStoreOwner(session, s, oldOwner);
         }
