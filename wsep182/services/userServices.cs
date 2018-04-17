@@ -64,6 +64,8 @@ namespace wsep182.services
         // req 5.2
         public Boolean removeUser(User userMakingDeletion, User userDeleted)
         {
+            if (!userMakingDeletion.getState().isLogedIn())
+                return false;
             return userMakingDeletion.removeUser(userDeleted.getUserName());
         }
 

@@ -10,7 +10,7 @@ namespace wsep182.Domain
     {
         public virtual User login(String username, String password)
         {
-            throw new Exception("already logged in");
+            return null;
         }
 
         public virtual LinkedList<Purchase> viewUserHistory(User userToGetHistory)
@@ -24,17 +24,18 @@ namespace wsep182.Domain
 
         public virtual UserState register(String username, String password)
         {
-            throw new Exception("already logged in");
+            return null;
         }
 
         public virtual Store createStore(String storeName, User session)
         {
-            throw new Exception("Need to be logged in as regular user");
+            return null;
         }
+
 
         public virtual Boolean removeUser(User session, string userDeleted)
         {
-            throw new Exception("Need to be logged in as admin");
+            return false;
         }
 
 
