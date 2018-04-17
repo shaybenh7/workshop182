@@ -116,6 +116,25 @@ namespace Acceptance_Tests.StoreTests
             Store store2 = new Store(2, "abow", zahi);
             Assert.IsFalse(ss.removeStoreOwner(store2, niv, zahi));
         }
+        [TestMethod]
+        public void RemoveOwnerByAdmin()
+        {
+            ss.addStoreOwner(store, zahi, itamar);
+            Assert.IsFalse(ss.removeStoreOwner(store, zahi, admin));
+            Assert.AreEqual(ss.getOwners(store).Count, 2);
+        }
+        [TestMethod]
+        public void RemoveOwnerByOwnerThatStopBeingOwner()
+        {
+            us.login(zahi, "zahi", "123456");
+            us.login(niv, "niv", "123456");
+            ss.addStoreOwner(store, zahi, itamar);
+            Assert.IsTrue(ss.addStoreOwner(store, niv, zahi));
+            Assert.IsTrue(ss.removeStoreOwner(store, zahi, itamar));
+            Assert.IsFalse(ss.removeStoreOwner(store, niv, zahi));
+            Assert.IsTrue(ss.removeStoreOwner(store, niv, itamar));
+            Assert.AreEqual(ss.getOwners(store).Count, 1);
+        }
 
 
     }
