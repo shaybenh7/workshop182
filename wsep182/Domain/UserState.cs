@@ -15,7 +15,7 @@ namespace wsep182.Domain
 
         public abstract Boolean isLogedIn();
 
-        public virtual User register(String username, String password)
+        public virtual UserState register(String username, String password)
         {
             throw new Exception("already logged in");
         }

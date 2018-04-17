@@ -26,7 +26,6 @@ namespace wsep182.services
         public User startSession()
         {
             User user = new User("guest", "guest");
-            user.logOut();
             return user;
         }
 
@@ -49,8 +48,8 @@ namespace wsep182.services
         //req 1.3
         public LinkedList<ProductInStore> viewProductsInStores()
         {
-            return ProductArchive.getInstance().getAllProductsInStores();
-        }
+            return ProductInStore.getAllProductsInAllStores();
+       }
         //req 1.3 - TO BE ADDED, WAITING FOR NIV THE RUSSIAN IMPLEMENTATION
         public LinkedList<Store> viewStores()
         {

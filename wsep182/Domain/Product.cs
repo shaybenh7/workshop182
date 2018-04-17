@@ -31,6 +31,8 @@ namespace wsep182.Domain
 
         public static Product addProduct(String productName)
         {
+            if (productName == null || productName == "" || productName[0] == ' ' || productName[productName.Length-1] == ' ')
+                return null;
             return ProductArchive.getInstance().addProduct(productName);
         }
 

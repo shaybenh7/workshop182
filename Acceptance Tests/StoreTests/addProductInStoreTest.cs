@@ -111,12 +111,8 @@ namespace Acceptance_Tests.StoreTests
             Product p = ss.addProdut("cola", zahi);
             ProductInStore pis = ss.addProductInStore(p, 3.2, 0, zahi, s);
             Assert.AreEqual(s.getProductsInStore().Count, 0);
-            Assert.AreEqual(pis.getPrice(), 3.2);
-            Assert.AreEqual(pis.getAmount(), 0);
-            Assert.AreEqual(pis.getStore().getStoreId(), s.getStoreId());
-            LinkedList<ProductInStore> pList = s.getProductsInStore();
-            Assert.IsTrue(pList.Contains(pis));
-            Assert.AreEqual(pList.Count, 1);
+            Assert.IsNull(pis);
+            Assert.AreEqual(s.getProductsInStore().Count, 0);
         }
 
 
@@ -173,7 +169,7 @@ namespace Acceptance_Tests.StoreTests
             ProductInStore pis = ss.addProductInStore(p, 3.2, 10, zahi, s);
             Assert.IsNull(pis);
             LinkedList<ProductInStore> pList = s.getProductsInStore();
-            Assert.IsNull(pList); //store is not exist in archive
+            Assert.IsTrue(pList.Count == 0); //store is not exist in archive
         }
 
         [TestMethod]

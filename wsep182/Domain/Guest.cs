@@ -8,7 +8,7 @@ namespace wsep182.Domain
 {
     public class Guest : UserState
     {
-        public override User register(String username, String password)
+        public override UserState register(String username, String password)
         {
             if (username == null || password == null)
                 return null;
@@ -16,12 +16,7 @@ namespace wsep182.Domain
                 return null;
             if (username.Contains(" "))
                 return null;
-            User u = new User(username, password);
-            if (UserArchive.getInstance().addUser(u))
-            {
-                return u;
-            }
-            return null;
+            return new LogedIn();
         }
 
         public override User login(String username, String password)

@@ -98,13 +98,11 @@ namespace wsep182.Domain
             return false;
         }
 
-        public StoreRole getStoreRole(int storeId, string userName)
+        public StoreRole getStoreRole(Store store, User user)
         {
-            if (!archive.ContainsKey(storeId))
-                return null;
-            if (!archive.ContainsKey(storeId) || !archive[storeId].ContainsKey(userName))
-                return null;
-            return archive[storeId][userName];
+            if (!archive.ContainsKey(store.getStoreId()) || !archive.ContainsKey(store.getStoreId()) || !archive[store.getStoreId()].ContainsKey(user.getUserName()))
+                addStoreRole(new Customer(user, store),store.getStoreId(),user.getUserName());
+            return archive[store.getStoreId()][user.getUserName()];
         }
 
         public Boolean removeStoreRole(int storeId, string userName)
