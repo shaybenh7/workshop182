@@ -13,8 +13,6 @@ namespace wsep182.Domain
         private UserArchive()
         {
             users = new LinkedList<User>();
-            User admin = new User("admin", "admin");
-            users.AddFirst(admin);
         }
         public static UserArchive getInstance()
         {

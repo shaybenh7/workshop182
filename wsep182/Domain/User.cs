@@ -56,6 +56,8 @@ namespace wsep182.Domain
             User user = state.login(username, password);
             if (user != null)
             {
+                if (!user.getIsActive())
+                    return false;
                 if (username == "admin" || username == "admin1")
                     state = new Admin();
                 else
