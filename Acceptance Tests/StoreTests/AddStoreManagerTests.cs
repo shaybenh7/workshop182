@@ -115,18 +115,6 @@ namespace Acceptance_Tests.StoreTests
         }
 
         [TestMethod]
-        public void TryToAddStoreManagerToNoneExistingUser()
-        {
-            User aviad = us.startSession();
-            us.register(aviad, "aviad", "123456");
-            us.login(aviad, "aviad", "123456");
-            Store store = ss.createStore("abowim", zahi);
-            ss.addStoreManager(store, aviad, zahi);
-            LinkedList<StoreManager> managers = store.getManagers();
-            Assert.AreEqual(managers.Count, 0);
-        }
-
-        [TestMethod]
         public void TryToAddStoreManagerToNoneExistingStore()
         {
             User aviad = us.startSession();
