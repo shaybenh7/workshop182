@@ -70,5 +70,11 @@ namespace wsep182.Domain
             }
             return ans;
         }
+
+        public Boolean closeStore()
+        {
+            //WILL BE IMPLEMENTED NEXT VERSION
+            return false;
+        }
     }
 }

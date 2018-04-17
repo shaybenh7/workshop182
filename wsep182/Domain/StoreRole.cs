@@ -90,7 +90,7 @@ namespace wsep182.Domain
             StoreRole sR = storeArchive.getInstance().getStoreRole(s.getStoreId(), manager.getUserName());
             return correlate(session, permission, sR, false);
         }
-        public virtual LinkedList<BuyHistory> viewPurchasesHistory(User session,Store s)
+        public virtual LinkedList<Purchase> viewPurchasesHistory(User session,Store s)
         {
             return BuyHistoryArchive.getInstance().viewHistoryByStoreId(s.getStoreId());
         }

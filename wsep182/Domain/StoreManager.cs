@@ -86,7 +86,7 @@ namespace wsep182.Domain
             return false;
         }
 
-        public override LinkedList<BuyHistory> viewPurchasesHistory(User session, Store s)
+        public override LinkedList<Purchase> viewPurchasesHistory(User session, Store s)
         {
             if (premissions.checkPrivilege(session.getUserName(), "viewPurchasesHistory"))
                 return base.viewPurchasesHistory(session, s);

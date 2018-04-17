@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace wsep182.Domain
 {
-    class Discount
+    public class Discount
     {
         private int productInStoreId;
         private int percentage;

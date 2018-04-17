@@ -22,12 +22,28 @@ namespace wsep182.Domain
                 instance = new RaffleSalesArchive();
             return instance;
         }
+        public static void restartInstance()
+        {
+            instance = new RaffleSalesArchive();
+        }
 
         public Boolean addRaffleSale(int saleId, String userName, double offer, String dueDate)
         {
             RaffleSale toAdd = new RaffleSale(saleId, userName, offer, dueDate);
             raffleSales.AddLast(toAdd);
             return true;
+        }
+        public LinkedList<RaffleSale> getAllRaffleSalesBySaleId(int saleId)
+        {
+            LinkedList<RaffleSale> ans = new LinkedList<RaffleSale>();
+            foreach (RaffleSale sale in raffleSales)
+            {
+                if (sale.SaleId == saleId)
+                {
+                    ans.AddLast(sale);
+                }
+            }
+            return ans;
         }
 
 

@@ -89,7 +89,5 @@ namespace wsep182.Domain
             return finalPrice;
         }
 
-
-
     }
 }

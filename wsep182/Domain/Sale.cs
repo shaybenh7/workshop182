@@ -30,23 +30,33 @@ namespace wsep182.Domain
         public int TypeOfSale { get => typeOfSale; set => typeOfSale = value; }
         public string DueDate { get => dueDate; set => dueDate = value; }
 
-        public double getPriceBeforeDiscount()
+        public double getPriceBeforeDiscount(int amount)
         {
             ProductInStore p = ProductArchive.getInstance().getProductInStore(productInStoreId);
             return p.getPrice() * amount;
         }
-        public double getPriceAfterDiscount()
+        public double getPriceAfterDiscount(int amount)
         {
             ProductInStore p = ProductArchive.getInstance().getProductInStore(productInStoreId);
             Discount d = DiscountsArchive.getInstance().getDiscount(productInStoreId);
             if (d != null)
             {
-                //to add check for date validity
-                return d.getPriceAfterDiscount(p.getPrice(), amount);
+                DateTime currDate = DateTime.Today;
+                DateTime discountDueDate = DateTime.Parse(d.DueDate);
+                int result = DateTime.Compare(currDate, discountDueDate);
+                if (result < 0)
+                {
+                    return d.getPriceAfterDiscount(p.getPrice(), amount);
+                }
+                //otherwise the date is not relvant
+                else
+                {
+                    return getPriceBeforeDiscount(amount);
+                }
             }
             else
             {
-                return getPriceBeforeDiscount();
+                return getPriceBeforeDiscount(amount);
             }
         }
 

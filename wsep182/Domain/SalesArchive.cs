@@ -54,6 +54,19 @@ namespace wsep182.Domain
             return null;
         }
 
+        public Boolean setNewAmountForSale(int saleId, int amount)
+        {
+            foreach (Sale sale in sales)
+            {
+                if (sale.SaleId == saleId)
+                {
+                    sale.Amount = amount;
+                    return true;
+                }
+            }
+            return false;
+        }
+
         public LinkedList<Sale> getAllSales()
         {
             return sales;

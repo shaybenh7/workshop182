@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace wsep182.Domain
 {
-    public class BuyHistory
+    public class Purchase
     {
         private int buyId;
         private int productId;
@@ -17,7 +17,7 @@ namespace wsep182.Domain
         private int amount;
         private int typeOfSale;
 
-        public BuyHistory(int buyId, int productId, int storeId, String userName, double price
+        public Purchase(int buyId, int productId, int storeId, String userName, double price
             , String date, int amount , int typeOfSale)
         {
             this.buyId = buyId;

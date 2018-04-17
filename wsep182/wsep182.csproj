@@ -42,7 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Domain\BuyHistory.cs" />
+    <Compile Include="Domain\Purchase.cs" />
     <Compile Include="Domain\BuyHistoryArchive.cs" />
     <Compile Include="Domain\Coupon.cs" />
     <Compile Include="Domain\CouponsArchive.cs" />

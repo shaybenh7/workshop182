@@ -10,9 +10,9 @@ namespace wsep182.services
     public class sellServices
     {
         //req 1.5 a
-        public Boolean addProductToCart(User user, int saledId, int amount)
+        public Boolean addProductToCart(User user, Sale sale, int amount)
         {
-            return user.addToCart(saledId, amount);
+            return user.addToCart(sale.SaleId, amount);
         }
         //req 1.5 b
         public Boolean addRaffleProductToCart(User user, Sale sale, double offer)
@@ -26,9 +26,9 @@ namespace wsep182.services
             return user.getShoppingCart();
         }
         // req 1.6.2
-        public Boolean editCart(User user, int saleId, int newAmount)
+        public Boolean editCart(User user, Sale sale, int newAmount)
         {
-            return user.editCart(saleId, newAmount);
+            return user.editCart(sale.SaleId, newAmount);
         }
 
         //req 1.7.1 for all the user cart
@@ -36,9 +36,6 @@ namespace wsep182.services
         {
             return session.buyProducts(creditCard, couponId);
         }
-
-
-
 
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace wsep182.Domain
 {
-    class CouponsArchive
+    public class CouponsArchive
     {
         private LinkedList<Coupon> coupons;
         private static CouponsArchive instance;
@@ -21,11 +21,15 @@ namespace wsep182.Domain
                 instance = new CouponsArchive();
             return instance;
         }
+        public static void restartInstance()
+        {
+            instance = new CouponsArchive();
+        }
 
         public Boolean addNewCoupon(String couponId, int productInStoreId, int percentage, String dueDate)
         {
             Coupon toAdd = new Coupon(couponId, productInStoreId, percentage, dueDate);
-            foreach(Coupon coupon in coupons)
+            foreach (Coupon coupon in coupons)
             {
                 if (coupon.CouponId.Equals(couponId) && coupon.ProductInStoreId == productInStoreId)
                     return false;
@@ -72,9 +76,9 @@ namespace wsep182.Domain
 
         public Coupon getCoupon(String couponId, int productInStoreId)
         {
-            foreach(Coupon coupon in coupons)
+            foreach (Coupon coupon in coupons)
             {
-                if(coupon.CouponId.Equals(couponId) && coupon.ProductInStoreId == productInStoreId)
+                if (coupon.CouponId.Equals(couponId) && coupon.ProductInStoreId == productInStoreId)
                 {
                     return coupon;
                 }

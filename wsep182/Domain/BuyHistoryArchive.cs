@@ -9,13 +9,13 @@ namespace wsep182.Domain
     public class BuyHistoryArchive
     {
 
-        private LinkedList<BuyHistory> buysHistory;
+        private LinkedList<Purchase> buysHistory;
         private static BuyHistoryArchive instance;
         private static int buyId;
 
         private BuyHistoryArchive()
         {
-            buysHistory = new LinkedList<BuyHistory>();
+            buysHistory = new LinkedList<Purchase>();
             buyId = 0;
         }
 
@@ -35,20 +35,20 @@ namespace wsep182.Domain
         String date, int amount, int typeOfSale)
         {
             int buyId = getNextBuyId();
-            BuyHistory toAdd = new BuyHistory(buyId, productId, storeId, userName, price, date, amount, typeOfSale);
+            Purchase toAdd = new Purchase(buyId, productId, storeId, userName, price, date, amount, typeOfSale);
             buysHistory.AddLast(toAdd);
             return true;
         }
 
-        public LinkedList<BuyHistory> viewHistory()
+        public LinkedList<Purchase> viewHistory()
         {
             return buysHistory;
         }
         
-        public LinkedList<BuyHistory> viewHistoryByStoreId(int storeId)
+        public LinkedList<Purchase> viewHistoryByStoreId(int storeId)
         {
-            LinkedList<BuyHistory> ans = new LinkedList<BuyHistory>();
-            foreach(BuyHistory buy in buysHistory)
+            LinkedList<Purchase> ans = new LinkedList<Purchase>();
+            foreach(Purchase buy in buysHistory)
             {
                 if (buy.StoreId == storeId)
                 {
@@ -57,10 +57,10 @@ namespace wsep182.Domain
             }
             return ans;
         }
-        public LinkedList<BuyHistory> viewHistoryByUserName(String userName)
+        public LinkedList<Purchase> viewHistoryByUserName(String userName)
         {
-            LinkedList<BuyHistory> ans = new LinkedList<BuyHistory>();
-            foreach (BuyHistory buy in buysHistory)
+            LinkedList<Purchase> ans = new LinkedList<Purchase>();
+            foreach (Purchase buy in buysHistory)
             {
                 if (buy.UserName.Equals(userName))
                 {

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace wsep182.Domain
 {
-    class DiscountsArchive
+    public class DiscountsArchive
     {
         private LinkedList<Discount> discounts;
         private static DiscountsArchive instance;
@@ -21,6 +21,10 @@ namespace wsep182.Domain
                 instance = new DiscountsArchive();
             return instance;
         }
+        public static void restartInstance()
+        {
+            instance = new DiscountsArchive();
+        }
 
         public Boolean addNewDiscount(int productInStoreId, int percentage, String dueDate)
         {
@@ -30,9 +34,9 @@ namespace wsep182.Domain
         }
         public Boolean removeDiscount(int productInStoreId)
         {
-            foreach(Discount discount in discounts)
+            foreach (Discount discount in discounts)
             {
-                if(discount.ProductInStoreId == productInStoreId)
+                if (discount.ProductInStoreId == productInStoreId)
                 {
                     discounts.Remove(discount);
                     return true;
@@ -61,9 +65,9 @@ namespace wsep182.Domain
 
         public Discount getDiscount(int productInStoreId)
         {
-            foreach(Discount discount in discounts)
+            foreach (Discount discount in discounts)
             {
-                if(discount.ProductInStoreId == productInStoreId)
+                if (discount.ProductInStoreId == productInStoreId)
                 {
                     return discount;
                 }

@@ -117,3 +117,20 @@ C:\Users\Itamar\Dropbox\סדנא של נקניקיות\c# version\wsep182\Accept
 C:\Users\Itamar\Dropbox\סדנא של נקניקיות\c# version\wsep182\Acceptance Tests\obj\Debug\Acceptance Tests.csproj.CopyComplete
 C:\Users\Itamar\Dropbox\סדנא של נקניקיות\c# version\wsep182\Acceptance Tests\obj\Debug\Acceptance Tests.dll
 C:\Users\Itamar\Dropbox\סדנא של נקניקיות\c# version\wsep182\Acceptance Tests\obj\Debug\Acceptance Tests.pdb
+C:\Users\Shay Ben Haim\Desktop\workshop\workshop182\Acceptance Tests\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll
+C:\Users\Shay Ben Haim\Desktop\workshop\workshop182\Acceptance Tests\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll
+C:\Users\Shay Ben Haim\Desktop\workshop\workshop182\Acceptance Tests\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll
+C:\Users\Shay Ben Haim\Desktop\workshop\workshop182\Acceptance Tests\bin\Debug\Acceptance Tests.dll
+C:\Users\Shay Ben Haim\Desktop\workshop\workshop182\Acceptance Tests\bin\Debug\Acceptance Tests.pdb
+C:\Users\Shay Ben Haim\Desktop\workshop\workshop182\Acceptance Tests\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.dll
+C:\Users\Shay Ben Haim\Desktop\workshop\workshop182\Acceptance Tests\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll
+C:\Users\Shay Ben Haim\Desktop\workshop\workshop182\Acceptance Tests\bin\Debug\wsep182.exe
+C:\Users\Shay Ben Haim\Desktop\workshop\workshop182\Acceptance Tests\bin\Debug\wsep182.pdb
+C:\Users\Shay Ben Haim\Desktop\workshop\workshop182\Acceptance Tests\bin\Debug\wsep182.exe.config
+C:\Users\Shay Ben Haim\Desktop\workshop\workshop182\Acceptance Tests\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.xml
+C:\Users\Shay Ben Haim\Desktop\workshop\workshop182\Acceptance Tests\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.xml
+C:\Users\Shay Ben Haim\Desktop\workshop\workshop182\Acceptance Tests\obj\Debug\Acceptance Tests.csprojResolveAssemblyReference.cache
+C:\Users\Shay Ben Haim\Desktop\workshop\workshop182\Acceptance Tests\obj\Debug\Acceptance Tests.csproj.CoreCompileInputs.cache
+C:\Users\Shay Ben Haim\Desktop\workshop\workshop182\Acceptance Tests\obj\Debug\Acceptance Tests.csproj.CopyComplete
+C:\Users\Shay Ben Haim\Desktop\workshop\workshop182\Acceptance Tests\obj\Debug\Acceptance Tests.dll
+C:\Users\Shay Ben Haim\Desktop\workshop\workshop182\Acceptance Tests\obj\Debug\Acceptance Tests.pdb
