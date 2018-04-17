@@ -41,6 +41,22 @@ namespace wsep182.Domain
             carts.AddLast(toAdd);
             return true;
         }
+        public Boolean updateUserCarts(String userName, int saleId, int amount,double offer)
+        {
+            foreach (UserCart cart in carts)
+            {
+                if (cart.getUserName().Equals(userName) && cart.getSaleId() == saleId)
+                {
+                    cart.setOffer(offer);
+                    return true;
+                }
+            }
+
+            UserCart toAdd = new UserCart(userName, saleId, amount);
+            toAdd.setOffer(offer);
+            carts.AddLast(toAdd);
+            return true;
+        }
 
         public Boolean editUserCarts(String userName, int saleId, int amount)
         {
@@ -79,6 +95,19 @@ namespace wsep182.Domain
                 }
             }
             return ans;
+        }
+
+        public Boolean removeUserCart(String userName, int saleId)
+        {
+            foreach(UserCart c in carts)
+            {
+                if(c.getUserName().Equals(userName) && c.getSaleId() == saleId)
+                {
+                    carts.Remove(c);
+                    return true;
+                }
+            }
+            return false;
         }
 
     }

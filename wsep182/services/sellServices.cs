@@ -49,6 +49,12 @@ namespace wsep182.services
         }
 
         //req 1.7 a
+        public Boolean removeFromCart(User user, Sale sale)
+        {
+            return user.removeFromCart(sale);
+        }
+
+        //req 1.7.1 for all the user cart
         public Boolean buyProducts(User session, String creditCard, String couponId)
         {
             if (session == null)
@@ -56,7 +62,10 @@ namespace wsep182.services
             return session.buyProducts(creditCard, couponId);
         }
 
-
+        public LinkedList<Sale> viewSalesByProductInStoreId(ProductInStore productInStore)
+        {
+            return User.viewSalesByProductInStoreId(productInStore);
+        }
 
     }
 }

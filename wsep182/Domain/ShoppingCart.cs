@@ -17,7 +17,7 @@ namespace wsep182.Domain
         public LinkedList<UserCart> getShoppingCartProducts(User session)
         {
             if (session.getState() is Guest)
-                return products;
+                return session.getShoppingCart().products;
             else
                 return UserCartsArchive.getInstance().getUserShoppingCart(session.getUserName());
         }
@@ -29,15 +29,27 @@ namespace wsep182.Domain
             {
                 return false;
             }
+            if (saleExist.TypeOfSale != 1)
+                return false;
             int amountInStore = ProductArchive.getInstance().getProductInStore(saleExist.ProductInStoreId).getAmount();
-            if (amount > amountInStore || amount < 0)
+            if (amount > amountInStore || amount <= 0)
                 return false;
 
             if (!(session.getState() is Guest))
                 UserCartsArchive.getInstance().updateUserCarts(session.getUserName(), saleId, amount);
 
             UserCart toAdd = new UserCart(session.getUserName(), saleId, amount);
-          //  UserCart toAdd = UserCartsArchive.getInstance().getUserCart(session.getUserName(), saleId);
+            foreach (UserCart c in products)
+            {
+                if(c.getUserName().Equals(toAdd.getUserName()) && c.getSaleId() == toAdd.getSaleId()){
+                    if(c.getAmount() + amount <= amountInStore)
+                    {
+                        c.setAmount(c.getAmount() + amount);
+                        return true;
+                    }
+                    return false;
+                }
+            }
 
             products.AddLast(toAdd);
             return true;
@@ -45,23 +57,39 @@ namespace wsep182.Domain
 
         public Boolean addToCartRaffle(User session, Sale sale, double offer)
         {
+            if (sale.TypeOfSale != 3)
+                return false;
+
+            UserCart isExist = UserCartsArchive.getInstance().getUserCart(session.getUserName(), sale.SaleId);
+            if (isExist != null)
+            {
+                return false;
+            }
+                
+            foreach(UserCart uc in session.getShoppingCart().products)
+            {
+                if (uc.getSaleId() == sale.SaleId)
+                    return false;
+            }
+
             if (!(session.getState() is Guest))
             {
-                UserCartsArchive.getInstance().updateUserCarts(session.getUserName(), sale.SaleId, 1);
+                UserCartsArchive.getInstance().updateUserCarts(session.getUserName(), sale.SaleId, 1,offer);
             }
             else
             {
                 return false;
             }
             double remainingSum = getRemainingSumForOffers(sale.SaleId);
-            if(offer> remainingSum || offer < 0)
+            if(offer > remainingSum || offer <= 0)
             {
                 return false;
             }
 
-            UserCart toAdd = UserCartsArchive.getInstance().getUserCart(session.getUserName(), sale.SaleId);
+            //UserCart toAdd = UserCartsArchive.getInstance().getUserCart(session.getUserName(), sale.SaleId);
+            UserCart toAdd = new UserCart(session.getUserName(), sale.SaleId, 1);
             toAdd.setOffer(offer);
-            products.AddLast(toAdd);
+            session.getShoppingCart().products.AddLast(toAdd);
             return true;
         }
 
@@ -71,8 +99,11 @@ namespace wsep182.Domain
             if (sale == null)
                 return false;
 
+            if (sale.TypeOfSale == 3)
+                return false;
+
             ProductInStore p = ProductArchive.getInstance().getProductInStore(sale.ProductInStoreId);
-            if (newAmount > p.getAmount() || newAmount < 0)
+            if (newAmount > p.getAmount() || newAmount <= 0)
                 return false;
             
 
@@ -90,8 +121,34 @@ namespace wsep182.Domain
             return false;
         }
 
+        public Boolean removeFromCart(User session, Sale sale)
+        {
+            Sale isExist = SalesArchive.getInstance().getSale(sale.SaleId);
+            if (isExist == null)
+            {
+                return false;
+            }
+            if (!(session.getState() is Guest))
+            {
+                if (!UserCartsArchive.getInstance().removeUserCart(session.getUserName(), sale.SaleId))
+                    return false;
+            }
+
+            foreach(UserCart c in products)
+            {
+                if (c.getUserName().Equals(session.getUserName()) && c.getSaleId() == sale.SaleId)
+                {
+                    products.Remove(c);
+                    return true;
+                }
+            }
+            return false;
+        }
+
         public Boolean buyProducts(User session, String creditCard, String couponId)
         {
+            if (creditCard == null || creditCard.Equals(""))
+                return false;
             foreach (UserCart product in products)
             {
                 if (couponId != null && couponId != "")
@@ -151,13 +208,13 @@ namespace wsep182.Domain
         }
         private double getRemainingSumForOffers(int saleId)
         {
+            Sale currSale = SalesArchive.getInstance().getSale(saleId);
+            double totalPrice = ProductArchive.getInstance().getProductInStore(currSale.ProductInStoreId).getPrice();
             LinkedList<RaffleSale> sales = RaffleSalesArchive.getInstance().getAllRaffleSalesBySaleId(saleId);
             if (sales.Count() == 0)
-                return -1;
+                return totalPrice;
             else
             {
-                Sale currSale = SalesArchive.getInstance().getSale(saleId);
-                double totalPrice = ProductArchive.getInstance().getProductInStore(currSale.ProductInStoreId).getPrice();
                 foreach (RaffleSale sale in sales)
                 {
                     totalPrice -= sale.Offer;
