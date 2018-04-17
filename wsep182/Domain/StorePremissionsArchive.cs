@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace wsep182.Domain
 {
-    class StorePremissionsArchive
+    public class StorePremissionsArchive
     {
         private static StorePremissionsArchive instance;
         Dictionary<string, StorePremissions> privilegesOfaUser;

@@ -36,6 +36,11 @@ namespace Acceptance_Tests.StoreTests
             storeArchive.restartInstance();
             UserArchive.restartInstance();
             UserCartsArchive.restartInstance();
+            BuyHistoryArchive.restartInstance();
+            CouponsArchive.restartInstance();
+            DiscountsArchive.restartInstance();
+            RaffleSalesArchive.restartInstance();
+            StorePremissionsArchive.restartInstance();
             us = userServices.getInstance();
             zahi = us.startSession();
             us.register(zahi, "zahi", "123456");

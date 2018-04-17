@@ -17,6 +17,11 @@ namespace Acceptance_Tests.UserTests
             storeArchive.restartInstance();
             UserArchive.restartInstance();
             UserCartsArchive.restartInstance();
+            BuyHistoryArchive.restartInstance();
+            CouponsArchive.restartInstance();
+            DiscountsArchive.restartInstance();
+            RaffleSalesArchive.restartInstance();
+            StorePremissionsArchive.restartInstance();
         }
 
         [TestMethod]
