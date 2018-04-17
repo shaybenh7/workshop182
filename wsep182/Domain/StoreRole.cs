@@ -18,20 +18,24 @@ namespace wsep182.Domain
 
         public static StoreRole getStoreRole(Store store, User user)
         {
+            if (store == null || user == null)
+                return null;
             return storeArchive.getInstance().getStoreRole(store, user);
         }
 
 
-        public virtual ProductInStore addProductInStore(User session, Store s, Product p, double price, int amount)
+        public virtual ProductInStore addProductInStore(User session, Store s, String productName, double price, int amount)
         {
-            if (p == null || session == null || s == null || amount <= 0 || price <= 0)
+            if (productName == null || session == null || s == null || amount <= 0 || price <= 0
+                || productName == ""
+                || productName[productName.Length - 1] == ' ')
                 return null;
             //if(check if session is owner or manager with the right permission)
-            Product p2 = ProductArchive.getInstance().getProductByName(p.getProductName());
+            Product p2 = ProductArchive.getInstance().getProductByName(productName);
             if (p2 == null)
             {
                 
-                p2 = Product.addProduct(p.getProductName());
+                p2 = Product.addProduct(productName);
             }
             if (price >= 0 && amount >= 0)
             {

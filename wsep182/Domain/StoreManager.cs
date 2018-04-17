@@ -15,10 +15,10 @@ namespace wsep182.Domain
             premissions = StorePremissionsArchive.getInstance();
         }
 
-        public override ProductInStore addProductInStore(User session, Store s, Product p, double price, int amount)
+        public override ProductInStore addProductInStore(User session, Store s, String productName, double price, int amount)
         {
             if (premissions.checkPrivilege(session.getUserName(),"addProductInStore"))
-                return base.addProductInStore(session, s, p, price, amount);
+                return base.addProductInStore(session, s, productName, price, amount);
             return null;
         }
 		

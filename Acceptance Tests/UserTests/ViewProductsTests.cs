@@ -28,8 +28,7 @@ namespace Acceptance_Tests.UserTests
             us.login(session, "zahi", "123456");
             storeServices ss = storeServices.getInstance();
             Store s = ss.createStore("abowim", session);
-            Product p = new Product("cola");
-            ProductInStore pis=ss.addProductInStore(p, 3.2, 10, session, s);
+            ProductInStore pis=ss.addProductInStore("cola", 3.2, 10, session, s);
             LinkedList<ProductInStore> pisList = us.viewProductsInStore(s);
             Assert.IsTrue(pisList.Contains(pis));
             Assert.AreEqual(pisList.Count, 1);
@@ -59,10 +58,8 @@ namespace Acceptance_Tests.UserTests
             us.login(session, "zahi", "123456");
             storeServices ss = storeServices.getInstance();
             Store s = ss.createStore("abowim", session);
-            Product p = new Product("cola");
-            Product p2 = new Product("sprite");
-            ProductInStore pis = ss.addProductInStore(p, 3.2, 10, session, s);
-            ProductInStore pis2 = ss.addProductInStore(p2, 3.2, 10, session, s);
+            ProductInStore pis = ss.addProductInStore("cola", 3.2, 10, session, s);
+            ProductInStore pis2 = ss.addProductInStore("sprite", 3.2, 10, session, s);
             LinkedList<ProductInStore> pisList = us.viewProductsInStore(s);
             Assert.IsTrue(pisList.Contains(pis));
             Assert.IsTrue(pisList.Contains(pis2));

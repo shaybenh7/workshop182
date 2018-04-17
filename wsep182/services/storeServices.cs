@@ -27,16 +27,14 @@ namespace wsep182.services
         }
 
         //req 3.1 a
-        public ProductInStore addProductInStore(Product p, Double price, int amount, User session, Store s)
+        public ProductInStore addProductInStore(String productName, Double price, int amount, User session, Store s)
         {
-            if (!session.getState().isLogedIn() || p.getProductName() ==null
-                || p.getProductName()=="" 
-                || p.getProductName()[p.getProductName().Length - 1]== ' ')
+            if (session==null || !session.getState().isLogedIn() || productName == null)
                 return null;
             StoreRole sR = StoreRole.getStoreRole(s, session);
             if (sR == null)
                 return null;
-            return sR.addProductInStore(session, s, p, price, amount);
+            return sR.addProductInStore(session, s, productName, price, amount);
         }
 
         //req 3.1 b

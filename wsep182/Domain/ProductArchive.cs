@@ -170,11 +170,11 @@ namespace wsep182.Domain
         public Boolean removeProductInStore(int productId, int storeId)
         {
             foreach (ProductInStore p in productsInStores)
-                if (p.getProduct().getProductId() == productId && p.getStore().getStoreId() == storeId)
+                if (p.getProductInStoreId() == productId && p.getStore().getStoreId() == storeId)
                 {
                     if (p.getIsActive() == 0)
                         return false;
-                    if (SalesArchive.getInstance().getSalesByProductInStoreId(p.getProductInStoreId()) != null)
+                    if (SalesArchive.getInstance().getSalesByProductInStoreId(p.getProductInStoreId()).Count>0)
                         return false;
                     p.IsActive = 0;
                     return true;
