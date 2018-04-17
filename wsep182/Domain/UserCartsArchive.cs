@@ -55,6 +55,7 @@ namespace wsep182.Domain
             return false ;
         }
 
+
         public UserCart getUserCart(String userName, int saleId)
         {
             foreach (UserCart cart in carts)

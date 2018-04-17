@@ -102,5 +102,10 @@ namespace wsep182.Domain
             return shoppingCart.addToCartRaffle(this, sale, offer);
         }
 
+        public static LinkedList<Sale> viewSalesByProductInStoreId(ProductInStore product)
+        {
+            return SalesArchive.getInstance().getSalesByProductInStoreId(product.getProductInStoreId());
+        }
+
     }
 }

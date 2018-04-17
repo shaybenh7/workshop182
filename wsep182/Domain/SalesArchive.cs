@@ -72,5 +72,19 @@ namespace wsep182.Domain
             return sales;
         }
 
+        public LinkedList<Sale> getSalesByProductInStoreId(int productInStoreId)
+        {
+            LinkedList<Sale> ans = new LinkedList<Sale>();
+            foreach(Sale sale in sales)
+            {
+                if(sale.ProductInStoreId == productInStoreId)
+                {
+                    ans.AddLast(sale);
+                }
+            }
+
+            return ans;
+        }
+
     }
 }

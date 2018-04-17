@@ -24,6 +24,15 @@ namespace wsep182.Domain
 
         public Boolean addToCart(User session, int saleId, int amount)
         {
+            Sale saleExist = SalesArchive.getInstance().getSale(saleId);
+            if (saleExist == null)
+            {
+                return false;
+            }
+            int amountInStore = ProductArchive.getInstance().getProductInStore(saleExist.ProductInStoreId).getAmount();
+            if (amount > amountInStore || amount < 0)
+                return false;
+
             if (!(session.getState() is Guest))
                 UserCartsArchive.getInstance().updateUserCarts(session.getUserName(), saleId, amount);
 
@@ -34,8 +43,20 @@ namespace wsep182.Domain
 
         public Boolean addToCartRaffle(User session, Sale sale, double offer)
         {
+
             if (!(session.getState() is Guest))
+            {
                 UserCartsArchive.getInstance().updateUserCarts(session.getUserName(), sale.SaleId, 1);
+            }
+            else
+            {
+                return false;
+            }
+            double remainingSum = getRemainingSumForOffers(sale.SaleId);
+            if(offer> remainingSum || offer < 0)
+            {
+                return false;
+            }
 
             UserCart toAdd = UserCartsArchive.getInstance().getUserCart(session.getUserName(), sale.SaleId);
             toAdd.setOffer(offer);
@@ -45,6 +66,15 @@ namespace wsep182.Domain
 
         public Boolean editCart(User session, int saleId, int newAmount)
         {
+            Sale sale = SalesArchive.getInstance().getSale(saleId);
+            if (sale == null)
+                return false;
+
+            ProductInStore p = ProductArchive.getInstance().getProductInStore(sale.ProductInStoreId);
+            if (newAmount > p.getAmount() || newAmount < 0)
+                return false;
+            
+
             if (!(session.getState() is Guest))
                 UserCartsArchive.getInstance().editUserCarts(session.getUserName(), saleId, newAmount);
 
