@@ -67,9 +67,12 @@ namespace wsep182.services
         }
 
         //req 3.3 b
-        public Boolean RemoveStoreOwner(Store s, User newOwner, User session)
+        public Boolean removeStoreOwner(Store s, User oldOwner, User session)
         {
-            return false;
+            StoreRole sR = StoreRole.getStoreRole(s, session);
+            if (sR == null)
+                return false;
+            return sR.removeStoreOwner(session, s, oldOwner);
         }
 
         //req 3.4 a

@@ -91,7 +91,6 @@ namespace wsep182.Domain
         }
         public virtual Boolean removeStoreOwner(User session, Store s, User ownerToDelete)
         {
-
             if (s.getStoreCreator().getUserName().Equals(ownerToDelete.getUserName()))
                 return false;
             return storeArchive.getInstance().removeStoreRole(s.getStoreId(), ownerToDelete.getUserName());
