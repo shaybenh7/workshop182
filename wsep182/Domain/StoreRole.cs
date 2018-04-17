@@ -128,12 +128,15 @@ namespace wsep182.Domain
                 case "addProductInStore":
                     sR.getPremissions(session).addProductInStore(allow);
                     return true;
+
                 case "editProductInStore":
                     sR.getPremissions(session).editProductInStore(allow);
                     return true;
+
                 case "removeProductFromStore":
                     sR.getPremissions(session).removeProductFromStore(allow);
                     return true;
+
                 case "addStoreManager":
                     sR.getPremissions(session).addStoreManager(allow);
                     return true;

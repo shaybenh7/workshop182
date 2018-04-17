@@ -189,12 +189,12 @@ namespace wsep182.services
                 return false;
             return false;
         }
-        //TO FIX - CALL THE FUNCTION IN STORE ROLE
-        public Boolean viewStoreHistory(User session)
+
+        public LinkedList<Purchase> viewStoreHistory(User session, Store store)
         {
-            if (session == null)
-                return false;
-            return false;
+            if (session == null | store==null)
+                return null;
+            return session.viewStoreHistory(store);
         }
 
         public LinkedList<StoreOwner> getOwners(Store s)

@@ -50,3 +50,10 @@ C:\Users\Shay Ben Haim\Desktop\workshop\workshop182\wsep182\obj\Debug\wsep182.cs
 C:\Users\Shay Ben Haim\Desktop\workshop\workshop182\wsep182\obj\Debug\wsep182.csproj.CoreCompileInputs.cache
 C:\Users\Shay Ben Haim\Desktop\workshop\workshop182\wsep182\obj\Debug\wsep182.exe
 C:\Users\Shay Ben Haim\Desktop\workshop\workshop182\wsep182\obj\Debug\wsep182.pdb
+C:\Programing\c#\workshop182\wsep182\obj\Debug\wsep182.csprojResolveAssemblyReference.cache
+C:\Programing\c#\workshop182\wsep182\obj\Debug\wsep182.csproj.CoreCompileInputs.cache
+C:\Programing\c#\workshop182\wsep182\obj\Debug\wsep182.exe
+C:\Programing\c#\workshop182\wsep182\obj\Debug\wsep182.pdb
+C:\Programing\c#\workshop182\wsep182\bin\Debug\wsep182.exe.config
+C:\Programing\c#\workshop182\wsep182\bin\Debug\wsep182.exe
+C:\Programing\c#\workshop182\wsep182\bin\Debug\wsep182.pdb

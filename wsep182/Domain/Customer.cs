@@ -13,6 +13,11 @@ namespace wsep182.Domain
 
         }
 
+        public LinkedList<Purchase> viewStoreHistory(Store store, User session)
+        {
+            return null;
+        }
+
         public override Product addProduct(User session, String productName)
         {
             return null;

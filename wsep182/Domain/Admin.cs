@@ -13,11 +13,15 @@ namespace wsep182.Domain
             return UserArchive.getInstance().removeUser(userDeleted);
         }
 
+
         public override Boolean isLogedIn()
         {
             return true;
         }
 
-
+        public override LinkedList<Purchase> viewStoreHistory(Store store, User session)
+        {
+            return BuyHistoryArchive.getInstance().viewHistoryByStoreId(store.getStoreId());
+        }
     }
 }

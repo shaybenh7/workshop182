@@ -33,5 +33,10 @@ namespace wsep182.Domain
         {
             return false;
         }
+
+        public override LinkedList<Purchase> viewStoreHistory(Store store, User session)
+        {
+            return null;
+        }
     }
 }

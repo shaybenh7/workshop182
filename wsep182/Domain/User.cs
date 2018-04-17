@@ -109,5 +109,10 @@ namespace wsep182.Domain
             return SalesArchive.getInstance().getSalesByProductInStoreId(product.getProductInStoreId());
         }
 
+        public LinkedList<Purchase> viewStoreHistory(Store store)
+        {
+            return state.viewStoreHistory(store,this);
+        }
+
     }
 }

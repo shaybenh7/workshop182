@@ -19,5 +19,11 @@ namespace wsep182.Domain
         {
             return true;
         }
+
+        public override LinkedList<Purchase> viewStoreHistory(Store store, User session)
+        {
+            StoreRole sR = storeArchive.getInstance().getStoreRole(store, session);
+            return sR.viewPurchasesHistory(session, store);
+        }
     }
 }

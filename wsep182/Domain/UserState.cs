@@ -15,6 +15,8 @@ namespace wsep182.Domain
 
         public abstract Boolean isLogedIn();
 
+        public abstract LinkedList<Purchase> viewStoreHistory(Store store, User session);
+
         public virtual UserState register(String username, String password)
         {
             throw new Exception("already logged in");
