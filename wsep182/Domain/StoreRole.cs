@@ -15,6 +15,7 @@ namespace wsep182.Domain
             user = u;
             store = s;
         }
+
         public virtual Product addProduct(User session, String productName)
         {
             Product p2 = ProductArchive.getInstance().getProductByName(productName);

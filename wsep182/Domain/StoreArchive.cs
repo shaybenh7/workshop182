@@ -139,6 +139,19 @@ namespace wsep182.Domain
             return res;
         }
 
+        public LinkedList<StoreRole> getAllStoreRolesOfAUser(String username)
+        {
+            LinkedList<StoreRole> res = new LinkedList<StoreRole>();
+            foreach (int key in archive.Keys){
+                foreach (String key2 in archive[key].Keys)
+                {
+                    if (key2 == username)
+                        res.AddLast(archive[key][key2]);
+                }
+            }
+            return res;
+        }
+
         public LinkedList<Store> getAllStore()
         {
             return stores;
