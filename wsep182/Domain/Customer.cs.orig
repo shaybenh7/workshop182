@@ -51,9 +51,9 @@ namespace wsep182.Domain
             return false;
 
         }
-        public override int addSaleToStore(User session, int productInStoreId, int typeOfSale, int amount, String dueDate)
+        public override Boolean addSaleToStore(User session, int productInStoreId, int typeOfSale, int amount, String dueDate)
         {
-            return -1;
+            return false;
         }
         public override Boolean removeManagerPermission(User session, String permission, Store s, User manager)
         {

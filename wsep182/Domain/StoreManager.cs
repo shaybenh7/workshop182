@@ -23,7 +23,7 @@ namespace wsep182.Domain
         }
 		
 		public override Product addProduct(User session, String productName)
-		}
+        { 
 			return null;
 		}
 

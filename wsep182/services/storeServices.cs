@@ -48,7 +48,7 @@ namespace wsep182.services
 
         public virtual Boolean editProductInStore(User session, Store s,ProductInStore p, int quantity, double price)
         {
-            StoreRole sR = storeArchive.getInstance().getStoreRole(s.getStoreId(), session.getUserName());
+            StoreRole sR = storeArchive.getInstance().getStoreRole(s, session);
             if (sR == null)
                 return false;
             return sR.editProductInStore(session, p, quantity, price);
@@ -66,21 +66,21 @@ namespace wsep182.services
             }
             if (!session.getState().isLogedIn())
                 return -1;
-            StoreRole sR = storeArchive.getInstance().getStoreRole(s.getStoreId(), session.getUserName());
+            StoreRole sR = storeArchive.getInstance().getStoreRole(s, session);
             if (sR == null)
                 return -1;
             return sR.addSaleToStore(session, productInStoreId, typeOfSale, amount, dueDate);
         }
         public Boolean removeSaleFromStore(User session, Store s, int saleId)
         {
-            StoreRole sR = storeArchive.getInstance().getStoreRole(s.getStoreId(), session.getUserName());
+            StoreRole sR = storeArchive.getInstance().getStoreRole(s, session);
             if (sR == null)
                 return false;
             return sR.removeSaleFromStore(session, s, saleId);
         }
         public Boolean editSale(User session, Store s, int saleId, int amount, String dueDate)
         {
-            StoreRole sR = storeArchive.getInstance().getStoreRole(s.getStoreId(), session.getUserName());
+            StoreRole sR = storeArchive.getInstance().getStoreRole(s, session);
             if (sR == null)
                 return false;
             return sR.editSale(session, s, saleId,amount,dueDate);
@@ -177,7 +177,7 @@ namespace wsep182.services
         {
             if (session == null || p == null)
                 return false;
-            StoreRole sR = storeArchive.getInstance().getStoreRole(s.getStoreId(), session.getUserName());
+            StoreRole sR = storeArchive.getInstance().getStoreRole(s, session);
             if (sR == null)
                 return false;
             return sR.addDiscount(session,p.getProductInStoreId(), percentage, dueDate);
