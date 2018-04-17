@@ -132,14 +132,12 @@ namespace wsep182.Domain
                     sR.getPremissions(session).addSaleToStore(allow);
                     return true;
 
-
+                case "addProduct":
+                    return false;
                 case "addStoreOwner":
                     return false;
                 case "removeStoreOwner":
                     return false;
-
-
-
 
                 default:
                     return false;

@@ -45,6 +45,26 @@ namespace wsep182.services
                 return null;
             return sR.addProductInStore(session, s, p, price, amount);
         }
+
+
+        public Boolean addSaleToStore(User session, Store s, int productInStoreId, int typeOfSale, int amount, String dueDate)
+        {
+            if (session == null ||  amount <= 0 || typeOfSale > 3 || typeOfSale < 0)
+                return false;
+            if(typeOfSale == 2)
+            {
+                //WILL BE IMPLEMENTED NEXT VERSION
+                return false;
+            }
+            if (!session.getState().isLogedIn())
+                return false;
+            StoreRole sR = storeArchive.getInstance().getStoreRole(s.getStoreId(), session.getUserName());
+            if (sR == null)
+                return false;
+            return sR.addSaleToStore(session, productInStoreId, typeOfSale, amount, dueDate);
+        }
+
+
         //req 3.2
         public Boolean removeProductFromStore(Store s, ProductInStore p, User session)
         {
