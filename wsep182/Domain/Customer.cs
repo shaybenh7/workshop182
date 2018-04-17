@@ -18,10 +18,6 @@ namespace wsep182.Domain
             return null;
         }
 
-        public override Product addProduct(User session, String productName)
-        {
-            return null;
-        }
 
         public override Boolean addDiscount(User session, ProductInStore p, int percentage, String dueDate)
         {
