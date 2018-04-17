@@ -174,7 +174,8 @@ namespace wsep182.Domain
                 {
                     if (p.getIsActive() == 0)
                         return false;
-                    productsInStores.Remove(p);
+                    //CHECK IF THERE ARE ACTIVE SALES
+                    p.IsActive = 0;
                     return true;
                 }
             return false;
