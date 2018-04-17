@@ -71,6 +71,9 @@ namespace wsep182.Domain
 
         public Boolean register(String username, String password)
         {
+            if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password)
+                || username.Equals("") || password.Equals("") || username.Contains(" "))
+                return false;
             User u = new User(username, password);
             u.setState(state.register(username, password));
             return UserArchive.getInstance().addUser(u);
