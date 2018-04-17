@@ -54,7 +54,7 @@ namespace wsep182.Domain
             User user = state.login(username, password);
             if (user != null)
             {
-                if (username == "admin")
+                if (username == "admin" || username == "admin1")
                     state = new Admin();
                 else
                     state = user.state;
@@ -81,9 +81,9 @@ namespace wsep182.Domain
             return state.createStore(storeName, this);
         }
 
-        public Boolean removeUser(User userMakingDeletion, String userName)
+        public Boolean removeUser(String userName)
         {
-            return userMakingDeletion.state.removeUser(this,userName);
+            return this.state.removeUser(this,userName);
         }
 
 
