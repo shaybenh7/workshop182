@@ -148,17 +148,21 @@ namespace wsep182.services
             //Not implemented in this version
             return false;
         }
-        public Boolean addHiddenDiscount(ProductInStore p, User session)
+        public Boolean addCouponDiscount(ProductInStore p, User session)
         {
             if (session == null || p == null)
                 return false;
             return false;
         }
-        public Boolean addRevealedDiscount(ProductInStore p, User session)
+        public Boolean addDiscount(ProductInStore p, int percentage ,String dueDate,User session ,Store s)
         {
             if (session == null || p == null)
                 return false;
-            return false;
+            StoreRole sR = storeArchive.getInstance().getStoreRole(s.getStoreId(), session.getUserName());
+            if (sR == null)
+                return false;
+            return sR.addDiscount(session,p.getProductInStoreId(), percentage, dueDate);
+            
         }
         public Boolean removeDiscount(ProductInStore p, User session)
         {

@@ -12,9 +12,10 @@ namespace wsep182.Domain
         {
 
         }
-        public override Boolean addProduct(User session, ProductInStore pis)
+
+        public override Product addProduct(User session, String productName)
         {
-            return false;
+            return null;
         }
         public override ProductInStore addProductInStore(User session, Store s, Product p, double price, int amount)
         {

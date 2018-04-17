@@ -54,6 +54,11 @@ namespace wsep182.Domain
             privilegesOfaUser[username].addStoreManager(allow);
         }
 
+        public void addDiscount(string username, Boolean allow)
+        {
+            privilegesOfaUser[username].addStoreManager(allow);
+        }
+
         public void removeStoreManager(string username, Boolean allow)
         {
             privilegesOfaUser[username].removeStoreManager(allow);
@@ -67,9 +72,16 @@ namespace wsep182.Domain
         {
             privilegesOfaUser[username].removeManagerPermission(allow);
         }
+
         public Boolean checkPrivilege(string username, string privilege)
         {
             return privilegesOfaUser[username].checkPrivilege(privilege);
         }
+
+        public Boolean addNewCoupon(string username, string privilege)
+        {
+            return privilegesOfaUser[username].checkPrivilege(privilege);
+        }
+        
     }
 }

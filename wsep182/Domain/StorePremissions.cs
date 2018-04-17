@@ -93,6 +93,20 @@ namespace wsep182.Domain
                 addPrivilege("addSaleToStore");
             else removePrivilege("addSaleToStore");
         }
+        
+        public void addNewCoupon(Boolean allow)
+        {
+            if (allow)
+                addPrivilege("addNewCoupon");
+            else removePrivilege("addNewCoupon");
+        }
+        public void addDiscount(Boolean allow)
+        {
+            if (allow)
+                addPrivilege("addDiscount");
+            else removePrivilege("addDiscount");
+        }
+        
         public Boolean checkPrivilege(string privilege)
         {
             Boolean res = false;

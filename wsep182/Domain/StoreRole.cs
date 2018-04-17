@@ -89,6 +89,15 @@ namespace wsep182.Domain
         {
             return SalesArchive.getInstance().addSale(productInStoreId, typeOfSale, amount, dueDate) != -1;
         }
+        public virtual Boolean addDiscount(User session, int pId, int percentage, String dueDate)
+        {
+            return DiscountsArchive.getInstance().addNewDiscount(pId, percentage, dueDate);
+        }
+
+        public virtual Boolean addNewCoupon(User session, String couponId, int productInStoreId, int percentage, String dueDate)
+        {
+            return CouponsArchive.getInstance().addNewCoupon(couponId, productInStoreId, percentage, dueDate);
+        }
 
         public virtual Boolean removeManagerPermission(User session, String permission, Store s, User manager)
         {
@@ -131,7 +140,13 @@ namespace wsep182.Domain
                 case "addSaleToStore":
                     sR.getPremissions(session).addSaleToStore(allow);
                     return true;
-
+                case "addDiscount":
+                    sR.getPremissions(session).addDiscount(allow);
+                    return true;
+                case "addNewCoupon":
+                    sR.getPremissions(session).addNewCoupon(allow);
+                    return true;
+                    
                 case "addProduct":
                     return false;
                 case "addStoreOwner":

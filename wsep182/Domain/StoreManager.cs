@@ -22,6 +22,20 @@ namespace wsep182.Domain
             return null;
         }
 
+        public override Boolean addDiscount(User session, int pId, int percentage, String dueDate)
+        {
+            if (premissions.checkPrivilege(session.getUserName(), "addDiscount"))
+                return base.addDiscount(session, pId, percentage, dueDate);
+            return false;
+        }
+
+        public override Boolean addNewCoupon(User session, String couponId, int productInStoreId, int percentage, String dueDate)
+        {
+            if (premissions.checkPrivilege(session.getUserName(), "addNewCoupon"))
+                return base.addNewCoupon(session, couponId, productInStoreId, percentage, dueDate);
+            return false;
+        }
+
         public override Boolean editProductInStore(User session, ProductInStore p, int quantity, double price)
         {
             if (premissions.checkPrivilege(session.getUserName(), "editProductInStore"))
