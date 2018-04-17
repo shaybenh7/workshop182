@@ -12,10 +12,12 @@ namespace wsep182.Domain
         private String userName;
         private String password;
         private ShoppingCart shoppingCart;
+        private Boolean isActive;
         public User(string userName, string password)
         {
             this.password = password;
             this.userName = userName;
+            isActive = true;
             state = new Guest();
             shoppingCart = new ShoppingCart();
         }
@@ -109,5 +111,14 @@ namespace wsep182.Domain
             return SalesArchive.getInstance().getSalesByProductInStoreId(product.getProductInStoreId());
         }
 
+        internal Boolean getIsActive()
+        {
+            return isActive;
+        }
+
+        internal void setIsActive(Boolean state)
+        {
+            isActive = state;
+        }
     }
 }

@@ -46,6 +46,18 @@ namespace wsep182.Domain
             return ans;
         }
 
+        public LinkedList<RaffleSale> getAllRaffleSalesByUserName(String username)
+        {
+            LinkedList<RaffleSale> ans = new LinkedList<RaffleSale>();
+            foreach (RaffleSale sale in raffleSales)
+            {
+                if (sale.UserName == username)
+                {
+                    ans.AddLast(sale);
+                }
+            }
+            return ans;
+        }
 
     }
 }
