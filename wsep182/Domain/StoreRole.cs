@@ -62,7 +62,10 @@ namespace wsep182.Domain
         {
             if (session == null || s == null || newManager == null)
                 return false;
-            StoreRole m = new StoreManager(session,s);
+            StoreRole sr = storeArchive.getInstance().getStoreRole(s, newManager);
+            if (sr != null && (sr is StoreOwner || sr is StoreManager))
+                return false;
+            StoreRole m = new StoreManager(newManager, s);
             return storeArchive.getInstance().addStoreRole(m, s.getStoreId(),newManager.getUserName());
         }
         public virtual Boolean removeStoreManager(User session, Store s, User oldManager)
@@ -78,6 +81,11 @@ namespace wsep182.Domain
             {
                 return false ;
             }
+            StoreRole sr = storeArchive.getInstance().getStoreRole(s, newOwner);
+            if (sr != null && (sr is StoreOwner))
+                return false;
+            if (sr != null && (sr is StoreManager))
+                removeStoreManager(session, s, newOwner);
             StoreRole owner = new StoreOwner(session,s);
             return storeArchive.getInstance().addStoreRole(owner, s.getStoreId(), newOwner.getUserName());
         }

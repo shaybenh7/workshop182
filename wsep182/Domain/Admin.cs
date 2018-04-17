@@ -18,8 +18,9 @@ namespace wsep182.Domain
             LinkedList<StoreRole> roles = storeArchive.getInstance().getAllStoreRolesOfAUser(userDeleted);
             if (checkLoneOwnerOrCreator(roles))
                 return false;
-            
-            removeAllRolesOfAUser(roles);
+
+            if (!removeAllRolesOfAUser(roles))
+                return false;
             return UserArchive.getInstance().removeUser(userDeleted);
         }
 
@@ -42,18 +43,19 @@ namespace wsep182.Domain
 
         private Boolean removeAllRolesOfAUser(LinkedList<StoreRole> roles)
         {
+            Boolean res = true;
             foreach (StoreRole sr in roles)
             {
                 if (sr is StoreOwner)
                 {
                     if (sr.getStore().getOwners().Count > 1)
-                        storeArchive.getInstance().removeStoreRole(sr.getStore().getStoreId(), sr.getUser().getUserName());
+                        res = res && storeArchive.getInstance().removeStoreRole(sr.getStore().getStoreId(), sr.getUser().getUserName());
                     else throw new Exception("something went seriously wrong"); // in the interval between the call to the safety check to now, something occured
                 }
                 else
-                    storeArchive.getInstance().removeStoreRole(sr.getStore().getStoreId(), sr.getUser().getUserName());
+                    res = res && storeArchive.getInstance().removeStoreRole(sr.getStore().getStoreId(), sr.getUser().getUserName());
             }
-            return false;
+            return res;
         }
 
 
