@@ -37,7 +37,7 @@ namespace Acceptance_Tests.UserTests
             itamar = us.startSession();
             us.register(itamar, "itamar", "123456");
             itamar.login("itamar", "123456");
-            store = itamar.createStore(itamar, "Maria&Netta Inc.");
+            store = itamar.createStore("Maria&Netta Inc.");
 
             niv = us.startSession();
             us.register(niv, "niv", "123456");
@@ -154,7 +154,7 @@ namespace Acceptance_Tests.UserTests
         [TestMethod]
         public void RemoveMannegerInFewStores()
         {
-            Store store2 = itamar.createStore(admin, "admin store");
+            Store store2 = admin.createStore("admin store");
             ss.addStoreManager(store2, niv, admin);
             Assert.IsTrue(admin.removeUser("niv"));
             Assert.IsFalse(niv.login("niv", "123456"));
