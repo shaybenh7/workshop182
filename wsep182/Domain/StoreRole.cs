@@ -85,10 +85,21 @@ namespace wsep182.Domain
             return correlate(session, permission, sR, true);
 
         }
-        public virtual Boolean addSaleToStore(User session, int productInStoreId, int typeOfSale, int amount,String dueDate)
+        public virtual int addSaleToStore(User session, int productInStoreId, int typeOfSale, int amount,String dueDate)
         {
-            return SalesArchive.getInstance().addSale(productInStoreId, typeOfSale, amount, dueDate) != -1;
+            return SalesArchive.getInstance().addSale(productInStoreId, typeOfSale, amount, dueDate);
         }
+
+        public virtual Boolean removeSaleFromStore(User session, Store s, int saleId)
+        {
+            return SalesArchive.getInstance().removeSale(saleId);
+        }
+
+        public virtual Boolean editSale(User session,Store s,int saleId,int amount,String dueDate)
+        {
+            return SalesArchive.getInstance().editSale(saleId, amount, dueDate);
+        }
+
         public virtual Boolean addDiscount(User session, int pId, int percentage, String dueDate)
         {
             return DiscountsArchive.getInstance().addNewDiscount(pId, percentage, dueDate);
@@ -137,6 +148,12 @@ namespace wsep182.Domain
                 case "viewPurchasesHistory":
                     sR.getPremissions(session).viewPurchasesHistory(allow);
                     return true;
+                case "removeSaleFromStore":
+                    sR.getPremissions(session).removeSaleFromStore(allow);
+                    return true;
+                case "editSale":
+                    sR.getPremissions(session).editSale(allow);
+                    return true;
                 case "addSaleToStore":
                     sR.getPremissions(session).addSaleToStore(allow);
                     return true;
@@ -146,7 +163,9 @@ namespace wsep182.Domain
                 case "addNewCoupon":
                     sR.getPremissions(session).addNewCoupon(allow);
                     return true;
-                    
+                case "getPremissions":
+                    return true;
+
                 case "addProduct":
                     return false;
                 case "addStoreOwner":

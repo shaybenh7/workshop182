@@ -46,24 +46,45 @@ namespace wsep182.services
             return sR.addProductInStore(session, s, p, price, amount);
         }
 
-
-        public Boolean addSaleToStore(User session, Store s, int productInStoreId, int typeOfSale, int amount, String dueDate)
+        public virtual Boolean editProductInStore(User session, Store s,ProductInStore p, int quantity, double price)
         {
-            if (session == null ||  amount <= 0 || typeOfSale > 3 || typeOfSale < 0)
-                return false;
-            if(typeOfSale == 2)
-            {
-                //WILL BE IMPLEMENTED NEXT VERSION
-                return false;
-            }
-            if (!session.getState().isLogedIn())
-                return false;
             StoreRole sR = storeArchive.getInstance().getStoreRole(s.getStoreId(), session.getUserName());
             if (sR == null)
                 return false;
-            return sR.addSaleToStore(session, productInStoreId, typeOfSale, amount, dueDate);
+            return sR.editProductInStore(session, p, quantity, price);
         }
 
+
+        public int addSaleToStore(User session, Store s, int productInStoreId, int typeOfSale, int amount, String dueDate)
+        {
+            if (session == null ||  amount <= 0 || typeOfSale > 3 || typeOfSale < 0)
+                return -1;
+            if(typeOfSale == 2)
+            {
+                //WILL BE IMPLEMENTED NEXT VERSION
+                return -1;
+            }
+            if (!session.getState().isLogedIn())
+                return -1;
+            StoreRole sR = storeArchive.getInstance().getStoreRole(s.getStoreId(), session.getUserName());
+            if (sR == null)
+                return -1;
+            return sR.addSaleToStore(session, productInStoreId, typeOfSale, amount, dueDate);
+        }
+        public Boolean removeSaleFromStore(User session, Store s, int saleId)
+        {
+            StoreRole sR = storeArchive.getInstance().getStoreRole(s.getStoreId(), session.getUserName());
+            if (sR == null)
+                return false;
+            return sR.removeSaleFromStore(session, s, saleId);
+        }
+        public Boolean editSale(User session, Store s, int saleId, int amount, String dueDate)
+        {
+            StoreRole sR = storeArchive.getInstance().getStoreRole(s.getStoreId(), session.getUserName());
+            if (sR == null)
+                return false;
+            return sR.editSale(session, s, saleId,amount,dueDate);
+        }
 
         //req 3.2
         public Boolean removeProductFromStore(Store s, ProductInStore p, User session)

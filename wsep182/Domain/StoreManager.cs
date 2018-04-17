@@ -21,6 +21,11 @@ namespace wsep182.Domain
                 return base.addProductInStore(session, s, p, price, amount);
             return null;
         }
+		
+		public override Product addProduct(User session, String productName)
+		}
+			return null;
+		}
 
         public override Boolean addDiscount(User session, int pId, int percentage, String dueDate)
         {
@@ -93,10 +98,24 @@ namespace wsep182.Domain
             return false;
         }
 
-        public override Boolean addSaleToStore(User session, int productInStoreId, int typeOfSale, int amount, String dueDate)
+        public override int addSaleToStore(User session, int productInStoreId, int typeOfSale, int amount, String dueDate)
         {
             if (premissions.checkPrivilege(session.getUserName(), "addSaleToStore"))
                 return base.addSaleToStore(session, productInStoreId, typeOfSale, amount, dueDate);
+            return -1;
+        }
+
+        public override Boolean removeSaleFromStore(User session, Store s, int saleId)
+        {
+            if (premissions.checkPrivilege(session.getUserName(), "removeSaleFromStore"))
+                return base.removeSaleFromStore(session, s, saleId);
+            return false;
+        }
+
+        public override Boolean editSale(User session, Store s, int saleId, int amount, String dueDate)
+        {            
+            if (premissions.checkPrivilege(session.getUserName(), "editSale"))
+                return base.editSale(session, s, saleId, amount, dueDate);
             return false;
         }
 

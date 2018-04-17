@@ -66,7 +66,7 @@ namespace wsep182.Domain
         {
             if (allow)
                 addPrivilege("viewPurchasesHistory");
-            else removePrivilege("addPrivilege");
+            else removePrivilege("viewPurchasesHistory");
         }
         public void removeStoreManager(Boolean allow)
         {
@@ -87,19 +87,35 @@ namespace wsep182.Domain
                 addPrivilege("removeManagerPermission");
             else removePrivilege("removeManagerPermission");
         }
+
         public void addSaleToStore(Boolean allow)
         {
             if (allow)
                 addPrivilege("addSaleToStore");
             else removePrivilege("addSaleToStore");
         }
-        
+
+        public void removeSaleFromStore(Boolean allow)
+        {
+            if (allow)
+                addPrivilege("removeSaleFromStore");
+            else removePrivilege("removeSaleFromStore");
+        }
+
+        public void editSale(Boolean allow)
+        {
+            if (allow)
+                addPrivilege("editSale");
+            else removePrivilege("editSale");
+        }
+
         public void addNewCoupon(Boolean allow)
         {
             if (allow)
                 addPrivilege("addNewCoupon");
             else removePrivilege("addNewCoupon");
         }
+
         public void addDiscount(Boolean allow)
         {
             if (allow)

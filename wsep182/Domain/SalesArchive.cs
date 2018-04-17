@@ -33,6 +33,18 @@ namespace wsep182.Domain
             return instance;
         }
 
+        public Boolean removeSale(int saleId)
+        {
+            foreach(Sale s in sales)
+            {
+                if (s.SaleId == saleId)
+                {
+                    sales.Remove(s);
+                    return true;
+                }
+            }
+            return false;
+        }
 
         public int addSale(int productInStoreId, int typeOfSale, int amount, String dueDate)
         {
@@ -53,7 +65,19 @@ namespace wsep182.Domain
             }
             return null;
         }
-
+        public Boolean editSale(int saleId, int amount, String dueDate)
+        {
+            foreach (Sale sale in sales)
+            {
+                if (sale.SaleId == saleId)
+                {
+                    sale.Amount = amount;
+                    sale.DueDate = dueDate;
+                    return true;
+                }
+            }
+            return false;
+        }
         public Boolean setNewAmountForSale(int saleId, int amount)
         {
             foreach (Sale sale in sales)
