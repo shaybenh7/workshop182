@@ -36,6 +36,8 @@ namespace Acceptance_Tests.StoreTests
             storeArchive.restartInstance();
             UserArchive.restartInstance();
             UserCartsArchive.restartInstance();
+            StorePremissionsArchive.restartInstance();
+
             BuyHistoryArchive.restartInstance();
             CouponsArchive.restartInstance();
             DiscountsArchive.restartInstance();
@@ -62,8 +64,39 @@ namespace Acceptance_Tests.StoreTests
 
 
         [TestMethod]
-        public void TestMethod1()
+        public void addProductInStore()
         {
+            ss.addProductInStore("cola", 10, 4, aviad, store);
+            Assert.AreEqual(0, store.getProductsInStore().Count);
+            ss.addManagerPermission("addProductInStore", store, aviad, zahi);
+            ss.addProductInStore("cola", 10, 4, aviad, store);
+            Assert.AreEqual(1, store.getProductsInStore().Count);
         }
+
+        [TestMethod]
+        public void editProductInStoreWithManagerPermission()
+        {
+            ProductInStore pis=ss.addProductInStore("cola", 10, 4, zahi, store);
+            Assert.AreEqual(1, store.getProductsInStore().Count);
+            ss.editProductInStore(aviad, store, pis, 13, 4.5);
+            Assert.AreEqual(10, pis.getPrice());
+            Assert.AreEqual(4, pis.getAmount());
+            ss.addManagerPermission("editProductInStore", store, aviad, zahi);
+            ss.editProductInStore(aviad, store, pis, 13, 4.5);
+            Assert.AreEqual(4.5, pis.getPrice());
+            Assert.AreEqual(13, pis.getAmount());
+        }
+        [TestMethod]
+        public void removeProductFromStoreWithManagerPermission()
+        {
+            ProductInStore pis = ss.addProductInStore("cola", 10, 4, zahi, store);
+            ss.removeProductFromStore(store, pis, aviad);
+            Assert.AreEqual(1, store.getProductsInStore().Count);
+            ss.addManagerPermission("removeProductFromStore", store, aviad, zahi);
+            ss.removeProductFromStore(store, pis, aviad);
+            Assert.AreEqual(0, store.getProductsInStore().Count);
+        }
+        
+
     }
 }

@@ -108,7 +108,7 @@ namespace wsep182.Domain
             if (session == null || permission == null || manager == null || s == null)
                 return false;
             StoreRole sR = storeArchive.getInstance().getStoreRole(s, manager);
-            return correlate(session, permission, sR, true);
+            return correlate(manager, permission, sR, true);
 
         }
         public virtual int addSaleToStore(User session, int productInStoreId, int typeOfSale, int amount,String dueDate)
@@ -170,7 +170,7 @@ namespace wsep182.Domain
             if (permission == null || manager == null || session == null || s == null)
                 return false;
             StoreRole sR = storeArchive.getInstance().getStoreRole(s, manager);
-            return correlate(session, permission, sR, false);
+            return correlate(manager, permission, sR, false);
         }
         public virtual LinkedList<Purchase> viewPurchasesHistory(User session,Store s)
         {
