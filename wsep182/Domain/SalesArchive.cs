@@ -23,7 +23,7 @@ namespace wsep182.Domain
         }
         public int getNextSaleId()
         {
-            return saleId++;
+            return ++saleId;
         }
 
         public static SalesArchive getInstance()
@@ -46,12 +46,12 @@ namespace wsep182.Domain
             return false;
         }
 
-        public int addSale(int productInStoreId, int typeOfSale, int amount, String dueDate)
+        public Sale addSale(int productInStoreId, int typeOfSale, int amount, String dueDate)
         {
             int saleId = getNextSaleId();
             Sale toAdd = new Sale(saleId, productInStoreId, typeOfSale, amount, dueDate);
             sales.AddLast(toAdd);
-            return saleId;
+            return toAdd;
         }
 
         public Sale getSale(int saleId)

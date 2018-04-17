@@ -31,6 +31,11 @@ namespace wsep182.services
             return user.editCart(sale.SaleId, newAmount);
         }
 
+        public Boolean removeFromCart(User user, Sale sale)
+        {
+            return user.removeFromCart(sale);
+        }
+
         //req 1.7.1 for all the user cart
         public Boolean buyProducts(User session, String creditCard, String couponId)
         {

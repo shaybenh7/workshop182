@@ -109,5 +109,11 @@ namespace wsep182.Domain
             return SalesArchive.getInstance().getSalesByProductInStoreId(product.getProductInStoreId());
         }
 
+        public Boolean removeFromCart(Sale sale)
+        {
+            return shoppingCart.removeFromCart(this, sale);
+        }
+
+
     }
 }

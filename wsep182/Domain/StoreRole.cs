@@ -88,7 +88,7 @@ namespace wsep182.Domain
         }
         public virtual int addSaleToStore(User session, int productInStoreId, int typeOfSale, int amount,String dueDate)
         {
-            return SalesArchive.getInstance().addSale(productInStoreId, typeOfSale, amount, dueDate);
+            return SalesArchive.getInstance().addSale(productInStoreId, typeOfSale, amount, dueDate).SaleId;
         }
 
         public virtual Boolean removeSaleFromStore(User session, Store s, int saleId)
