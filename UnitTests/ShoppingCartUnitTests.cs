@@ -85,7 +85,7 @@ namespace UnitTests
          */
         public void addToCartWhithRaffleProduct()
         {
-            Assert.IsTrue(cart.addToCart(aviad, sale3.SaleId, 1));
+            Assert.IsFalse(cart.addToCart(aviad, sale3.SaleId, 1));
         }
 
         [TestMethod]
