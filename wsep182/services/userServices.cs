@@ -64,7 +64,7 @@ namespace wsep182.services
         // req 5.2
         public Boolean removeUser(User userMakingDeletion, User userDeleted)
         {
-            return userMakingDeletion.removeUser(userMakingDeletion, userDeleted.getUserName());
+            return userMakingDeletion.removeUser(userDeleted.getUserName());
         }
 
 

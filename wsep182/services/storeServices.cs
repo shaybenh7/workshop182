@@ -23,7 +23,7 @@ namespace wsep182.services
         //req 2.2
         public Store createStore(String storeName, User session)
         { 
-            return session.getState().createStore(storeName, session);
+            return session.createStore(storeName);
         }
 
         //req 3.1 a
@@ -67,7 +67,7 @@ namespace wsep182.services
         //req 3.3 b
         public Boolean RemoveStoreOwner(Store s, User newOwner, User session)
         {
-            return null;
+            return false;
         }
 
         //req 3.4 a

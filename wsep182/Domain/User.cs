@@ -76,22 +76,24 @@ namespace wsep182.Domain
             return UserArchive.getInstance().addUser(u);
         }
 
-        public Store createStore(User session ,String storeName)
+        public Store createStore(String storeName)
         {
-            if (storeName == null || session == null)
+            if (storeName == null)
                 return null;
-            return state.createStore(storeName, this);
+            return this.state.createStore(storeName, this);
         }
 
-        public Boolean removeUser(User userMakingDeletion, String userName)
+        public Boolean removeUser(String userName)
         {
-            return userMakingDeletion.state.removeUser(this,userName);
+            return this.state.removeUser(this,userName);
         }
 
 
 
         public Boolean addToCart(int saleId, int amount)
         {
+            if (amount <= 0)
+                return false;
             return shoppingCart.addToCart(this, saleId, amount);
         }
 
@@ -106,11 +108,15 @@ namespace wsep182.Domain
 
         public Boolean addToCartRaffle(Sale sale, double offer)
         {
+            if (sale == null || offer <= 0)
+                return false;
             return shoppingCart.addToCartRaffle(this, sale, offer);
         }
 
         public static LinkedList<Sale> viewSalesByProductInStoreId(ProductInStore product)
         {
+            if (product == null)
+                return null;
             return SalesArchive.getInstance().getSalesByProductInStoreId(product.getProductInStoreId());
         }
 
