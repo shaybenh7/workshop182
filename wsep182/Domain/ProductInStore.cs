@@ -8,6 +8,7 @@ namespace wsep182.Domain
 {
     public class ProductInStore
     {
+
         Product product;
         Store store;
         int quantity; //will be removed in the future

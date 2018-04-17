@@ -45,6 +45,47 @@ namespace wsep182.services
                 return null;
             return sR.addProductInStore(session, s, p, price, amount);
         }
+
+        public virtual Boolean editProductInStore(User session, Store s,ProductInStore p, int quantity, double price)
+        {
+            StoreRole sR = storeArchive.getInstance().getStoreRole(s.getStoreId(), session.getUserName());
+            if (sR == null)
+                return false;
+            return sR.editProductInStore(session, p, quantity, price);
+        }
+
+
+        public int addSaleToStore(User session, Store s, int productInStoreId, int typeOfSale, int amount, String dueDate)
+        {
+            if (session == null ||  amount <= 0 || typeOfSale > 3 || typeOfSale < 0)
+                return -1;
+            if(typeOfSale == 2)
+            {
+                //WILL BE IMPLEMENTED NEXT VERSION
+                return -1;
+            }
+            if (!session.getState().isLogedIn())
+                return -1;
+            StoreRole sR = storeArchive.getInstance().getStoreRole(s.getStoreId(), session.getUserName());
+            if (sR == null)
+                return -1;
+            return sR.addSaleToStore(session, productInStoreId, typeOfSale, amount, dueDate);
+        }
+        public Boolean removeSaleFromStore(User session, Store s, int saleId)
+        {
+            StoreRole sR = storeArchive.getInstance().getStoreRole(s.getStoreId(), session.getUserName());
+            if (sR == null)
+                return false;
+            return sR.removeSaleFromStore(session, s, saleId);
+        }
+        public Boolean editSale(User session, Store s, int saleId, int amount, String dueDate)
+        {
+            StoreRole sR = storeArchive.getInstance().getStoreRole(s.getStoreId(), session.getUserName());
+            if (sR == null)
+                return false;
+            return sR.editSale(session, s, saleId,amount,dueDate);
+        }
+
         //req 3.2
         public Boolean removeProductFromStore(Store s, ProductInStore p, User session)
         {
@@ -126,17 +167,21 @@ namespace wsep182.services
             //Not implemented in this version
             return false;
         }
-        public Boolean addHiddenDiscount(ProductInStore p, User session)
+        public Boolean addCouponDiscount(ProductInStore p, User session)
         {
             if (session == null || p == null)
                 return false;
             return false;
         }
-        public Boolean addRevealedDiscount(ProductInStore p, User session)
+        public Boolean addDiscount(ProductInStore p, int percentage ,String dueDate,User session ,Store s)
         {
             if (session == null || p == null)
                 return false;
-            return false;
+            StoreRole sR = storeArchive.getInstance().getStoreRole(s.getStoreId(), session.getUserName());
+            if (sR == null)
+                return false;
+            return sR.addDiscount(session,p.getProductInStoreId(), percentage, dueDate);
+            
         }
         public Boolean removeDiscount(ProductInStore p, User session)
         {
