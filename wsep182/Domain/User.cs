@@ -139,5 +139,9 @@ namespace wsep182.Domain
         {
             isActive = state;
         }
+        public Boolean removeFromCart(Sale sale)
+        {
+            return shoppingCart.removeFromCart(this, sale);
+        }
     }
 }

@@ -62,10 +62,5 @@ namespace wsep182.services
             return session.buyProducts(creditCard, couponId);
         }
 
-        public LinkedList<Sale> viewSalesByProductInStoreId(ProductInStore productInStore)
-        {
-            return User.viewSalesByProductInStoreId(productInStore);
-        }
-
     }
 }
