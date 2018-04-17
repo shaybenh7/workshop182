@@ -26,6 +26,11 @@ namespace wsep182.Domain
             return instance;
         }
 
+        public static void restartInstance()
+        {
+            instance = new BuyHistoryArchive();
+        }
+
         public int getNextBuyId()
         {
             return buyId++;
