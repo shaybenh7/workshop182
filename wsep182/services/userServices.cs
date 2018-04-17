@@ -32,16 +32,22 @@ namespace wsep182.services
         // req 1.2- returns null if failed, else returns the user
         public Boolean register(User session, String username, String password)
         {
+            if (session == null)
+                return false;
             return session.register(username, password);
         }
         //req 2.1- returns null if user doesnt exists or password is wrong
         public Boolean login(User session, String userName, String password)
         {
+            if (session == null)
+                return false;
             return session.login(userName, password);
         }
         //req 1.3
         public LinkedList<ProductInStore> viewProductsInStore(Store s)
         {
+            if (s == null)
+                return null;
             return s.getProductsInStore();
         }
 
@@ -58,7 +64,9 @@ namespace wsep182.services
         // req 5.2
         public Boolean removeUser(User userMakingDeletion, User userDeleted)
         {
-            return userMakingDeletion.removeUser(userMakingDeletion, userDeleted.getUserName());
+            if (userMakingDeletion == null || userDeleted == null)
+                return false;
+            return userMakingDeletion.removeUser(userDeleted.getUserName());
         }
 
 

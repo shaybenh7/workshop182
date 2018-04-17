@@ -12,28 +12,38 @@ namespace wsep182.services
         //req 1.5 a
         public Boolean addProductToCart(User user, Sale sale, int amount)
         {
+            if (user == null || sale == null)
+                return false;
             return user.addToCart(sale.SaleId, amount);
         }
         //req 1.5 b
         public Boolean addRaffleProductToCart(User user, Sale sale, double offer)
         {
+            if (user == null)
+                return false;
             return user.addToCartRaffle(sale, offer);
         }
 
         // req 1.6.1
         public ShoppingCart viewCart(User user)
         {
+            if (user == null)
+                return null;
             return user.getShoppingCart();
         }
         // req 1.6.2
         public Boolean editCart(User user, Sale sale, int newAmount)
         {
+            if (user == null || sale==null)
+                return false;
             return user.editCart(sale.SaleId, newAmount);
         }
 
         //req 1.7.1 for all the user cart
         public Boolean buyProducts(User session, String creditCard, String couponId)
         {
+            if (session == null)
+                return false;
             return session.buyProducts(creditCard, couponId);
         }
 

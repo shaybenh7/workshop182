@@ -21,6 +21,8 @@ namespace wsep182.Domain
 
         public override User login(String username, String password)
         {
+            if (username == null || password == null)
+                return null;
             User u = UserArchive.getInstance().getUser(username);
             if (u != null)
             {

@@ -74,16 +74,16 @@ namespace wsep182.Domain
             return UserArchive.getInstance().addUser(u);
         }
 
-        public Store createStore(User session ,String storeName)
+        public Store createStore(String storeName)
         {
-            if (storeName == null || session == null)
+            if (storeName == null)
                 return null;
-            return state.createStore(storeName, this);
+            return this.state.createStore(storeName, this);
         }
 
-        public Boolean removeUser(User userMakingDeletion, String userName)
+        public Boolean removeUser(String userName)
         {
-            return userMakingDeletion.state.removeUser(this,userName);
+            return this.state.removeUser(this,userName);
         }
 
 
@@ -109,6 +109,8 @@ namespace wsep182.Domain
 
         public static LinkedList<Sale> viewSalesByProductInStoreId(ProductInStore product)
         {
+            if (product == null)
+                return null;
             return SalesArchive.getInstance().getSalesByProductInStoreId(product.getProductInStoreId());
         }
 
