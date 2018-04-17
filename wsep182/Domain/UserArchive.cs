@@ -62,6 +62,12 @@ namespace wsep182.Domain
             foreach (User u in users)
                 if (u.getUserName().Equals(userName))
                 {
+                    LinkedList<Store> allStores = storeArchive.getInstance().getAllStore();
+                    foreach(Store s in allStores)
+                    {
+                        if(s.getStoreCreator().getUserName().Equals(u.getUserName()) && s.getIsActive() == 1)
+                            return false;
+                    }
                     users.Remove(u);
                     return true;
                 }

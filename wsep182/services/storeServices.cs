@@ -26,15 +26,9 @@ namespace wsep182.services
                 return null;
             return session.getState().createStore(storeName, session);
         }
-        public Product addProdut(String productName, User session)
-        {
-            Product p = new Product(productName);
-            if (productName == "" || productName == null || session == null)
-                return null;
-            if (productName[0] == ' ' || productName[productName.Length - 1] == ' ')
-                return null;
-            return Product.addProduct(p);
-        }
+
+
+
         public LinkedList<Product> getAllProducts(User session)
         {
             return Product.getProducts();
@@ -78,6 +72,15 @@ namespace wsep182.services
             if (sR == null)
                 return false;
             return sR.removeStoreManager(session, s, oldManager);
+        }
+
+        public Product addProdut(String productName, User session)
+        {
+            if (!(session.getState() is Admin))
+                return null;
+            if (!session.getState().isLogedIn())
+                return null;
+            return Product.addProduct(productName);
         }
 
         public Boolean addStoreOwner(Store s, User newOwner, User session)

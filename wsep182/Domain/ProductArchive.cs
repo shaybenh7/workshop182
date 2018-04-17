@@ -38,11 +38,12 @@ namespace wsep182.Domain
         {
             return ++productInStoreId;
         }
-        public Product addProduct(Product newProduct)
+        public Product addProduct(String productName)
         {
             foreach (Product p in products)
-                if (p.getProductId() == newProduct.getProductId())
+                if (p.getProductName() == productName)
                     return null;
+            Product newProduct = new Product(productName, getNextProductId());
             products.AddLast(newProduct);
             return newProduct;
         }

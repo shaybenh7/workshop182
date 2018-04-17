@@ -31,6 +31,10 @@ namespace wsep182.Domain
         {
             return name;
         }
+        public int getIsActive()
+        {
+            return isActive;
+        }
         public LinkedList<ProductInStore> getProductsInStore()
         {
             return ProductArchive.getInstance().getAllProductsInStore(storeId);

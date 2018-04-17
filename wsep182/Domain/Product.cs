@@ -29,9 +29,9 @@ namespace wsep182.Domain
             return this.name;
         }
 
-        public static Product addProduct(Product p)
+        public static Product addProduct(String productName)
         {
-            return ProductArchive.getInstance().addProduct(p);
+            return ProductArchive.getInstance().addProduct(productName);
         }
 
         public static LinkedList<Product> getProducts()

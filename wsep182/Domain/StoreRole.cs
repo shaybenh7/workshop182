@@ -15,9 +15,14 @@ namespace wsep182.Domain
             user = u;
             store = s;
         }
-        public virtual Boolean addProduct(User session, ProductInStore pis)
+        public virtual Product addProduct(User session, String productName)
         {
-            return false;
+            Product p2 = ProductArchive.getInstance().getProductByName(productName);
+            if (p2 == null)
+            {
+                p2 = ProductArchive.getInstance().addProduct(productName);
+            }
+            return p2;
         }
 
         public virtual ProductInStore addProductInStore(User session, Store s, Product p, double price, int amount)
@@ -27,7 +32,7 @@ namespace wsep182.Domain
             Product p2 = ProductArchive.getInstance().getProductByName(p.getProductName());
             if (p2 == null)
             {
-                p2 = ProductArchive.getInstance().addProduct(new Product(p.getProductName(), ProductArchive.getInstance().getNextProductId()));
+                p2 = ProductArchive.getInstance().addProduct(p.getProductName());
             }
             if (price >= 0 && amount >= 0)
             {
