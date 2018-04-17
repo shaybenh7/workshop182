@@ -19,19 +19,14 @@ namespace wsep182.services
             }
             return instance;
         }
-        //req 2.2- returns new store if user is logged and storeName is not empty, else returns null
+        
+        //req 2.2
         public Store createStore(String storeName, User session)
         { 
             return session.getState().createStore(storeName, session);
         }
 
-
-
-        public LinkedList<Product> getAllProducts(User session)
-        {
-            return Product.getProducts();
-        }
-        //req 3.1
+        //req 3.1 a
         public ProductInStore addProductInStore(Product p, Double price, int amount, User session, Store s)
         {
             if (!session.getState().isLogedIn())
@@ -42,6 +37,7 @@ namespace wsep182.services
             return sR.addProductInStore(session, s, p, price, amount);
         }
 
+        //req 3.1 b
         public virtual Boolean editProductInStore(User session, Store s,ProductInStore p, int quantity, double price)
         {
             StoreRole sR = StoreRole.getStoreRole(s, session);
@@ -50,6 +46,82 @@ namespace wsep182.services
             return sR.editProductInStore(session, p, quantity, price);
         }
 
+        //req 3.1 c
+        public Boolean removeProductFromStore(Store s, ProductInStore p, User session)
+        {
+            StoreRole sR = StoreRole.getStoreRole(s, session);
+            if (sR == null)
+                return false;
+            return sR.removeProductFromStore(session, s, p);
+        }
+
+        //req 3.3 a
+        public Boolean addStoreOwner(Store s, User newOwner, User session)
+        {
+            StoreRole sR = StoreRole.getStoreRole(s, session);
+            if (sR == null)
+                return false;
+            return sR.addStoreOwner(session, s, newOwner);
+        }
+
+        //req 3.3 b
+        public Boolean RemoveStoreOwner(Store s, User newOwner, User session)
+        {
+            return null;
+        }
+
+        //req 3.4 a
+        public Boolean addStoreManager(Store s, User newManager, User session)
+        {
+            StoreRole sR = StoreRole.getStoreRole(s, session);
+            if (sR == null)
+                return false;
+            return sR.addStoreManager(session, s, newManager);
+        }
+
+        //req 3.4 b
+        public Boolean removeStoreManager(Store s, User oldManager, User session)
+        {
+            StoreRole sR = StoreRole.getStoreRole(s, session);
+            if (sR == null)
+                return false;
+            return sR.removeStoreManager(session, s, oldManager);
+        }
+
+        //req 3.4 c
+        public Boolean addManagerPermission(String permission, Store s, User manager, User session)
+        {
+            StoreRole sR = StoreRole.getStoreRole(s, session);
+            if (sR == null)
+                return false;
+            return sR.addManagerPermission(session, permission, s, manager);
+
+        }
+
+        //req 3.4 d
+        public Boolean removeManagerPermission(String permission, Store s, User manager, User session)
+        {
+            StoreRole sR = StoreRole.getStoreRole(s, session);
+            if (sR == null)
+                return false;
+            return sR.removeManagerPermission(session, permission, s, manager);
+        }
+
+        //req 3.7 and 5.4 a
+        public LinkedList<Purchase> viewStoreHistory(User session, Store store)
+        {
+            if (session == null | store == null)
+                return null;
+            return session.viewStoreHistory(store);
+        }
+
+        //req 5.4 b
+        public LinkedList<Purchase> viewUserHistory(User session, User userToGetHistory)
+        {
+            if (session == null | userToGetHistory == null)
+                return null;
+            return session.viewUserHistory(userToGetHistory);
+        }
 
         public int addSaleToStore(User session, Store s, int productInStoreId, int typeOfSale, int amount, String dueDate)
         {
@@ -76,54 +148,8 @@ namespace wsep182.services
             return sR.editSale(session, s, saleId,amount,dueDate);
         }
 
-        //req 3.2
-        public Boolean removeProductFromStore(Store s, ProductInStore p, User session)
-        {
-            StoreRole sR = StoreRole.getStoreRole(s, session);
-            if (sR == null)
-                return false;
-            return sR.removeProductFromStore(session, s, p);
-        }
-        public Boolean addStoreManager(Store s, User newManager, User session)
-        {
-            StoreRole sR = StoreRole.getStoreRole(s, session);
-            if (sR == null)
-                return false;
-            return sR.addStoreManager(session, s, newManager);
-        }
-        public Boolean removeStoreManager(Store s, User oldManager, User session)
-        {
-            StoreRole sR = StoreRole.getStoreRole(s, session);
-            if (sR == null)
-                return false;
-            return sR.removeStoreManager(session, s, oldManager);
-        }
-
-        public Boolean addStoreOwner(Store s, User newOwner, User session)
-        {
-            StoreRole sR = StoreRole.getStoreRole(s, session);
-            if (sR == null)
-                return false;
-            return sR.addStoreOwner(session, s, newOwner);
-        }
-
-        public Boolean addManagerPermission(String permission, Store s, User manager, User session)
-        {
-            StoreRole sR = StoreRole.getStoreRole(s, session);
-            if (sR == null)
-                return false;
-            return sR.addManagerPermission(session, permission, s, manager);
-
-        }
-
-        public Boolean removeManagerPermission(String permission, Store s, User manager, User session)
-        {
-            StoreRole sR = StoreRole.getStoreRole(s, session);
-            if (sR == null)
-                return false;
-            return sR.removeManagerPermission(session, permission, s, manager);
-        }
-
+        
+      
         public Boolean addBuyPolicy(ProductInStore p, User session)
         {
             //Not implemented in this version
@@ -167,19 +193,9 @@ namespace wsep182.services
             return sR.removeCoupon(session, couponId);
         }
 
-        public LinkedList<Purchase> viewStoreHistory(User session, Store store)
-        {
-            if (session == null | store==null)
-                return null;
-            return session.viewStoreHistory(store);
-        }
+ 
 
-        public LinkedList<Purchase> viewUserHistory(User session, User userToGetHistory)
-        {
-            if (session == null | userToGetHistory == null)
-                return null;
-            return session.viewUserHistory(userToGetHistory);
-        }
+
 
         public LinkedList<StoreOwner> getOwners(Store s)
         {

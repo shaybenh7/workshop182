@@ -9,6 +9,13 @@ namespace wsep182.services
 {
     public class sellServices
     {
+
+        //req 1.3 d
+        public LinkedList<Sale> viewSalesByProductInStoreId(ProductInStore productInStore)
+        {
+            return User.viewSalesByProductInStoreId(productInStore);
+        }
+
         //req 1.5 a
         public Boolean addProductToCart(User user, Sale sale, int amount)
         {
@@ -20,27 +27,24 @@ namespace wsep182.services
             return user.addToCartRaffle(sale, offer);
         }
 
-        // req 1.6.1
+        // req 1.6 a
         public ShoppingCart viewCart(User user)
         {
             return user.getShoppingCart();
         }
-        // req 1.6.2
+        // req 1.6 b
         public Boolean editCart(User user, Sale sale, int newAmount)
         {
             return user.editCart(sale.SaleId, newAmount);
         }
 
-        //req 1.7.1 for all the user cart
+        //req 1.7 a
         public Boolean buyProducts(User session, String creditCard, String couponId)
         {
             return session.buyProducts(creditCard, couponId);
         }
 
-        public LinkedList<Sale> viewSalesByProductInStoreId(ProductInStore productInStore)
-        {
-            return User.viewSalesByProductInStoreId(productInStore);
-        }
+
 
     }
 }
