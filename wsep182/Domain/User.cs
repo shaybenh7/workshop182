@@ -16,7 +16,7 @@ namespace wsep182.Domain
         {
             this.password = password;
             this.userName = userName;
-            state = new LogedIn();
+            state = new Guest();
             shoppingCart = new ShoppingCart();
         }
         
@@ -52,7 +52,7 @@ namespace wsep182.Domain
         public Boolean login(String username, String password)
         {
             User user = state.login(username, password);
-            if (state.login(username, password) != null)
+            if (user != null)
             {
                 if (username == "admin")
                     state = new Admin();
@@ -69,7 +69,9 @@ namespace wsep182.Domain
 
         public Boolean register(String username, String password)
         {
-            return state.register(username,password)!=null;
+            User u = new User(username, password);
+            u.setState(state.register(username, password));
+            return UserArchive.getInstance().addUser(u);
         }
 
         public Store createStore(String storeName)

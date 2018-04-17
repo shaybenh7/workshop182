@@ -36,11 +36,11 @@ namespace wsep182.services
         //req 3.1
         public ProductInStore addProductInStore(Product p, Double price, int amount, User session, Store s)
         {
-            if (p == null || session == null || s == null || amount == 0)
+            if (p == null || session == null || s == null || amount == 0 || price == 0)
                 return null;
             if (!session.getState().isLogedIn())
                 return null;
-            StoreRole sR = storeArchive.getInstance().getStoreRole(s.getStoreId(), session.getUserName());
+            StoreRole sR = storeArchive.getInstance().getStoreRole(s, session);
             if (sR == null)
                 return null;
             return sR.addProductInStore(session, s, p, price, amount);
@@ -50,7 +50,7 @@ namespace wsep182.services
         {
             if (p == null || session == null || s == null)
                 return false;
-            StoreRole sR = storeArchive.getInstance().getStoreRole(s.getStoreId(), session.getUserName());
+            StoreRole sR = storeArchive.getInstance().getStoreRole(s, session);
             if (sR == null)
                 return false;
             return sR.removeProductFromStore(session, s, p);
@@ -59,7 +59,7 @@ namespace wsep182.services
         {
             if (newManager == null || session == null || s == null)
                 return false;
-            StoreRole sR = storeArchive.getInstance().getStoreRole(s.getStoreId(), session.getUserName());
+            StoreRole sR = storeArchive.getInstance().getStoreRole(s, session);
             if (sR == null)
                 return false;
             return sR.addStoreManager(session, s, newManager);
@@ -68,7 +68,7 @@ namespace wsep182.services
         {
             if (oldManager == null || session == null || s == null)
                 return false;
-            StoreRole sR = storeArchive.getInstance().getStoreRole(s.getStoreId(), session.getUserName());
+            StoreRole sR = storeArchive.getInstance().getStoreRole(s, session);
             if (sR == null)
                 return false;
             return sR.removeStoreManager(session, s, oldManager);
@@ -76,8 +76,6 @@ namespace wsep182.services
 
         public Product addProdut(String productName, User session)
         {
-            if (!(session.getState() is Admin))
-                return null;
             if (!session.getState().isLogedIn())
                 return null;
             return Product.addProduct(productName);
@@ -87,7 +85,7 @@ namespace wsep182.services
         {
             if (newOwner == null || session == null || s == null)
                 return false;
-            StoreRole sR = storeArchive.getInstance().getStoreRole(s.getStoreId(), session.getUserName());
+            StoreRole sR = storeArchive.getInstance().getStoreRole(s, session);
             if (sR == null)
                 return false;
             return sR.addStoreOwner(session, s, newOwner);
@@ -97,7 +95,7 @@ namespace wsep182.services
         {
             if (permission == null || manager == null || session == null || s == null)
                 return false;
-            StoreRole sR = storeArchive.getInstance().getStoreRole(s.getStoreId(), session.getUserName());
+            StoreRole sR = storeArchive.getInstance().getStoreRole(s, session);
             if (sR == null)
                 return false;
             return sR.addManagerPermission(session, permission, s, manager);
@@ -108,7 +106,7 @@ namespace wsep182.services
         {
             if (permission == null || manager == null || session == null || s == null)
                 return false;
-            StoreRole sR = storeArchive.getInstance().getStoreRole(s.getStoreId(), session.getUserName());
+            StoreRole sR = storeArchive.getInstance().getStoreRole(s, session);
             if (sR == null)
                 return false;
             return sR.removeManagerPermission(session, permission, s, manager);

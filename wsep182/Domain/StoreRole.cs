@@ -32,7 +32,8 @@ namespace wsep182.Domain
             Product p2 = ProductArchive.getInstance().getProductByName(p.getProductName());
             if (p2 == null)
             {
-                p2 = ProductArchive.getInstance().addProduct(p.getProductName());
+                
+                p2 = Product.addProduct(p.getProductName());
             }
             if (price >= 0 && amount >= 0)
             {
@@ -81,7 +82,7 @@ namespace wsep182.Domain
         }
         public virtual Boolean addManagerPermission(User session, String permission, Store s, User manager)
         {
-            StoreRole sR = storeArchive.getInstance().getStoreRole(s.getStoreId(), manager.getUserName());
+            StoreRole sR = storeArchive.getInstance().getStoreRole(s, manager);
             return correlate(session, permission, sR, true);
 
         }
@@ -92,7 +93,7 @@ namespace wsep182.Domain
 
         public virtual Boolean removeManagerPermission(User session, String permission, Store s, User manager)
         {
-            StoreRole sR = storeArchive.getInstance().getStoreRole(s.getStoreId(), manager.getUserName());
+            StoreRole sR = storeArchive.getInstance().getStoreRole(s, manager);
             return correlate(session, permission, sR, false);
         }
         public virtual LinkedList<Purchase> viewPurchasesHistory(User session,Store s)

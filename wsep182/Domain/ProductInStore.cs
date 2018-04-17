@@ -57,6 +57,11 @@ namespace wsep182.Domain
            this.quantity += amount;
         }
 
+        public static LinkedList<ProductInStore> getAllProductsInAllStores()
+        {
+            return ProductArchive.getInstance().getAllProductsInStores();
+        }
 
-}
+
+    }
 }
