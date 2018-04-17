@@ -122,7 +122,21 @@ namespace wsep182.Domain
                 addPrivilege("addDiscount");
             else removePrivilege("addDiscount");
         }
-        
+
+        public void removeDiscount(Boolean allow)
+        {
+            if (allow)
+                addPrivilege("addDiscount");
+            else removePrivilege("addDiscount");
+        }
+
+        public void removeCoupon(Boolean allow)
+        {
+            if (allow)
+                addPrivilege("addDiscount");
+            else removePrivilege("addDiscount");
+        }
+
         public Boolean checkPrivilege(string privilege)
         {
             Boolean res = false;

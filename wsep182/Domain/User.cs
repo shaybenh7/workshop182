@@ -74,8 +74,10 @@ namespace wsep182.Domain
             return UserArchive.getInstance().addUser(u);
         }
 
-        public Store createStore(String storeName)
+        public Store createStore(User session ,String storeName)
         {
+            if (storeName == null || session == null)
+                return null;
             return state.createStore(storeName, this);
         }
 
@@ -83,6 +85,7 @@ namespace wsep182.Domain
         {
             return userMakingDeletion.state.removeUser(this,userName);
         }
+
 
 
         public Boolean addToCart(int saleId, int amount)

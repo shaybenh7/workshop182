@@ -174,7 +174,8 @@ namespace wsep182.Domain
                 {
                     if (p.getIsActive() == 0)
                         return false;
-                    //CHECK IF THERE ARE ACTIVE SALES
+                    if (SalesArchive.getInstance().getSalesByProductInStoreId(p.getProductInStoreId()) != null)
+                        return false;
                     p.IsActive = 0;
                     return true;
                 }

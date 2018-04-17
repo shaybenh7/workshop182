@@ -100,6 +100,10 @@ namespace wsep182.Domain
 
         public StoreRole getStoreRole(Store store, User user)
         {
+            if(store == null || user == null)
+            {
+                return null;
+            }
             if (!archive.ContainsKey(store.getStoreId()) || !archive.ContainsKey(store.getStoreId()) || !archive[store.getStoreId()].ContainsKey(user.getUserName()))
                 addStoreRole(new Customer(user, store),store.getStoreId(),user.getUserName());
             return archive[store.getStoreId()][user.getUserName()];
