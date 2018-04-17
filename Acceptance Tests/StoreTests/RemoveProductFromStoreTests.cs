@@ -32,8 +32,8 @@ namespace Acceptance_Tests.StoreTests
         {
             us.login(zahi, "zahi", "123456");
             Store s = ss.createStore("abowim", zahi);
-            Product p = new Product("cola");
-            ProductInStore pis = ss.addProductInStore(p, 3.2, 10, zahi, s);
+            ProductInStore pis = ss.addProductInStore("cola", 3.2, 10, zahi, s);
+            
             bool result=ss.removeProductFromStore(s,pis, zahi);
             Assert.IsTrue(result);
             LinkedList<ProductInStore> LPIS=us.viewProductsInStores();
@@ -45,9 +45,8 @@ namespace Acceptance_Tests.StoreTests
         {
             us.login(zahi, "zahi", "123456");
             Store s = ss.createStore("abowim", zahi);
-            Product p = new Product("cola");
-            ss.addProductInStore(p, 3.2, 10, zahi, s);
-            ProductInStore pis = new ProductInStore(2, p, 4, 3, s);
+            ss.addProductInStore("cola", 3.2, 10, zahi, s);
+            ProductInStore pis = new ProductInStore(2, new Product("cola"), 4, 3, s);
             bool result = ss.removeProductFromStore(s,pis, zahi);
             Assert.IsFalse(result);
             LinkedList<ProductInStore> LPIS = us.viewProductsInStores();
@@ -59,8 +58,7 @@ namespace Acceptance_Tests.StoreTests
         {
             us.login(zahi, "zahi", "123456");
             Store s = ss.createStore("abowim", zahi);
-            Product p = new Product("cola");
-            ProductInStore pis = ss.addProductInStore(p, 3.2, 10, zahi, s);
+            ProductInStore pis = ss.addProductInStore("cola", 3.2, 10, zahi, s);
             User admin = us.startSession();
             us.login(admin, "admin", "admin");
             bool result = ss.removeProductFromStore(s,pis, admin);
@@ -75,8 +73,7 @@ namespace Acceptance_Tests.StoreTests
         {
             us.login(zahi, "zahi", "123456");
             Store s = ss.createStore("abowim", zahi);
-            Product p = new Product("cola");
-            ProductInStore pis = ss.addProductInStore(p, 3.2, 10, zahi, s);
+            ProductInStore pis = ss.addProductInStore("cola", 3.2, 10, zahi, s);
             zahi.logOut();
             bool result = ss.removeProductFromStore(s,pis, zahi);
             Assert.IsFalse(result);
@@ -93,8 +90,7 @@ namespace Acceptance_Tests.StoreTests
             us.register(aviad, "aviad", "123456");
             us.login(aviad, "aviad", "123456");
             Store s = ss.createStore("abowim", zahi);
-            Product p = new Product("cola");
-            ProductInStore pis = ss.addProductInStore(p, 3.2, 10, zahi, s);
+            ProductInStore pis = ss.addProductInStore("cola", 3.2, 10, zahi, s);
             bool result = ss.removeProductFromStore(s, pis, aviad);
             Assert.IsFalse(result);
             LinkedList<ProductInStore> LPIS = us.viewProductsInStores();
@@ -111,8 +107,7 @@ namespace Acceptance_Tests.StoreTests
             us.login(aviad, "aviad", "123456");
             Store s = ss.createStore("abowim", zahi);
             Store s2 = ss.createStore("Brohim", aviad);
-            Product p = new Product("cola");
-            ProductInStore pis = ss.addProductInStore(p, 3.2, 10, zahi, s);
+            ProductInStore pis = ss.addProductInStore("cola", 3.2, 10, zahi, s);
             bool result = ss.removeProductFromStore(s, pis, aviad);
             Assert.IsFalse(result);
             LinkedList<ProductInStore> LPIS = us.viewProductsInStores();
@@ -125,8 +120,7 @@ namespace Acceptance_Tests.StoreTests
         {
             us.login(zahi, "zahi", "123456");
             Store s = ss.createStore("abowim", zahi);
-            Product p = new Product("cola");
-            ProductInStore pis = ss.addProductInStore(p, 3.2, 10, zahi, s);
+            ProductInStore pis = ss.addProductInStore("cola", 3.2, 10, zahi, s);
             bool result = ss.removeProductFromStore(s, pis, null);
             Assert.IsFalse(result);
             LinkedList<ProductInStore> LPIS = us.viewProductsInStores();
@@ -139,8 +133,7 @@ namespace Acceptance_Tests.StoreTests
         {
             us.login(zahi, "zahi", "123456");
             Store s = ss.createStore("abowim", zahi);
-            Product p = new Product("cola");
-            ProductInStore pis = ss.addProductInStore(p, 3.2, 10, zahi, s);
+            ProductInStore pis = ss.addProductInStore("cola", 3.2, 10, zahi, s);
             bool result = ss.removeProductFromStore(s, null, zahi);
             Assert.IsFalse(result);
             LinkedList<ProductInStore> LPIS = us.viewProductsInStores();
@@ -153,8 +146,7 @@ namespace Acceptance_Tests.StoreTests
         {
             us.login(zahi, "zahi", "123456");
             Store s = ss.createStore("abowim", zahi);
-            Product p = new Product("cola");
-            ProductInStore pis = ss.addProductInStore(p, 3.2, 10, zahi, s);
+            ProductInStore pis = ss.addProductInStore("cola", 3.2, 10, zahi, s);
             bool result = ss.removeProductFromStore(null, pis, zahi);
             Assert.IsFalse(result);
             LinkedList<ProductInStore> LPIS = us.viewProductsInStores();
@@ -168,10 +160,8 @@ namespace Acceptance_Tests.StoreTests
         {
             us.login(zahi, "zahi", "123456");
             Store s = ss.createStore("abowim", zahi);
-            Product p = new Product("cola");
-            Product p2 = new Product("sprite");
-            ProductInStore pis = ss.addProductInStore(p, 3.2, 10, zahi, s);
-            ProductInStore pis2 = ss.addProductInStore(p2, 3.2, 10, zahi, s);
+            ProductInStore pis = ss.addProductInStore("cola", 3.2, 10, zahi, s);
+            ProductInStore pis2 = ss.addProductInStore("sprite", 3.2, 10, zahi, s);
             ss.removeProductFromStore(s, pis, zahi);
             bool result = ss.removeProductFromStore(s, pis, zahi);
             Assert.IsFalse(result);
