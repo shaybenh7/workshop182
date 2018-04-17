@@ -30,10 +30,14 @@ namespace wsep182.Domain
             Product p2 = ProductArchive.getInstance().getProductByName(p.getProductName());
             if (p2 == null)
             {
+                
                 p2 = Product.addProduct(p.getProductName());
             }
-            return ProductArchive.getInstance().addProductInStore(p2, s, amount, price);
-
+            if (price >= 0 && amount >= 0)
+            {
+                return ProductArchive.getInstance().addProductInStore(p2, s, amount, price);
+            }
+            return null;
         }
 
         public virtual Boolean editProductInStore(User session, ProductInStore p, int quantity, double price)
