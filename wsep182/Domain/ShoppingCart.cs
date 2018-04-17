@@ -36,14 +36,15 @@ namespace wsep182.Domain
             if (!(session.getState() is Guest))
                 UserCartsArchive.getInstance().updateUserCarts(session.getUserName(), saleId, amount);
 
-            UserCart toAdd = UserCartsArchive.getInstance().getUserCart(session.getUserName(), saleId);
+            UserCart toAdd = new UserCart(session.getUserName(), saleId, amount);
+          //  UserCart toAdd = UserCartsArchive.getInstance().getUserCart(session.getUserName(), saleId);
+
             products.AddLast(toAdd);
             return true;
         }
 
         public Boolean addToCartRaffle(User session, Sale sale, double offer)
         {
-
             if (!(session.getState() is Guest))
             {
                 UserCartsArchive.getInstance().updateUserCarts(session.getUserName(), sale.SaleId, 1);
