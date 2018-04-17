@@ -94,12 +94,12 @@ namespace wsep182.services
         }
 
         //req 3.4 c
-        public Boolean addManagerPermission(String permission, Store s, User manager, User session)
+        public Boolean addManagerPermission(String permission, Store s, User managerToAdd, User session)
         {
             StoreRole sR = StoreRole.getStoreRole(s, session);
             if (sR == null)
                 return false;
-            return sR.addManagerPermission(session, permission, s, manager);
+            return sR.addManagerPermission(session, permission, s, managerToAdd);
 
         }
 
