@@ -32,7 +32,7 @@ namespace Acceptance_Tests.StoreTests
         public void SimpleAddProduct()
         {
             Store s = ss.createStore("abowim", zahi);
-            Product p = ss.addProduct("cola", zahi);
+            Product p = new Product("cola");
             ProductInStore pis=ss.addProductInStore(p, 3.2, 10, zahi, s);
             Assert.AreEqual(pis.getPrice(), 3.2);
             Assert.AreEqual(pis.getAmount(), 10);
@@ -50,7 +50,7 @@ namespace Acceptance_Tests.StoreTests
             us.register(aviad, "aviad", "123456");
             us.login(aviad, "aviad", "123456");
             Store s = ss.createStore("abowim", zahi);
-            Product p = ss.addProduct("cola", zahi);
+            Product p = new Product("cola");
             ProductInStore pis = ss.addProductInStore(p, 3.2, 10, aviad, s);
             Assert.IsNull(pis);
             Assert.AreEqual(s.getProductsInStore().Count, 0);
@@ -61,7 +61,7 @@ namespace Acceptance_Tests.StoreTests
         public void AddProductTwice()
         {
             Store s = ss.createStore("abowim", zahi);
-            Product p = ss.addProduct("cola", zahi);
+            Product p = new Product("cola");
             ProductInStore pis = ss.addProductInStore(p, 3.2, 10, zahi, s);
             ProductInStore pis2 = ss.addProductInStore(p, 3.2, 10, zahi, s);
             Assert.AreEqual(pis.getPrice(), 3.2);
@@ -78,7 +78,7 @@ namespace Acceptance_Tests.StoreTests
         public void AddProductWithNegativeAmount()
         {
             Store s = ss.createStore("abowim", zahi);
-            Product p = ss.addProduct("cola", zahi);
+            Product p = new Product("cola");
             ProductInStore pis = ss.addProductInStore(p, 3.2, -31, zahi, s);
             Assert.IsNull(pis);
             Assert.AreEqual(s.getProductsInStore().Count, 0);
@@ -88,7 +88,7 @@ namespace Acceptance_Tests.StoreTests
         public void AddProductWithNegativePrice()
         {
             Store s = ss.createStore("abowim", zahi);
-            Product p = ss.addProduct("cola", zahi);
+            Product p = new Product("cola");
             ProductInStore pis = ss.addProductInStore(p, -3, 31, zahi, s);
             Assert.IsNull(pis);
             Assert.AreEqual(s.getProductsInStore().Count, 0);
@@ -98,7 +98,7 @@ namespace Acceptance_Tests.StoreTests
         public void AddProductWithZeroPrice()
         {
             Store s = ss.createStore("abowim", zahi);
-            Product p = ss.addProduct("cola", zahi);
+            Product p = new Product("cola");
             ProductInStore pis = ss.addProductInStore(p, 0, 31, zahi, s);
             Assert.IsNull(pis);
             Assert.AreEqual(s.getProductsInStore().Count, 0);
@@ -108,7 +108,7 @@ namespace Acceptance_Tests.StoreTests
         public void AddProductWithZeroAmount()
         {
             Store s = ss.createStore("abowim", zahi);
-            Product p = ss.addProduct("cola", zahi);
+            Product p = new Product("cola");
             ProductInStore pis = ss.addProductInStore(p, 3.2, 0, zahi, s);
             Assert.AreEqual(s.getProductsInStore().Count, 0);
             Assert.IsNull(pis);
@@ -120,7 +120,7 @@ namespace Acceptance_Tests.StoreTests
         public void AddProductWithEmptyName()
         {
             Store s = ss.createStore("abowim", zahi);
-            Product p = ss.addProduct("", zahi);
+            Product p = new Product("");
             ProductInStore pis = ss.addProductInStore(p, 3.2, 31, zahi, s);
             Assert.IsNull(pis);
             Assert.AreEqual(s.getProductsInStore().Count, 0);
@@ -130,7 +130,7 @@ namespace Acceptance_Tests.StoreTests
         public void AddProductWithOnlySpacesName()
         {
             Store s = ss.createStore("abowim", zahi);
-            Product p = ss.addProduct("     ", zahi);
+            Product p = new Product("     ");
             ProductInStore pis = ss.addProductInStore(p, 3.2, 31, zahi, s);
             Assert.IsNull(pis);
             Assert.AreEqual(s.getProductsInStore().Count, 0);
@@ -141,7 +141,7 @@ namespace Acceptance_Tests.StoreTests
         public void AddProductInStoreWithNullProduct()
         {
             Store s = ss.createStore("abowim", zahi);
-            Product p = ss.addProduct(null, zahi);
+            Product p = new Product(null);
             ProductInStore pis = ss.addProductInStore(p, 3.2, 31, null, s);
             Assert.IsNull(pis);
             Assert.AreEqual(s.getProductsInStore().Count, 0);
@@ -151,7 +151,7 @@ namespace Acceptance_Tests.StoreTests
         public void AddProductWithSpacesInName()
         {
             Store s = ss.createStore("abowim", zahi);
-            Product p = ss.addProduct("coca cola", zahi);
+            Product p = new Product("coca cola");
             ProductInStore pis = ss.addProductInStore(p, 3.2, 10, zahi, s);
             Assert.AreEqual(pis.getPrice(), 3.2);
             Assert.AreEqual(pis.getAmount(), 10);
@@ -165,7 +165,7 @@ namespace Acceptance_Tests.StoreTests
         public void AddProductToNoneExistingStore()
         {
             Store s = new Store(3,"coca", zahi);
-            Product p = ss.addProduct("cola", zahi);
+            Product p = new Product("cola");
             ProductInStore pis = ss.addProductInStore(p, 3.2, 10, zahi, s);
             Assert.IsNull(pis);
             LinkedList<ProductInStore> pList = s.getProductsInStore();
@@ -177,7 +177,7 @@ namespace Acceptance_Tests.StoreTests
         {
             Store s = ss.createStore("abowim", zahi);
             zahi.logOut();
-            Product p = ss.addProduct("cola", zahi);
+            Product p = new Product("cola");
             ProductInStore pis = ss.addProductInStore(p, 3.2, 10, zahi, s);
             Assert.IsNull(pis);
             LinkedList<ProductInStore> pList = s.getProductsInStore();

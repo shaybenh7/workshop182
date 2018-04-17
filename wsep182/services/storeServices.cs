@@ -21,8 +21,7 @@ namespace wsep182.services
         }
         //req 2.2- returns new store if user is logged and storeName is not empty, else returns null
         public Store createStore(String storeName, User session)
-        {
-           
+        { 
             return session.getState().createStore(storeName, session);
         }
 
@@ -98,12 +97,6 @@ namespace wsep182.services
             if (sR == null)
                 return false;
             return sR.removeStoreManager(session, s, oldManager);
-        }
-
-        public Product addProduct(String productName, User session)
-        {
-
-            return null;
         }
 
         public Boolean addStoreOwner(Store s, User newOwner, User session)
