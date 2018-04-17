@@ -23,5 +23,10 @@ namespace wsep182.Domain
         {
             return BuyHistoryArchive.getInstance().viewHistoryByStoreId(store.getStoreId());
         }
+
+        public override LinkedList<Purchase> viewUserHistory(User userToGetHistory)
+        {
+            return BuyHistoryArchive.getInstance().viewHistoryByUserName(userToGetHistory.getUserName());
+        }
     }
 }

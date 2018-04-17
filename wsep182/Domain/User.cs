@@ -114,5 +114,10 @@ namespace wsep182.Domain
             return state.viewStoreHistory(store,this);
         }
 
+        public LinkedList<Purchase> viewUserHistory(User userToGetHistory)
+        {
+            return state.viewUserHistory(userToGetHistory);
+        }
+
     }
 }

@@ -197,6 +197,13 @@ namespace wsep182.services
             return session.viewStoreHistory(store);
         }
 
+        public LinkedList<Purchase> viewUserHistory(User session, User userToGetHistory)
+        {
+            if (session == null | userToGetHistory == null)
+                return null;
+            return session.viewUserHistory(userToGetHistory);
+        }
+
         public LinkedList<StoreOwner> getOwners(Store s)
         {
             if (s == null)

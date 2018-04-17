@@ -13,6 +13,11 @@ namespace wsep182.Domain
             throw new Exception("already logged in");
         }
 
+        public virtual LinkedList<Purchase> viewUserHistory(User userToGetHistory)
+        {
+            return null;
+        }
+
         public abstract Boolean isLogedIn();
 
         public abstract LinkedList<Purchase> viewStoreHistory(Store store, User session);
