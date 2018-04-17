@@ -60,6 +60,9 @@ namespace wsep182.services
         //req 3.3 a
         public Boolean addStoreOwner(Store s, User newOwner, User session)
         {
+            User isExist = UserArchive.getInstance().getUser(newOwner.getUserName());
+            if (isExist == null)
+                return false;
             StoreRole sR = StoreRole.getStoreRole(s, session);
             if (sR == null)
                 return false;

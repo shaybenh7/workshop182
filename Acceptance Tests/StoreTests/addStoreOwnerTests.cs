@@ -34,6 +34,7 @@ namespace Acceptance_Tests.StoreTests
         {
             User aviad = us.startSession();
             us.register(aviad, "aviad", "123456");
+            aviad.login("aviad", "123456");
             Store store = ss.createStore("abowim", zahi);
             ss.addStoreOwner(store, aviad, zahi);
             LinkedList<StoreOwner> Userowners = store.getOwners();
@@ -68,8 +69,8 @@ namespace Acceptance_Tests.StoreTests
             User aviad = us.startSession();
             us.register(aviad, "aviad", "123456");
             Store store = ss.createStore("abowim", zahi);
+            us.login(aviad, "aviad", "123456");
             ss.addStoreOwner(store, aviad, zahi);
-            us.login(aviad, "zahi", "123456");
             ss.addStoreOwner(store, zahi, aviad);
             LinkedList<StoreOwner> Userowners = store.getOwners();
             LinkedList<User> owners = new LinkedList<User>();
