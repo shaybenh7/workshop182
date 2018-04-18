@@ -9,6 +9,20 @@ namespace wsep182.services
 {
     public class sellServices
     {
+        private static sellServices instance = null;
+
+        private sellServices()
+        {
+
+        }
+        public static sellServices getInstance()
+        {
+            if (instance == null)
+            {
+                instance = new sellServices();
+            }
+            return instance;
+        }
 
         //req 1.3 d
         public LinkedList<Sale> viewSalesByProductInStoreId(ProductInStore productInStore)
