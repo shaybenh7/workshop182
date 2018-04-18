@@ -15,10 +15,6 @@ namespace wsep182.Domain
         private Boolean isActive;
         public User(string userName, string password)
         {
-            if (userName == "admin1")
-            {
-                int c = 5;
-            }
             this.password = password;
             this.userName = userName;
             isActive = true;
