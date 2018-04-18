@@ -36,7 +36,10 @@ namespace wsep182.Domain
         }
         public UserState getState()
         {
-            return state;
+            User user = UserArchive.getInstance().getUser(userName);
+            if (user == null)
+                return new Guest();
+            return user.state;
         }
         void setState(UserState s)
         {
@@ -144,7 +147,10 @@ namespace wsep182.Domain
 
         internal Boolean getIsActive()
         {
-            return isActive;
+            User user = UserArchive.getInstance().getUser(userName);
+            if (user == null)
+                return false;
+            return user.isActive;
         }
 
         internal void setIsActive(Boolean state)
