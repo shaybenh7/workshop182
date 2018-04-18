@@ -99,8 +99,8 @@ namespace Acceptance_Tests.UserTests
         public void AdminRemoveAdminThatTryToRemoveUser()
         {
             us.login(admin1, "admin1", "123456");
-            Assert.IsTrue(us.removeUser(admin,admin1));
-            Assert.IsFalse(us.removeUser(admin1, zahi));
+            Assert.IsTrue(us.removeUser(admin,"admin1"));
+            Assert.IsFalse(us.removeUser(admin1, "zahi"));
             Assert.IsTrue(us.login(zahi,"zahi", "123456"));
             User setion = us.startSession();
             Assert.IsFalse(us.login(setion,"admin1", "123456"));
@@ -121,21 +121,21 @@ namespace Acceptance_Tests.UserTests
         public void RemoveManager()
         {
             us.login(niv, "niv", "123456");
-            ss.addStoreManager(store, niv, itamar);
-            Assert.IsTrue(us.removeUser(admin,niv));
+            ss.addStoreManager(store, "niv", itamar);
+            Assert.IsTrue(us.removeUser(admin,"niv"));
             Assert.IsFalse(us.login(niv,"niv", "123456"));
             Assert.AreEqual(store.getManagers().Count, 0);
         }
         [TestMethod]
         public void RemoveCreatoreOwner()
         {
-            Assert.IsFalse(us.removeUser(admin,itamar));
+            Assert.IsFalse(us.removeUser(admin,"itamar"));
             Assert.AreEqual(store.getOwners().Count, 1);
         }
         [TestMethod]
         public void RemoveNotCreatoreOwner()
         {
-            ss.addStoreOwner(store, zahi, itamar);
+            ss.addStoreOwner(store, "zahi", itamar);
             Assert.IsTrue(admin.removeUser("zahi"));
             Assert.IsFalse(zahi.login("zahi", "123456"));
             Assert.AreEqual(store.getOwners().Count, 1);
@@ -143,15 +143,16 @@ namespace Acceptance_Tests.UserTests
         [TestMethod]
         public void RemoveCreatoreOwnerWithAnotherOwner()
         {
-            ss.addStoreOwner(store, zahi, itamar);
+            ss.addStoreOwner(store, "zahi", itamar);
             Assert.AreEqual(store.getOwners().Count, 2);
-            Assert.IsFalse(us.removeUser(admin,itamar));
+            Assert.IsFalse(us.removeUser(admin,"itamar"));
             Assert.AreEqual(store.getOwners().Count, 2);
         }
         [TestMethod]
         public void RemoveCreatorOwnerWithAnotherManager()
         {
-            Assert.IsFalse(us.removeUser(admin,itamar));
+            ss.addStoreOwner(store, "niv", itamar);
+            Assert.IsFalse(us.removeUser(admin,"itamar"));
             //Assert.IsTrue(us.login(itamar,"itamar", "123456"));
             Assert.AreEqual(store.getOwners().Count, 2);
         }
@@ -159,8 +160,8 @@ namespace Acceptance_Tests.UserTests
         public void RemoveMannegerInFewStores()
         {
             Store store2 = ss.createStore("admin store", admin);
-            ss.addStoreManager(store2, niv, admin);
-            Assert.IsTrue(us.removeUser(admin,niv));
+            ss.addStoreManager(store2, "niv", admin);
+            Assert.IsTrue(us.removeUser(admin,"niv"));
             Assert.IsFalse(us.login(niv,"niv", "123456"));
             Assert.AreEqual(store.getManagers().Count, 0);
             Assert.AreEqual(store2.getManagers().Count, 0);

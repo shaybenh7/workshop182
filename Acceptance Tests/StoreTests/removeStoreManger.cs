@@ -43,62 +43,62 @@ namespace Acceptance_Tests.StoreTests
             niv = us.startSession();
             us.register(niv, "niv", "123456");
 
-            ss.addStoreManager(store, niv, itamar);
+            ss.addStoreManager(store, "niv", itamar);
 
         }
 
         [TestMethod]
         public void simpleRemoveManger()
         {
-           Assert.IsTrue(ss.removeStoreManager(store, niv, itamar));
+           Assert.IsTrue(ss.removeStoreManager(store, "niv", itamar));
             Assert.AreEqual(store.getManagers().Count , 0);
         }
         [TestMethod]
         public void RemoveMangerByAdmin()
         {
-            Assert.IsFalse(ss.removeStoreManager(store, niv, admin));
+            Assert.IsFalse(ss.removeStoreManager(store, "niv", admin));
             Assert.AreEqual(store.getManagers().Count, 1);
         }
         [TestMethod]
         public void RemoveMangerByUser()
         {
             zahi.login("zahi", "123456");
-            Assert.IsFalse(ss.removeStoreManager(store, niv, zahi));
+            Assert.IsFalse(ss.removeStoreManager(store, "niv", zahi));
             Assert.AreEqual(store.getManagers().Count, 1);
         }
         [TestMethod]
         public void RemoveMangerByNotExistUser()
         {
-            Assert.IsFalse(ss.removeStoreManager(store, niv, zahi));
+            Assert.IsFalse(ss.removeStoreManager(store, "niv", zahi));
             Assert.AreEqual(store.getManagers().Count, 1);
         }
         [TestMethod]
         public void RemoveMangerByManegerWithPremition()
         {
-            ss.addManagerPermission("removeManagerPermission", store, niv, itamar);
-            ss.addStoreManager(store, zahi, itamar);
-            Assert.IsTrue(ss.removeStoreManager(store, zahi, niv));
+            ss.addManagerPermission("removeManagerPermission", store, "niv", itamar);
+            ss.addStoreManager(store, "zahi", itamar);
+            Assert.IsTrue(ss.removeStoreManager(store, "zahi", niv));
             Assert.AreEqual(store.getManagers().Count, 1);
         }
         [TestMethod]
         public void RemoveMangerByHimselfWithPremition()
         {
-            ss.addManagerPermission("removeManagerPermission", store, niv, itamar);
-            Assert.IsFalse(ss.removeStoreManager(store, niv, niv));
+            ss.addManagerPermission("removeManagerPermission", store, "niv", itamar);
+            Assert.IsFalse(ss.removeStoreManager(store, "niv", niv));
             Assert.AreEqual(store.getManagers().Count, 1);
         }
         [TestMethod]
         public void RemoveMangerByManegerThatRemoved()
         {
-            ss.addManagerPermission("removeManagerPermission", store, niv, itamar);
+            ss.addManagerPermission("removeManagerPermission", store, "niv", itamar);
             us.login(zahi, "zahi", "123456");
-            ss.addStoreManager(store, zahi, itamar);
-            ss.addStoreManager(store, admin, itamar);
-            ss.addManagerPermission("removeManagerPermission", store, zahi, itamar);
-            ss.addManagerPermission("removeManagerPermission", store, admin, itamar);
-            Assert.IsTrue(ss.removeStoreManager(store, zahi, niv));
-            Assert.IsFalse(ss.removeStoreManager(store, niv, zahi));
-            Assert.IsTrue(ss.removeStoreManager(store, admin, niv));
+            ss.addStoreManager(store, "zahi", itamar);
+            ss.addStoreManager(store, "admin", itamar);
+            ss.addManagerPermission("removeManagerPermission", store, "zahi", itamar);
+            ss.addManagerPermission("removeManagerPermission", store, "admin", itamar);
+            Assert.IsTrue(ss.removeStoreManager(store, "zahi", niv));
+            Assert.IsFalse(ss.removeStoreManager(store, "niv", zahi));
+            Assert.IsTrue(ss.removeStoreManager(store, "admin", niv));
             Assert.AreEqual(store.getManagers().Count, 1);
         }
     }

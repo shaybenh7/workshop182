@@ -15,6 +15,10 @@ namespace wsep182.Domain
         private Boolean isActive;
         public User(string userName, string password)
         {
+            if (userName == "admin1")
+            {
+                int c = 5;
+            }
             this.password = password;
             this.userName = userName;
             isActive = true;
@@ -130,8 +134,11 @@ namespace wsep182.Domain
             return state.viewStoreHistory(store,this);
         }
 
-        public LinkedList<Purchase> viewUserHistory(User userToGetHistory)
+        public LinkedList<Purchase> viewUserHistory(String userNameToGetHistory)
         {
+            if (userNameToGetHistory == null)
+                return null;
+            User userToGetHistory = UserArchive.getInstance().getUser(userNameToGetHistory);
             return state.viewUserHistory(userToGetHistory);
         }
 
@@ -143,6 +150,7 @@ namespace wsep182.Domain
         internal void setIsActive(Boolean state)
         {
             isActive = state;
+            this.state = new Guest();
         }
         public Boolean removeFromCart(Sale sale)
         {

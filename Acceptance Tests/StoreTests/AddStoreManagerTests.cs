@@ -42,7 +42,7 @@ namespace Acceptance_Tests.StoreTests
             Store store = ss.createStore("abowim", zahi);
             LinkedList<StoreManager> managers = store.getManagers();
             Assert.AreEqual(managers.Count, 0);
-            ss.addStoreManager(store, aviad, zahi);
+            ss.addStoreManager(store, "aviad", zahi);
             managers = store.getManagers();
             Assert.AreEqual(managers.Count, 1);
             StoreManager SM = managers.First.Value;
@@ -60,7 +60,7 @@ namespace Acceptance_Tests.StoreTests
         public void OwnerTryAddHimselfToBeStoreManager()
         {
             Store store = ss.createStore("abowim", zahi);
-            ss.addStoreManager(store, zahi, zahi);
+            ss.addStoreManager(store, "zahi", zahi);
             LinkedList<StoreManager>  managers = store.getManagers();
             Assert.AreEqual(managers.Count, 0);
         }
@@ -72,8 +72,8 @@ namespace Acceptance_Tests.StoreTests
             us.register(aviad, "aviad", "123456");
             us.login(aviad, "aviad", "123456");
             Store store = ss.createStore("abowim", zahi);
-            ss.addStoreOwner(store, aviad, zahi);
-            ss.addStoreManager(store, aviad, zahi);
+            ss.addStoreOwner(store, "aviad", zahi);
+            ss.addStoreManager(store, "aviad", zahi);
             LinkedList<StoreManager>  managers = store.getManagers();
             Assert.AreEqual(managers.Count, 0);
         }
@@ -96,7 +96,7 @@ namespace Acceptance_Tests.StoreTests
             us.register(aviad, "aviad", "123456");
             us.login(aviad, "aviad", "123456");
             Store store = ss.createStore("abowim", zahi);
-            ss.addStoreManager(store, aviad, null);
+            ss.addStoreManager(store, "aviad", null);
             LinkedList<StoreManager> managers = store.getManagers();
             Assert.AreEqual(managers.Count, 0);
         }
@@ -109,7 +109,7 @@ namespace Acceptance_Tests.StoreTests
             us.login(aviad, "aviad", "123456");
             storeServices ss = storeServices.getInstance();
             Store store = ss.createStore("abowim", zahi);
-            ss.addStoreManager(null, aviad, zahi);
+            ss.addStoreManager(null, "aviad", zahi);
             LinkedList<StoreManager> managers = store.getManagers();
             Assert.AreEqual(managers.Count, 0);
         }
@@ -121,7 +121,7 @@ namespace Acceptance_Tests.StoreTests
             us.register(aviad, "aviad", "123456");
             us.login(aviad, "aviad", "123456");
             Store store = new Store(1,"abowim", zahi);
-            ss.addStoreManager(store, aviad, zahi);
+            ss.addStoreManager(store, "aviad", zahi);
             LinkedList<StoreManager> managers = store.getManagers();
             Assert.AreEqual(managers.Count, 0);
         }
@@ -134,7 +134,7 @@ namespace Acceptance_Tests.StoreTests
             us.login(shay, "shay", "123456");
             User aviad = new User("aviad", "123456");
             Store store = new Store(1, "abowim", zahi);
-            ss.addStoreManager(store, shay, aviad);
+            ss.addStoreManager(store, "shay", aviad);
             LinkedList<StoreManager> managers = store.getManagers();
             Assert.AreEqual(managers.Count, 0);
         }
@@ -145,7 +145,7 @@ namespace Acceptance_Tests.StoreTests
             User shay = us.startSession();
             us.register(shay, "shay", "123456");
             Store store = new Store(1, "abowim", zahi);
-            ss.addStoreManager(store, shay, zahi);
+            ss.addStoreManager(store, "shay", zahi);
             LinkedList<StoreManager> managers = store.getManagers();
             Assert.AreEqual(managers.Count, 0);
         }
@@ -159,8 +159,8 @@ namespace Acceptance_Tests.StoreTests
             Store store = ss.createStore("abowim", zahi);
             LinkedList<StoreManager> managers = store.getManagers();
             Assert.AreEqual(managers.Count, 0);
-            ss.addStoreManager(store, aviad, zahi);
-            ss.addStoreManager(store, aviad, zahi);
+            ss.addStoreManager(store, "aviad", zahi);
+            ss.addStoreManager(store, "aviad", zahi);
             managers = store.getManagers();
             Assert.AreEqual(managers.Count, 1);
             StoreManager SM = managers.First.Value;

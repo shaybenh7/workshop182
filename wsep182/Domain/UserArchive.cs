@@ -66,7 +66,8 @@ namespace wsep182.Domain
                         if(s.getStoreCreator().getUserName().Equals(u.getUserName()) && s.getIsActive() == 1)
                             return false;
                     }
-                    users.Remove(u);
+                    //users.Remove(u);
+                    u.setIsActive(false);
                     return true;
                 }
             return false;
