@@ -28,6 +28,13 @@ namespace wsep182.Domain
 
         public Boolean addNewDiscount(int productInStoreId, int percentage, String dueDate)
         {
+            foreach(Discount d in discounts)
+            {
+                if (d.ProductInStoreId == productInStoreId)
+                {
+                    return false;
+                }
+            }
             Discount toAdd = new Discount(productInStoreId, percentage, dueDate);
             discounts.AddLast(toAdd);
             return true;
