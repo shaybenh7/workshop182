@@ -97,6 +97,8 @@ namespace wsep182.services
         //req 3.4 b
         public Boolean removeStoreManager(Store s, User oldManager, User session)
         {
+            if (oldManager == session)
+                return false;
             StoreRole sR = StoreRole.getStoreRole(s, session);
             if (sR == null)
                 return false;

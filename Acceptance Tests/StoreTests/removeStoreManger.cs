@@ -23,6 +23,12 @@ namespace Acceptance_Tests.StoreTests
             storeArchive.restartInstance();
             UserArchive.restartInstance();
             UserCartsArchive.restartInstance();
+            BuyHistoryArchive.restartInstance();
+            CouponsArchive.restartInstance();
+            DiscountsArchive.restartInstance();
+            RaffleSalesArchive.restartInstance();
+            StorePremissionsArchive.restartInstance();
+
             us = userServices.getInstance();
             ss = storeServices.getInstance();
             admin = us.startSession();
@@ -42,6 +48,7 @@ namespace Acceptance_Tests.StoreTests
 
             niv = us.startSession();
             us.register(niv, "niv", "123456");
+            us.login(niv, "niv", "123456");
 
             ss.addStoreManager(store, niv, itamar);
 
@@ -56,6 +63,7 @@ namespace Acceptance_Tests.StoreTests
         [TestMethod]
         public void RemoveMangerByAdmin()
         {
+
             Assert.IsFalse(ss.removeStoreManager(store, niv, admin));
             Assert.AreEqual(store.getManagers().Count, 1);
         }
@@ -75,27 +83,29 @@ namespace Acceptance_Tests.StoreTests
         [TestMethod]
         public void RemoveMangerByManegerWithPremition()
         {
-            ss.addManagerPermission("removeManagerPermission", store, niv, itamar);
+            Assert.IsTrue(ss.addManagerPermission("removeStoreManager", store, niv, itamar));
+            us.login(zahi, "zahi", "123456");
             ss.addStoreManager(store, zahi, itamar);
-            Assert.IsTrue(ss.removeStoreManager(store, zahi, niv));
+            Assert.AreEqual(true,ss.removeStoreManager(store, zahi, niv));
             Assert.AreEqual(store.getManagers().Count, 1);
         }
+
         [TestMethod]
         public void RemoveMangerByHimselfWithPremition()
         {
-            ss.addManagerPermission("removeManagerPermission", store, niv, itamar);
+            ss.addManagerPermission("removeStoreManager", store, niv, itamar);
             Assert.IsFalse(ss.removeStoreManager(store, niv, niv));
             Assert.AreEqual(store.getManagers().Count, 1);
         }
         [TestMethod]
         public void RemoveMangerByManegerThatRemoved()
         {
-            ss.addManagerPermission("removeManagerPermission", store, niv, itamar);
+            ss.addManagerPermission("removeStoreManager", store, niv, itamar);
             us.login(zahi, "zahi", "123456");
             ss.addStoreManager(store, zahi, itamar);
             ss.addStoreManager(store, admin, itamar);
-            ss.addManagerPermission("removeManagerPermission", store, zahi, itamar);
-            ss.addManagerPermission("removeManagerPermission", store, admin, itamar);
+            ss.addManagerPermission("removeStoreManager", store, zahi, itamar);
+            ss.addManagerPermission("removeStoreManager", store, admin, itamar);
             Assert.IsTrue(ss.removeStoreManager(store, zahi, niv));
             Assert.IsFalse(ss.removeStoreManager(store, niv, zahi));
             Assert.IsTrue(ss.removeStoreManager(store, admin, niv));
