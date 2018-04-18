@@ -44,7 +44,7 @@ namespace Acceptance_Tests.StoreTests
             itamar = us.startSession();
             us.register(itamar, "itamar", "123456");
             us.login(itamar,"itamar", "123456");
-            store = itamar.createStore("Maria&Netta Inc.");
+            store = ss.createStore("Maria&Netta Inc.", itamar);
 
             niv = us.startSession();
             us.register(niv, "niv", "123456");
