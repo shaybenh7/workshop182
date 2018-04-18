@@ -93,14 +93,14 @@ namespace wsep182.services
         }
 
         //req 3.4 b
-        public Boolean removeStoreManager(Store s, String oldManager, User session)
+        public Boolean removeStoreManager(Store s, String oldManageruserName, User session)
         {
-            if (oldManager == session)
+            if (oldManageruserName == session.getUserName())
                 return false;
             StoreRole sR = StoreRole.getStoreRole(s, session);
             if (sR == null)
                 return false;
-            return sR.removeStoreManager(session, s, oldManager);
+            return sR.removeStoreManager(session, s, oldManageruserName);
         }
 
         //req 3.4 c

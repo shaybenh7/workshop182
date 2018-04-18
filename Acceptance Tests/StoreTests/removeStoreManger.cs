@@ -91,7 +91,7 @@ namespace Acceptance_Tests.StoreTests
         [TestMethod]
         public void RemoveMangerByHimselfWithPremition()
         {
-            ss.addManagerPermission("removeStoreManager", store, niv, itamar);
+            ss.addManagerPermission("removeStoreManager", store, "niv", itamar);
             Assert.IsFalse(ss.removeStoreManager(store, "niv", niv));
             Assert.AreEqual(store.getManagers().Count, 1);
         }
