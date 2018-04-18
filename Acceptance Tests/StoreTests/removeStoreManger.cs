@@ -84,6 +84,7 @@ namespace Acceptance_Tests.StoreTests
         {
             Assert.IsTrue(ss.addManagerPermission("removeStoreManager", store, "niv", itamar));
             us.login(zahi, "zahi", "123456");
+            ss.addStoreManager(store, "zahi", itamar);
             Assert.IsTrue(ss.removeStoreManager(store, "zahi", niv));
             Assert.AreEqual(store.getManagers().Count, 1);
         }

@@ -43,14 +43,14 @@ namespace Acceptance_Tests.StoreTests
             Store store = ss.createStore("abowim", zahi);
             ss.addStoreOwner(store, "aviad", zahi);
             LinkedList<StoreOwner> Userowners = store.getOwners();
-            LinkedList<User> owners = new LinkedList<User>();
+            LinkedList<String> owners = new LinkedList<String>();
             foreach (StoreOwner o in Userowners)
             {
-                owners.AddFirst(o.getUser());
+                owners.AddFirst(o.getUser().getUserName());
             }
             Assert.AreEqual(owners.Count, 2);
-            Assert.IsTrue(owners.Contains(zahi));
-            Assert.IsTrue(owners.Contains(aviad));
+            Assert.IsTrue(owners.Contains("zahi"));
+            Assert.IsTrue(owners.Contains("aviad"));
         }
 
         [TestMethod]
@@ -76,16 +76,16 @@ namespace Acceptance_Tests.StoreTests
             Store store = ss.createStore("abowim", zahi);
             us.login(aviad, "aviad", "123456");
             ss.addStoreOwner(store, "aviad", zahi);
-            ss.addStoreOwner(store, "zahi", aviad);
+            Assert.IsFalse(ss.addStoreOwner(store, "zahi", aviad));
             LinkedList<StoreOwner> Userowners = store.getOwners();
-            LinkedList<User> owners = new LinkedList<User>();
+            LinkedList<String> owners = new LinkedList<String>();
             foreach (StoreOwner o in Userowners)
             {
-                owners.AddFirst(o.getUser());
+                owners.AddFirst(o.getUser().getUserName());
             }
             Assert.AreEqual(owners.Count, 2);
-            Assert.IsTrue(owners.Contains(zahi));
-            Assert.IsTrue(owners.Contains(aviad));
+            Assert.IsTrue(owners.Contains("zahi"));
+            Assert.IsTrue(owners.Contains("aviad"));
         }
 
         [TestMethod]
