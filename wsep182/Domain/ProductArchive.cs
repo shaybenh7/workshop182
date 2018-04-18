@@ -17,6 +17,8 @@ namespace wsep182.Domain
         {
             products = new LinkedList<Product>();
             productsInStores = new LinkedList<ProductInStore>();
+            productInStoreId = 0;
+            productId = 0;
         }
         public static ProductArchive getInstance()
         {
@@ -50,6 +52,8 @@ namespace wsep182.Domain
 
         public Boolean updateProduct(Product newProduct)
         {
+            if (newProduct == null)
+                return false;
             foreach (Product p in products)
                 if (p.getProductId() == newProduct.getProductId())
                 {
@@ -107,7 +111,6 @@ namespace wsep182.Domain
             lock (this)
             {
                 newProduct = new ProductInStore(getNextProductInStoreId(), product, price, quantity, store);
-                productInStoreId++;
             }
             
             foreach (ProductInStore p in productsInStores)
@@ -121,6 +124,12 @@ namespace wsep182.Domain
 
         public Boolean updateProductInStore(ProductInStore newProduct)
         {
+            if (newProduct == null)
+            {
+                return false;
+            }
+            if (newProduct.getProduct() == null || newProduct.getStore() == null || newProduct.getAmount() <= 0 || newProduct.getPrice() < 0)
+                return false;
             foreach (ProductInStore p in productsInStores)
                 if (p.getProduct().getProductId() == newProduct.getProduct().getProductId() && p.getStore().getStoreId() == newProduct.getStore().getStoreId())
                 {

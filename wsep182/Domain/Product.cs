@@ -28,6 +28,10 @@ namespace wsep182.Domain
         {
             return this.name;
         }
+        public void setProductName(String newName)
+        {
+            this.name = newName;
+        }
 
         public static Product addProduct(String productName)
         {
