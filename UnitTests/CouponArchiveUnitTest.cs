@@ -14,7 +14,6 @@ namespace UnitTests
         public void init()
         {
             CouponsArchive.restartInstance();
-
             couponArchive = CouponsArchive.getInstance();
             couponArchive.addNewCoupon("firstCoupon", 1, 50, "jan 12, 2008");
             couponArchive.addNewCoupon("secondCoupon", 2, 30, "jun 9, 2010");
