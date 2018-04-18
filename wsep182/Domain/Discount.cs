@@ -24,7 +24,7 @@ namespace wsep182.Domain
 
         public Double getPriceAfterDiscount(double pricePerUnit, int amount)
         {
-            return (pricePerUnit * amount) * (percentage / 100);
+            return (pricePerUnit * amount) - ((((Double)(pricePerUnit * amount * percentage)) / 100));
         }
 
     }

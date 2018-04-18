@@ -50,17 +50,28 @@ namespace wsep182.Domain
             }
             return false;
         }
+
         public Boolean removeCoupon(String couponId)
         {
-            foreach (Coupon coupon in coupons)
+            Boolean found = false;
+            LinkedList<int> indexes = new LinkedList<int>();
+            for (int i = 0; i < coupons.Count; i++)
             {
-                if (coupon.CouponId.Equals(couponId))
+                if (coupons.ElementAt(i).CouponId.Equals(couponId))
                 {
-                    coupons.Remove(coupon);
+                    indexes.AddLast(i);
+                    found = true;
                 }
+            }
+            if (!found)
+                return false;
+            for (int i = indexes.Count - 1; i >= 0; i--)
+            {
+                coupons.Remove(coupons.ElementAt(indexes.ElementAt(i)));
             }
             return true;
         }
+
         public Boolean editCoupon(String couponId, int newPercentage, String newDueDate)
         {
             foreach (Coupon coupon in coupons)
