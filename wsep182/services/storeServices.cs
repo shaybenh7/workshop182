@@ -140,7 +140,7 @@ namespace wsep182.services
 
         public int addSaleToStore(User session, Store s, int productInStoreId, int typeOfSale, int amount, String dueDate)
         {
-            if (!session.getState().isLogedIn())
+            if (session==null||!session.getState().isLogedIn())
                 return -1;
             StoreRole sR = StoreRole.getStoreRole(s, session);
             if (sR == null)

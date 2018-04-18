@@ -50,11 +50,12 @@ namespace wsep182.Domain
             }
             return false;
         }
+
         public Boolean removeCoupon(String couponId)
         {
             Boolean found = false;
             LinkedList<int> indexes = new LinkedList<int>();
-            for(int i = 0; i < coupons.Count; i++)
+            for (int i = 0; i < coupons.Count; i++)
             {
                 if (coupons.ElementAt(i).CouponId.Equals(couponId))
                 {
@@ -64,12 +65,19 @@ namespace wsep182.Domain
             }
             if (!found)
                 return false;
+            for (int i = indexes.Count - 1; i >= 0; i--)
+            {
+                coupons.Remove(coupons.ElementAt(indexes.ElementAt(i)));
+            }
+            if (!found)
+                return false;
             for(int i = indexes.Count - 1; i >= 0; i--)
             {
                 coupons.Remove(coupons.ElementAt(indexes.ElementAt(i)));
             }
             return true;
         }
+
         public Boolean editCoupon(String couponId, int newPercentage, String newDueDate)
         {
             Boolean found = false;
