@@ -41,7 +41,7 @@ namespace Acceptance_Tests.StoreTests
             us.register(aviad, "aviad", "123456");
             aviad.login("aviad", "123456");
             Store store = ss.createStore("abowim", zahi);
-            ss.addStoreOwner(store, aviad, zahi);
+            ss.addStoreOwner(store, "aviad", zahi);
             LinkedList<StoreOwner> Userowners = store.getOwners();
             LinkedList<User> owners = new LinkedList<User>();
             foreach (StoreOwner o in Userowners)
@@ -57,7 +57,7 @@ namespace Acceptance_Tests.StoreTests
         public void AddStoreOwnerWhichIsMyself()
         {
             Store store = ss.createStore("abowim", zahi);
-            ss.addStoreOwner(store, zahi, zahi);
+            ss.addStoreOwner(store, "zahi", zahi);
             LinkedList<StoreOwner> Userowners = store.getOwners();
             LinkedList<User> owners = new LinkedList<User>();
             foreach (StoreOwner o in Userowners)
@@ -75,8 +75,8 @@ namespace Acceptance_Tests.StoreTests
             us.register(aviad, "aviad", "123456");
             Store store = ss.createStore("abowim", zahi);
             us.login(aviad, "aviad", "123456");
-            ss.addStoreOwner(store, aviad, zahi);
-            ss.addStoreOwner(store, zahi, aviad);
+            ss.addStoreOwner(store, "aviad", zahi);
+            ss.addStoreOwner(store, "zahi", aviad);
             LinkedList<StoreOwner> Userowners = store.getOwners();
             LinkedList<User> owners = new LinkedList<User>();
             foreach (StoreOwner o in Userowners)
@@ -96,7 +96,7 @@ namespace Acceptance_Tests.StoreTests
             us.login(aviad, "aviad", "123456");
             storeServices ss = storeServices.getInstance();
             Store store = ss.createStore("abowim", zahi);
-            ss.addStoreOwner(store, aviad, aviad);
+            ss.addStoreOwner(store, "aviad", aviad);
             LinkedList<StoreOwner> Userowners = store.getOwners();
             LinkedList<User> owners = new LinkedList<User>();
             foreach (StoreOwner o in Userowners)
@@ -120,7 +120,7 @@ namespace Acceptance_Tests.StoreTests
             User niv = new User("niv", "123456");
             storeServices ss = storeServices.getInstance();
             Store store = ss.createStore("abowim", zahi);
-            ss.addStoreOwner(store, itamar, aviad);
+            ss.addStoreOwner(store, "itamar", aviad);
             LinkedList<StoreOwner> Userowners = store.getOwners();
             LinkedList<User> owners = new LinkedList<User>();
             foreach (StoreOwner o in Userowners)
@@ -129,7 +129,7 @@ namespace Acceptance_Tests.StoreTests
             }
             Assert.AreEqual(owners.Count, 1);
             Assert.IsTrue(owners.Contains(zahi));
-            ss.addStoreOwner(store, niv, aviad);
+            ss.addStoreOwner(store, "niv", aviad);
             LinkedList<StoreOwner> Userowners2 = store.getOwners();
             LinkedList<User> owners2 = new LinkedList<User>();
             foreach (StoreOwner o in Userowners2)
@@ -145,7 +145,7 @@ namespace Acceptance_Tests.StoreTests
         {
             User aviad = new User("aviad", "123456");
             Store store = ss.createStore("abowim", zahi);
-            ss.addStoreOwner(store, aviad, zahi);
+            ss.addStoreOwner(store, "aviad", zahi);
             LinkedList<StoreOwner> Userowners = store.getOwners();
             LinkedList<User> owners = new LinkedList<User>();
             foreach (StoreOwner o in Userowners)
@@ -178,7 +178,7 @@ namespace Acceptance_Tests.StoreTests
             us.register(aviad, "aviad", "123456");
             us.login(aviad, "aviad", "123456");
             Store store = ss.createStore("abowim", zahi);
-            ss.addStoreOwner(store, zahi, null);
+            ss.addStoreOwner(store, "zahi", null);
             LinkedList<StoreOwner> Userowners = store.getOwners();
             LinkedList<User> owners = new LinkedList<User>();
             foreach (StoreOwner o in Userowners)
@@ -196,7 +196,7 @@ namespace Acceptance_Tests.StoreTests
             us.register(aviad, "aviad", "123456");
             us.login(aviad, "aviad", "123456");
             Store store = ss.createStore("abowim", zahi);
-            ss.addStoreOwner(null, aviad, zahi);
+            ss.addStoreOwner(null, "aviad", zahi);
             LinkedList<StoreOwner> Userowners = store.getOwners();
             LinkedList<User> owners = new LinkedList<User>();
             foreach (StoreOwner o in Userowners)

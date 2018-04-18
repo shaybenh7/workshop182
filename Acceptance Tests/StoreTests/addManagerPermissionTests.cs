@@ -58,7 +58,7 @@ namespace Acceptance_Tests.StoreTests
             us.register(niv, "niv", "123456");
             ss = storeServices.getInstance();
             store = ss.createStore("abowim", zahi);
-            ss.addStoreManager(store, aviad, zahi);
+            ss.addStoreManager(store, "aviad", zahi);
             niv.logOut();
         }
 
@@ -68,7 +68,7 @@ namespace Acceptance_Tests.StoreTests
         {
             ss.addProductInStore("cola", 10, 4, aviad, store);
             Assert.AreEqual(0, store.getProductsInStore().Count);
-            ss.addManagerPermission("addProductInStore", store, aviad, zahi);
+            ss.addManagerPermission("addProductInStore", store, "aviad", zahi);
             ss.addProductInStore("cola", 10, 4, aviad, store);
             Assert.AreEqual(1, store.getProductsInStore().Count);
         }
@@ -81,7 +81,7 @@ namespace Acceptance_Tests.StoreTests
             ss.editProductInStore(aviad, store, pis, 13, 4.5);
             Assert.AreEqual(10, pis.getPrice());
             Assert.AreEqual(4, pis.getAmount());
-            ss.addManagerPermission("editProductInStore", store, aviad, zahi);
+            ss.addManagerPermission("editProductInStore", store, "aviad", zahi);
             ss.editProductInStore(aviad, store, pis, 13, 4.5);
             Assert.AreEqual(4.5, pis.getPrice());
             Assert.AreEqual(13, pis.getAmount());
@@ -92,7 +92,7 @@ namespace Acceptance_Tests.StoreTests
             ProductInStore pis = ss.addProductInStore("cola", 10, 4, zahi, store);
             ss.removeProductFromStore(store, pis, aviad);
             Assert.AreEqual(1, store.getProductsInStore().Count);
-            ss.addManagerPermission("removeProductFromStore", store, aviad, zahi);
+            ss.addManagerPermission("removeProductFromStore", store, "aviad", zahi);
             ss.removeProductFromStore(store, pis, aviad);
             Assert.AreEqual(0, store.getProductsInStore().Count);
         }

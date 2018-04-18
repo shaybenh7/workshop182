@@ -62,8 +62,9 @@ namespace wsep182.Domain
             return ProductArchive.getInstance().removeProductInStore(p.getProductInStoreId(), s.getStoreId());
 
         }
-        public virtual Boolean addStoreManager(User session, Store s, User newManager)
+        public virtual Boolean addStoreManager(User session, Store s, String newManagerUserName)
         {
+            User newManager = UserArchive.getInstance().getUser(newManagerUserName);
             if (session == null || s == null || newManager == null)
                 return false;
             StoreRole sr = storeArchive.getInstance().getStoreRole(s, newManager);
@@ -74,15 +75,16 @@ namespace wsep182.Domain
             StoreRole m = new StoreManager(newManager, s);
             return storeArchive.getInstance().addStoreRole(m, s.getStoreId(),newManager.getUserName());
         }
-        public virtual Boolean removeStoreManager(User session, Store s, User oldManager)
+        public virtual Boolean removeStoreManager(User session, Store s, String oldManager)
         {
             if (session == null || s == null || oldManager == null)
                 return false;
-            return storeArchive.getInstance().removeStoreRole(s.getStoreId(), oldManager.getUserName());
+            return storeArchive.getInstance().removeStoreRole(s.getStoreId(), oldManager);
         }
 
-        public virtual Boolean addStoreOwner(User session, Store s, User newOwner)
+        public virtual Boolean addStoreOwner(User session, Store s, String newOwnerUserName)
         {
+            User newOwner = UserArchive.getInstance().getUser(newOwnerUserName);
             if(newOwner == null || s == null || session == null)
             {
                 return false ;
@@ -91,20 +93,27 @@ namespace wsep182.Domain
             if (sr != null && (sr is StoreOwner))
                 return false;
             if (sr != null && (sr is StoreManager))
-                removeStoreManager(session, s, newOwner);
+                removeStoreManager(session, s, newOwnerUserName);
             if (sr != null && (sr is Customer))
                 storeArchive.getInstance().removeStoreRole(s.getStoreId(), newOwner.getUserName());
             StoreRole owner = new StoreOwner(newOwner,s);
             return storeArchive.getInstance().addStoreRole(owner, s.getStoreId(), newOwner.getUserName());
         }
-        public virtual Boolean removeStoreOwner(User session, Store s, User ownerToDelete)
+        public virtual Boolean removeStoreOwner(User session, Store s, String ownerToDelete)
         {
-            if (s.getStoreCreator().getUserName().Equals(ownerToDelete.getUserName()))
+            User oldOwner = UserArchive.getInstance().getUser(ownerToDelete);
+            StoreRole sR2 = StoreRole.getStoreRole(s, oldOwner);
+            if (ownerToDelete == user.getUserName())
+                return false;//owner cannot remove himself
+            if (!(sR2 is StoreOwner))
                 return false;
-            return storeArchive.getInstance().removeStoreRole(s.getStoreId(), ownerToDelete.getUserName());
+            if (s.getStoreCreator().getUserName().Equals(ownerToDelete))
+                return false;
+            return storeArchive.getInstance().removeStoreRole(s.getStoreId(), ownerToDelete);
         }
-        public virtual Boolean addManagerPermission(User session, String permission, Store s, User manager)
+        public virtual Boolean addManagerPermission(User session, String permission, Store s, String managerUserName)
         {
+            User manager = UserArchive.getInstance().getUser(managerUserName);
             if (session == null || permission == null || manager == null || s == null)
                 return false;
             StoreRole sR = storeArchive.getInstance().getStoreRole(s, manager);
@@ -165,8 +174,12 @@ namespace wsep182.Domain
             return CouponsArchive.getInstance().removeCoupon(couponId);
         }
 
-        public virtual Boolean removeManagerPermission(User session, String permission, Store s, User manager)
+        public virtual Boolean removeManagerPermission(User session, String permission, Store s, String managerUsername)
         {
+            if (managerUsername == null)
+                return false;
+            User manager = UserArchive.getInstance().getUser(managerUsername);
+
             if (permission == null || manager == null || session == null || s == null)
                 return false;
             StoreRole sR = storeArchive.getInstance().getStoreRole(s, manager);

@@ -42,28 +42,28 @@ namespace wsep182.Domain
             return false;
         }
 
-        public override Boolean addStoreManager(User session, Store s, User newManager)
+        public override Boolean addStoreManager(User session, Store s, String newManager)
         {
             return false;
         }
 
-        public override Boolean removeStoreManager(User session, Store s, User oldManager)
+        public override Boolean removeStoreManager(User session, Store s, String oldManager)
         {
             return false;
         }
 
-        public override Boolean addStoreOwner(User session, Store s, User newOwner)
+        public override Boolean addStoreOwner(User session, Store s, String newOwner)
         {
             return false;
         }
 
-        public override Boolean removeStoreOwner(User session, Store s, User ownerToDelete)
+        public override Boolean removeStoreOwner(User session, Store s, String ownerToDelete)
         {
             return false;
 
         }
 
-        public override Boolean addManagerPermission(User session, String permission, Store s, User manager)
+        public override Boolean addManagerPermission(User session, String permission, Store s, String manager)
         {
             return false;
 
@@ -74,7 +74,7 @@ namespace wsep182.Domain
             return -1;
         }
 
-        public override Boolean removeManagerPermission(User session, String permission, Store s, User manager)
+        public override Boolean removeManagerPermission(User session, String permission, Store s, String manager)
         {
             return false;
         }

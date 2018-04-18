@@ -58,13 +58,13 @@ namespace wsep182.services
         }
 
         //req 3.3 a
-        public Boolean addStoreOwner(Store s, User newOwner, User session)
+        public Boolean addStoreOwner(Store s, String newOwner, User session)
         {
             if(s==null || newOwner == null || session == null)
             {
                 return false;
             }
-            User isExist = UserArchive.getInstance().getUser(newOwner.getUserName());
+            User isExist = UserArchive.getInstance().getUser(newOwner);
             if (isExist == null)
                 return false;
             StoreRole sR = StoreRole.getStoreRole(s, session);
@@ -74,19 +74,17 @@ namespace wsep182.services
         }
 
         //req 3.3 b
-        public Boolean removeStoreOwner(Store s, User oldOwner, User session)
+        public Boolean removeStoreOwner(Store s, String oldOwner, User session)
         {
-            if (oldOwner == session)
-                return false;//owner cannot remove himself
+
             StoreRole sR = StoreRole.getStoreRole(s, session);
-            StoreRole sR2 = StoreRole.getStoreRole(s, oldOwner);
-            if (sR == null || !(sR2 is StoreOwner))
+            if (sR == null)
                 return false;
             return sR.removeStoreOwner(session, s, oldOwner);
         }
 
         //req 3.4 a
-        public Boolean addStoreManager(Store s, User newManager, User session)
+        public Boolean addStoreManager(Store s, String newManager, User session)
         {
             StoreRole sR = StoreRole.getStoreRole(s, session);
             if (sR == null)
@@ -95,7 +93,7 @@ namespace wsep182.services
         }
 
         //req 3.4 b
-        public Boolean removeStoreManager(Store s, User oldManager, User session)
+        public Boolean removeStoreManager(Store s, String oldManager, User session)
         {
             if (oldManager == session)
                 return false;
@@ -106,7 +104,7 @@ namespace wsep182.services
         }
 
         //req 3.4 c
-        public Boolean addManagerPermission(String permission, Store s, User managerToAdd, User session)
+        public Boolean addManagerPermission(String permission, Store s, String managerToAdd, User session)
         {
             StoreRole sR = StoreRole.getStoreRole(s, session);
             if (sR == null)
@@ -116,7 +114,7 @@ namespace wsep182.services
         }
 
         //req 3.4 d
-        public Boolean removeManagerPermission(String permission, Store s, User manager, User session)
+        public Boolean removeManagerPermission(String permission, Store s, String manager, User session)
         {
             StoreRole sR = StoreRole.getStoreRole(s, session);
             if (sR == null)
@@ -133,7 +131,7 @@ namespace wsep182.services
         }
 
         //req 5.4 b
-        public LinkedList<Purchase> viewUserHistory(User session, User userToGetHistory)
+        public LinkedList<Purchase> viewUserHistory(User session, String userToGetHistory)
         {
             if (session == null | userToGetHistory == null)
                 return null;
