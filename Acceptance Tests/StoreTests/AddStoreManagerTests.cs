@@ -39,15 +39,19 @@ namespace Acceptance_Tests.StoreTests
             User aviad = us.startSession();
             us.register(aviad, "aviad", "123456");
             us.login(aviad, "aviad", "123456");
+
             Store store = ss.createStore("abowim", zahi);
             LinkedList<StoreManager> managers = store.getManagers();
             Assert.AreEqual(managers.Count, 0);
+
             ss.addStoreManager(store, "aviad", zahi);
             managers = store.getManagers();
             Assert.AreEqual(managers.Count, 1);
             StoreManager SM = managers.First.Value;
-            Assert.AreEqual(SM.getUser(), aviad);
+            Assert.AreEqual(SM.getUser().getUserName(), aviad.getUserName());
+            Assert.AreEqual(SM.getUser().getPassword(), aviad.getPassword());
             Assert.AreEqual(SM.getStore(), store);
+
             StorePremissions SP= SM.getPremissions(aviad);
             Dictionary<string, Boolean> Dict = SP.getPrivileges();
             foreach (KeyValuePair<string, Boolean> entry in Dict)
@@ -164,7 +168,8 @@ namespace Acceptance_Tests.StoreTests
             managers = store.getManagers();
             Assert.AreEqual(managers.Count, 1);
             StoreManager SM = managers.First.Value;
-            Assert.AreEqual(SM.getUser(), aviad);
+            Assert.AreEqual(SM.getUser().getUserName(), aviad.getUserName());
+            Assert.AreEqual(SM.getUser().getPassword(), aviad.getPassword());
             Assert.AreEqual(SM.getStore(), store);
             StorePremissions SP = SM.getPremissions(aviad);
             Dictionary<string, Boolean> Dict = SP.getPrivileges();
