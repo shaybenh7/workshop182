@@ -102,6 +102,23 @@ namespace Acceptance_Tests.SaleTests
             ProductInStore milk = ss.addProductInStore("milk", 3.2, 10, admin, store2);
             Assert.IsFalse(ss.addSaleToStore(itamar, store, milk.getProductInStoreId(), 1, 1, "20/5/2018") > -1);
         }
+        [TestMethod]
+        public void AddSaleWithOwnerOfAnotherStore()
+        {
+            Store store2 = ss.createStore("admin store", admin);
+            ProductInStore milk = ss.addProductInStore("milk", 3.2, 10, admin, store2);
+            Assert.IsFalse(ss.addSaleToStore(admin, store, milk.getProductInStoreId(), 1, 1, "20/5/2018") > -1);
+        }
+        [TestMethod]
+        public void AddSaleWithNullParameters()
+        {
+            Store store2 = ss.createStore("admin store", admin);
+            ProductInStore milk = ss.addProductInStore("milk", 3.2, 10, admin, store2);
+            Assert.IsNull(ss.addSaleToStore(null, store2, milk.getProductInStoreId(), 1, 1, "20/5/2018") );
+            Assert.IsNull(ss.addSaleToStore(admin, null, milk.getProductInStoreId(), 1, 1, "20/5/2018") );
+            Assert.IsNull(ss.addSaleToStore(admin, store2, milk.getProductInStoreId(), 1, 1, null));
+        }
+
 
 
     }
