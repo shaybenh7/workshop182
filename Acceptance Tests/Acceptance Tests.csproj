@@ -48,6 +48,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MixedTests\SingleUserScenarios.cs" />
     <Compile Include="StoreTests\addManagerPermissionTests.cs" />
     <Compile Include="StoreTests\addProductInStoreTest.cs" />
     <Compile Include="StoreTests\AddStoreManagerTests.cs" />

@@ -41,8 +41,6 @@ namespace Acceptance_Tests
             userServices us = userServices.getInstance();
             User session = us.startSession();
             session.register("zahi", "123456");
-            Assert.AreEqual(session.getUserName(), "guest");
-            Assert.AreEqual(session.getPassword(), "guest");
             Assert.IsTrue(session.getState() is Guest);
             Assert.IsFalse(us.register(session, "zahi", "123456"));
             Assert.IsFalse(us.register(session, "zahi", "12345678"));
