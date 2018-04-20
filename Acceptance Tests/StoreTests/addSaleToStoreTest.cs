@@ -118,6 +118,13 @@ namespace Acceptance_Tests.SaleTests
             Assert.IsNull(ss.addSaleToStore(admin, null, milk.getProductInStoreId(), 1, 1, "20/5/2018") );
             Assert.IsNull(ss.addSaleToStore(admin, store2, milk.getProductInStoreId(), 1, 1, null));
         }
+        [TestMethod]
+        public void AddSaleWithSateNotGood()
+        {
+            Assert.IsFalse(ss.addSaleToStore(itamar, store, cola.getProductInStoreId(), 1, 1, "01/01/1992") > -1);
+            Assert.IsFalse(ss.addSaleToStore(itamar, store, cola.getProductInStoreId(), 1, 1, "15/15/2020") > -1);
+            Assert.IsFalse(ss.addSaleToStore(itamar, store, cola.getProductInStoreId(), 1, 1, "HEY") > -1);
+        }
 
 
 
