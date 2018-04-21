@@ -52,7 +52,7 @@ namespace Acceptance_Tests.StoreTests
             Assert.AreEqual(SM.getUser().getPassword(), aviad.getPassword());
             Assert.AreEqual(SM.getStore(), store);
 
-            StorePremissions SP= SM.getPremissions(aviad);
+            Premissions SP= SM.getPremissions(aviad,store);
             Dictionary<string, Boolean> Dict = SP.getPrivileges();
             foreach (KeyValuePair<string, Boolean> entry in Dict)
             {
@@ -171,7 +171,7 @@ namespace Acceptance_Tests.StoreTests
             Assert.AreEqual(SM.getUser().getUserName(), aviad.getUserName());
             Assert.AreEqual(SM.getUser().getPassword(), aviad.getPassword());
             Assert.AreEqual(SM.getStore(), store);
-            StorePremissions SP = SM.getPremissions(aviad);
+            Premissions SP = SM.getPremissions(aviad,store);
             Dictionary<string, Boolean> Dict = SP.getPrivileges();
             foreach (KeyValuePair<string, Boolean> entry in Dict)
             {

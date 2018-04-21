@@ -205,7 +205,7 @@ namespace wsep182.services
             StoreRole sR = StoreRole.getStoreRole(s, session);
             if (sR == null)
                 return false;
-            return sR.removeCoupon(session, couponId);
+            return sR.removeCoupon(session, s, couponId);
         }
 
  
