@@ -30,6 +30,7 @@ namespace wsep182.Domain
         {
             return ++storeArchive.storeIndex;
         }
+
         public Store addStore(String storeName, User storeOwner)
         {
             Store newStore;
@@ -70,7 +71,7 @@ namespace wsep182.Domain
             foreach (Store s in stores)
                 if (s.getStoreId() == storeId)
                 {
-                    stores.Remove(s);
+                    s.setIsActive(0);
                     return true;
                 }
             return false;
@@ -158,6 +159,7 @@ namespace wsep182.Domain
 
         public LinkedList<Store> getAllStore()
         {
+        
             return stores;
         }
     }
