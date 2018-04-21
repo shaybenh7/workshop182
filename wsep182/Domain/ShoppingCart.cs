@@ -17,7 +17,7 @@ namespace wsep182.Domain
         public LinkedList<UserCart> getShoppingCartProducts(User session)
         {
             if (session.getState() is Guest)
-                return session.getShoppingCart().products;
+                return products;
             else
                 return UserCartsArchive.getInstance().getUserShoppingCart(session.getUserName());
         }
@@ -66,7 +66,7 @@ namespace wsep182.Domain
                 return false;
             }
                 
-            foreach(UserCart uc in session.getShoppingCart().products)
+            foreach(UserCart uc in session.getShoppingCart())
             {
                 if (uc.getSaleId() == sale.SaleId)
                     return false;
@@ -89,7 +89,7 @@ namespace wsep182.Domain
             //UserCart toAdd = UserCartsArchive.getInstance().getUserCart(session.getUserName(), sale.SaleId);
             UserCart toAdd = new UserCart(session.getUserName(), sale.SaleId, 1);
             toAdd.setOffer(offer);
-            session.getShoppingCart().products.AddLast(toAdd);
+            session.getShoppingCart().AddLast(toAdd);
             return true;
         }
 

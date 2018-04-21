@@ -50,9 +50,9 @@ namespace wsep182.Domain
             return this;
         }
 
-        public ShoppingCart getShoppingCart()
+        public LinkedList<UserCart> getShoppingCart()
         {
-            return shoppingCart;
+            return shoppingCart.getShoppingCartProducts(this);
         }
         public Boolean login(String username, String password)
         {
