@@ -56,9 +56,9 @@ namespace Acceptance_Tests.SellTests
             Assert.IsTrue(sales.Count == 1);
             Sale sale = sales.First.Value;
             Assert.IsTrue(ses.addProductToCart(aviad, sale, 2));
-            ShoppingCart sc = ses.viewCart(aviad);
-            Assert.IsTrue(sc.getShoppingCartProducts(aviad).Count == 1);
-            Assert.IsTrue(sc.getShoppingCartProducts(aviad).First.Value.getSaleId() == saleId);
+            LinkedList<UserCart> sc = ses.viewCart(aviad);
+            Assert.IsTrue(sc.Count == 1);
+            Assert.IsTrue(sc.First.Value.getSaleId() == saleId);
             Assert.IsTrue(ses.buyProducts(aviad,"1234",""));
         }
 
@@ -100,8 +100,8 @@ namespace Acceptance_Tests.SellTests
 
             Assert.IsTrue(ses.addProductToCart(aviad, sale, 1));
             Assert.IsTrue(ses.addProductToCart(aviad, sale2, 2));
-            ShoppingCart sc = ses.viewCart(aviad);
-            Assert.IsTrue(sc.getShoppingCartProducts(aviad).Count == 2);
+            LinkedList<UserCart> sc = ses.viewCart(aviad);
+            Assert.IsTrue(sc.Count == 2);
             Assert.IsTrue(ses.buyProducts(aviad, "1234", ""));
         }
 
@@ -125,8 +125,8 @@ namespace Acceptance_Tests.SellTests
             Assert.IsTrue(ses.addProductToCart(aviad, sale, 2));
             Assert.IsTrue(ses.addProductToCart(aviad, sale2, 1));
 
-            ShoppingCart sc = ses.viewCart(aviad);
-            Assert.IsTrue(sc.getShoppingCartProducts(aviad).Count == 2);
+            LinkedList<UserCart> sc = ses.viewCart(aviad);
+            Assert.IsTrue(sc.Count == 2);
             Assert.IsTrue(ses.buyProducts(aviad, "1234", ""));
         }
 
@@ -148,8 +148,8 @@ namespace Acceptance_Tests.SellTests
             Assert.IsTrue(sales.Count == 1);
             Sale sale = sales.First.Value;
             ses.addProductToCart(aviad, sale, 2);
-            ShoppingCart sc = ses.viewCart(aviad);
-            Assert.IsFalse(sc.getShoppingCartProducts(aviad).Count == 1);
+            LinkedList<UserCart> sc = ses.viewCart(aviad);
+            Assert.IsFalse(sc.Count == 1);
             Assert.IsFalse(ses.buyProducts(aviad, "1234", ""));
         }
 
@@ -176,9 +176,9 @@ namespace Acceptance_Tests.SellTests
 
             Assert.IsTrue(ses.addProductToCart(aviad, sale, 5));
             Assert.IsTrue(ses.addProductToCart(vadim, sale2, 6));
-            ShoppingCart sc = ses.viewCart(aviad);
-            Assert.IsTrue(sc.getShoppingCartProducts(aviad).Count == 1);
-            Assert.IsTrue(sc.getShoppingCartProducts(vadim).Count == 1);
+            LinkedList<UserCart> sc = ses.viewCart(aviad);
+            Assert.IsTrue(sc.Count == 1);
+            Assert.IsTrue(sc.Count == 1);
 
             Assert.IsTrue(ses.buyProducts(aviad, "1234", ""));
             Assert.IsFalse(ses.buyProducts(vadim, "1234", ""));
@@ -205,9 +205,9 @@ namespace Acceptance_Tests.SellTests
 
             Assert.IsTrue(ses.addProductToCart(aviad, sale, 4));
             Assert.IsTrue(ses.addProductToCart(vadim, sale, 3));
-            ShoppingCart sc = ses.viewCart(aviad);
-            Assert.IsTrue(sc.getShoppingCartProducts(aviad).Count == 1);
-            Assert.IsTrue(sc.getShoppingCartProducts(vadim).Count == 1);
+            LinkedList<UserCart> sc = ses.viewCart(aviad);
+            Assert.IsTrue(sc.Count == 1);
+            Assert.IsTrue(sc.Count == 1);
 
             Assert.IsTrue(ses.buyProducts(aviad, "1234", ""));
             Assert.IsFalse(ses.buyProducts(vadim, "1234", ""));
@@ -234,9 +234,9 @@ namespace Acceptance_Tests.SellTests
             Assert.IsTrue(ss.editSale(zahi,store,saleId,6, DateTime.Now.AddDays(10).ToString()));
             Assert.IsTrue(ses.addProductToCart(aviad, sale, 4));
             Assert.IsTrue(ses.addProductToCart(vadim, sale, 3));
-            ShoppingCart sc = ses.viewCart(aviad);
-            Assert.IsTrue(sc.getShoppingCartProducts(aviad).Count == 1);
-            Assert.IsTrue(sc.getShoppingCartProducts(vadim).Count == 1);
+            LinkedList<UserCart> sc = ses.viewCart(aviad);
+            Assert.IsTrue(sc.Count == 1);
+            Assert.IsTrue(sc.Count == 1);
 
             Assert.IsTrue(ses.buyProducts(aviad, "1234", ""));
             Assert.IsFalse(ses.buyProducts(vadim, "1234", ""));
