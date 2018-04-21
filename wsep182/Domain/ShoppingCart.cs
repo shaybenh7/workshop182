@@ -148,6 +148,7 @@ namespace wsep182.Domain
 
         public Boolean buyProducts(User session, String creditCard, String couponId)
         {
+            Boolean allBought = true;
             if (creditCard == null || creditCard.Equals(""))
                 return false;
             foreach (UserCart product in products)
@@ -157,48 +158,65 @@ namespace wsep182.Domain
                     product.activateCoupon(couponId);
                 }
                 Sale sale = SalesArchive.getInstance().getSale(product.getSaleId());
-                if (sale.TypeOfSale == 1 && checkValidAmount(sale, product) && checkValidDate(sale) ) //regular buy
+                if (sale.TypeOfSale == 1 && checkValidAmount(sale, product) && checkValidDate(sale)) //regular buy
                 {
-                    PaymentSystem.getInstance().payForProduct(creditCard, session, product);
-                    ShippingSystem.getInstance().sendShippingRequest();
-                    ProductInStore p = ProductArchive.getInstance().getProductInStore(sale.ProductInStoreId);
-                    int productId = p.getProduct().getProductId();
-                    int storeId = p.getStore().getStoreId();
-                    String userName = session.getUserName();
-                    double price = product.updateAndReturnFinalPrice(couponId);
-                    DateTime currentDate = DateTime.Today;
-                    String date = currentDate.ToString();
-                    int amount = product.getAmount();
-                    int typeOfSale = sale.TypeOfSale;
-                    BuyHistoryArchive.getInstance().addBuyHistory(productId, storeId, userName, price, date, amount,
-                        typeOfSale);
-                    products.Remove(product);
-                    SalesArchive.getInstance().setNewAmountForSale(product.getSaleId(), sale.Amount - product.getAmount());
-                    return true;
+                    if (PaymentSystem.getInstance().payForProduct(creditCard, session, product))
+                    {
+                        ShippingSystem.getInstance().sendShippingRequest();
+                        ProductInStore p = ProductArchive.getInstance().getProductInStore(sale.ProductInStoreId);
+                        int productId = p.getProduct().getProductId();
+                        int storeId = p.getStore().getStoreId();
+                        String userName = session.getUserName();
+                        double price = product.updateAndReturnFinalPrice(couponId);
+                        DateTime currentDate = DateTime.Today;
+                        String date = currentDate.ToString();
+                        int amount = product.getAmount();
+                        int typeOfSale = sale.TypeOfSale;
+                        BuyHistoryArchive.getInstance().addBuyHistory(productId, storeId, userName, price, date, amount,
+                            typeOfSale);
+                        products.Remove(product);
+                        SalesArchive.getInstance().setNewAmountForSale(product.getSaleId(), sale.Amount - product.getAmount());
+                    }
+                    else
+                    {
+                        allBought = false;
+                    }
                 }
                 else if (sale.TypeOfSale == 2) // auction buy
+                {}
+                else if (sale.TypeOfSale == 3 && checkValidDate(sale)) // raffle buy
                 {
-
-                }
-                else if (sale.TypeOfSale == 3) // raffle buy
-                {
-                    //validate checks
-                    //check that offer is not higher than remaining sum to pay
                     double offer = product.getOffer();
                     double remainingSum = getRemainingSumForOffers(sale.SaleId);
                     if (offer > remainingSum)
                     {
-                        return false;
+                        allBought = false;
                     }
                     else
                     {
-                        RaffleSalesArchive.getInstance().addRaffleSale(sale.SaleId, session.getUserName(), offer, sale.DueDate);
-                        products.Remove(product);
-                        return true;
+                        if (RaffleSalesArchive.getInstance().addRaffleSale(sale.SaleId, session.getUserName(), offer, sale.DueDate))
+                        {
+                            PaymentSystem.getInstance().payForProduct(creditCard, session, product);
+                            ProductInStore p = ProductArchive.getInstance().getProductInStore(sale.ProductInStoreId);
+                            int productId = p.getProduct().getProductId();
+                            int storeId = p.getStore().getStoreId();
+                            String userName = session.getUserName();
+                            DateTime currentDate = DateTime.Today;
+                            String date = currentDate.ToString();
+                            int amount = product.getAmount();
+                            int typeOfSale = sale.TypeOfSale;
+                            BuyHistoryArchive.getInstance().addBuyHistory(productId, storeId, userName, offer, date, amount,
+                                typeOfSale);
+                            products.Remove(product);
+                        }
+                        else
+                        {
+                            allBought = false;
+                        }
                     }
                 }
             }
-            return false;
+            return allBought;
         }
 
         private Boolean checkValidAmount(Sale sale, UserCart cart)
