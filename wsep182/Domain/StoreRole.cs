@@ -129,6 +129,7 @@ namespace wsep182.Domain
                 //will be implemented next version
                 return -1;
             }
+
             return SalesArchive.getInstance().addSale(productInStoreId, typeOfSale, amount, dueDate).SaleId;
         }
 
