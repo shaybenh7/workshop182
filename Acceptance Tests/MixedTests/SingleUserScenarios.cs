@@ -54,9 +54,9 @@ namespace Acceptance_Tests.MixedTests
             Assert.IsTrue(sales.Count == 1);
             Sale sale = sales.First.Value;
             Assert.IsTrue(ses.addProductToCart(aviad, sale, 2));
-            ShoppingCart sc = ses.viewCart(aviad);
-            Assert.IsTrue(sc.getShoppingCartProducts(aviad).Count == 1);
-            Assert.IsTrue(sc.getShoppingCartProducts(aviad).First.Value.getSaleId() == saleId);
+            LinkedList<UserCart> sc = ses.viewCart(aviad);
+            Assert.IsTrue(sc.Count == 1);
+            Assert.IsTrue(sc.First.Value.getSaleId() == saleId);
             Assert.IsTrue(ses.buyProducts(aviad,"1234",""));
         }
 
@@ -90,8 +90,8 @@ namespace Acceptance_Tests.MixedTests
 
             Assert.IsTrue(ses.addProductToCart(aviad, sale, 1));
             Assert.IsTrue(ses.addProductToCart(aviad, sale2, 2));
-            ShoppingCart sc = ses.viewCart(aviad);
-            Assert.IsTrue(sc.getShoppingCartProducts(aviad).Count == 2);
+            LinkedList<UserCart> sc = ses.viewCart(aviad);
+            Assert.IsTrue(sc.Count == 2);
             Assert.IsTrue(ses.buyProducts(aviad, "1234", ""));
         }
 
@@ -115,8 +115,8 @@ namespace Acceptance_Tests.MixedTests
             Assert.IsTrue(ses.addProductToCart(aviad, sale, 2));
             Assert.IsTrue(ses.addProductToCart(aviad, sale2, 1));
 
-            ShoppingCart sc = ses.viewCart(aviad);
-            Assert.IsTrue(sc.getShoppingCartProducts(aviad).Count == 2);
+            LinkedList<UserCart> sc = ses.viewCart(aviad);
+            Assert.IsTrue(sc.Count == 2);
             Assert.IsTrue(ses.buyProducts(aviad, "1234", ""));
         }
        
