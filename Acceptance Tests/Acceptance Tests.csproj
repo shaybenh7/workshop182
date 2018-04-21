@@ -49,12 +49,20 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MixedTests\SingleUserScenarios.cs" />
+    <Compile Include="SellTests\addProductToCartTest.cs" />
+    <Compile Include="SellTests\addRaffleProductToCartTest.cs" />
+    <Compile Include="SellTests\viewCartTest.cs" />
     <Compile Include="StoreTests\addManagerPermissionTests.cs" />
+    <Compile Include="StoreTests\AddPermissionToManager.cs" />
     <Compile Include="StoreTests\addProductInStoreTest.cs" />
+    <Compile Include="StoreTests\addSaleToStoreTest.cs" />
     <Compile Include="StoreTests\AddStoreManagerTests.cs" />
     <Compile Include="StoreTests\addStoreOwnerTests.cs" />
     <Compile Include="StoreTests\RemoveProductFromStoreTests.cs" />
+    <Compile Include="StoreTests\removeStoreManger.cs" />
+    <Compile Include="StoreTests\removeStoreOwner.cs" />
     <Compile Include="StoreTests\StoreCreateTests.cs" />
+    <Compile Include="StoreTests\viewSaleInStoreTest.cs" />
     <Compile Include="UserTests\RegisterUserTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UserTests\LoginUserTest.cs" />
@@ -71,6 +79,7 @@
       <Name>wsep182</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
