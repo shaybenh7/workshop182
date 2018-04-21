@@ -71,7 +71,7 @@ namespace UnitTests
             Store s = sa.addStore("vadim and sons", itamar);
             User temp = new User("Vadim", "Vadim");
             Assert.IsTrue(sa.addStoreRole(new StoreOwner(temp, s), s.getStoreId(), "Vadim"));
-            Assert.AreEqual(2, sa.getAllOwners(s.getStoreId()).Count);
+            Assert.AreEqual(1, sa.getAllOwners(s.getStoreId()).Count);
 
         }
         [TestMethod]
@@ -84,6 +84,7 @@ namespace UnitTests
             Assert.AreEqual(1, sa.getAllManagers(s.getStoreId()).Count);
 
         }
+
         [TestMethod]
         public void getAllStoreRolesOfAUser()
         {

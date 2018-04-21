@@ -42,7 +42,7 @@ namespace UnitTests
             ua.addUser(u);
             ua.removeUser("zahi");
             User u2 = ua.getUser("zahi");
-            Assert.IsNull(u2);
+            Assert.IsFalse(u2.getIsActive());
         }
 
         [TestMethod]
