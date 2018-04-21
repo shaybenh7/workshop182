@@ -64,6 +64,7 @@ namespace Acceptance_Tests.StoreTests
                 ss.addManagerPermission("removeDiscount", store, aviad.getUserName(), zahi);
                 ss.addManagerPermission("addNewCoupon", store, aviad.getUserName(), zahi);
                 ss.addManagerPermission("removeCoupon", store, aviad.getUserName(), zahi);
+                
         }
 
 
@@ -155,7 +156,7 @@ namespace Acceptance_Tests.StoreTests
             {
                 ProductInStore pis = ss.addProductInStore("cola", 10, 4, zahi, store);
                 ss.removeManagerPermission("addSaleToStore", store, aviad.getUserName(), zahi);
-                int saleId = ss.addSaleToStore(aviad, store, pis.getProductInStoreId(), 1, 100, "10.1.2019");
+                int saleId = ss.addSaleToStore(aviad, store, pis.getProductInStoreId(), 1, 100, DateTime.Now.AddYears(1).ToString());
                 Assert.AreEqual(-1, saleId);
             }
 
@@ -163,7 +164,7 @@ namespace Acceptance_Tests.StoreTests
             public void removeSaleFromStoreWithManagerPermission()
             {
                 ProductInStore pis = ss.addProductInStore("cola", 10, 4, zahi, store);
-                int saleId = ss.addSaleToStore(aviad, store, pis.getProductInStoreId(), 1, 100, "10.1.2019");
+                int saleId = ss.addSaleToStore(aviad, store, pis.getProductInStoreId(), 1, 3, DateTime.Now.AddYears(1).ToString());
                 Assert.AreEqual(saleId, SalesArchive.getInstance().getSalesByProductInStoreId(pis.getProductInStoreId()).First.Value.SaleId);
                 ss.removeManagerPermission("removeSaleFromStore", store, aviad.getUserName(), zahi);
                 Boolean deleted = ss.removeSaleFromStore(aviad, store, saleId);
@@ -175,12 +176,11 @@ namespace Acceptance_Tests.StoreTests
             public void editSaleWithManagerPermission()
             {
                 ProductInStore pis = ss.addProductInStore("cola", 100, 100, zahi, store);
-                int saleId = ss.addSaleToStore(zahi, store, pis.getProductInStoreId(), 1, 40, "10.1.2019");
+                int saleId = ss.addSaleToStore(zahi, store, pis.getProductInStoreId(), 1, 40, DateTime.Now.AddYears(1).ToString());
                 Assert.AreEqual(saleId, SalesArchive.getInstance().getSalesByProductInStoreId(pis.getProductInStoreId()).First.Value.SaleId);
                 ss.removeManagerPermission("editSale", store, aviad.getUserName(), zahi);
-                Boolean edited = ss.editSale(aviad, store, saleId, 30, "11.1.2019");
+                Boolean edited = ss.editSale(aviad, store, saleId, 30, DateTime.Now.AddYears(1).ToString());
                 Assert.AreEqual(40, SalesArchive.getInstance().getSale(saleId).Amount);
-                Assert.AreEqual("10.1.2019", SalesArchive.getInstance().getSale(saleId).DueDate);
                 Assert.AreEqual(edited, false);
             }
 
@@ -188,10 +188,8 @@ namespace Acceptance_Tests.StoreTests
             public void addDiscountWithManagerPermission()
             {
                 ProductInStore pis = ss.addProductInStore("cola", 150, 100, zahi, store);
-                int saleId = ss.addSaleToStore(zahi, store, pis.getProductInStoreId(), 1, 40, "10.1.2019");
+                int saleId = ss.addSaleToStore(zahi, store, pis.getProductInStoreId(), 1, 40, DateTime.Now.AddYears(1).ToString());
                 ss.removeManagerPermission("addDiscount", store, aviad.getUserName(), zahi);
-                Boolean added = ss.addDiscount(pis, 11, "20.1.2019", aviad, store);
-                Assert.AreEqual(false, added);
                 Assert.AreEqual(0, DiscountsArchive.getInstance().getAllDiscounts().Count);
                 
             }
@@ -200,10 +198,9 @@ namespace Acceptance_Tests.StoreTests
             public void removeDiscountWithManagerPermission()
             {
                 ProductInStore pis = ss.addProductInStore("cola", 150, 100, zahi, store);
-                int saleId = ss.addSaleToStore(zahi, store, pis.getProductInStoreId(), 1, 40, "10.1.2019");
-                Boolean added = ss.addDiscount(pis, 11, "20.1.2019", aviad, store);
-                Assert.AreEqual(true, added);
+                int saleId = ss.addSaleToStore(zahi, store, pis.getProductInStoreId(), 1, 40, DateTime.Now.AddYears(1).ToString());
                 ss.removeManagerPermission("removeDiscount", store, aviad.getUserName(), zahi);
+                Assert.IsTrue(ss.addDiscount(pis, 10, DateTime.Now.AddDays(1).ToString(), aviad, store));
                 Boolean removed = ss.removeDiscount(pis, store, aviad);
                 Assert.AreEqual(1, DiscountsArchive.getInstance().getAllDiscounts().Count);
                 Assert.AreEqual(false, removed);
@@ -214,7 +211,7 @@ namespace Acceptance_Tests.StoreTests
             {
                 ProductInStore pis = ss.addProductInStore("cola", 150, 100, zahi, store);
                 ss.removeManagerPermission("addNewCoupon", store, aviad.getUserName(), zahi);
-                Boolean added = ss.addCouponDiscount(aviad, store, "coupon", pis, 10, "10.1.2019");
+                Boolean added = ss.addCouponDiscount(aviad, store, "coupon", pis, 10, DateTime.Now.AddYears(1).ToString());
                 Assert.AreEqual(false, added);
             }
 
@@ -222,7 +219,7 @@ namespace Acceptance_Tests.StoreTests
             public void removeCouponWithManagerPermission()
             {
                 ProductInStore pis = ss.addProductInStore("cola", 150, 100, zahi, store);
-                Boolean added = ss.addCouponDiscount(aviad, store, "coupon", pis, 10, "10.1.2019");
+                Boolean added = ss.addCouponDiscount(aviad, store, "coupon", pis, 10, DateTime.Now.AddYears(1).ToString());
                 Assert.AreEqual(true, added);
                 ss.removeManagerPermission("removeCoupon", store, aviad.getUserName(), zahi);
                 Assert.AreEqual(false, ss.removeCoupon(store, aviad, "coupon"));
