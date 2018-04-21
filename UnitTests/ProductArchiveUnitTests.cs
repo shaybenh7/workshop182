@@ -192,8 +192,55 @@ namespace UnitTests
             Assert.AreEqual(pis.Count, 2);
         }
 
+        [TestMethod]
+        public void removeProductInStore()
+        {
+            Store store = new Store(1, "halavi", null);
+            Product milk = productArchive.addProduct("milk");
+            ProductInStore milkInStore = productArchive.addProductInStore(milk, store, 50, 50);
+            Boolean check = productArchive.removeProductInStore(milkInStore.getProductInStoreId(), store.getStoreId());
+            Assert.IsTrue(check);
+            Assert.IsTrue(store.getProductsInStore().Count == 0);
+        }
 
+        [TestMethod]
+        public void removeNonExistentProductInStore()
+        {
+            Store store = new Store(1, "halavi", null);
+            Boolean check = productArchive.removeProductInStore(13, store.getStoreId());
+            Assert.IsFalse(check);
+            Assert.IsTrue(store.getProductsInStore().Count == 0);
+        }
 
+        [TestMethod]
+        public void getProductInStoreQuantity()
+        {
+            Store store = new Store(1, "halavi", null);
+            Product milk = productArchive.addProduct("milk");
+            ProductInStore milkInStore = productArchive.addProductInStore(milk, store, 50, 50);
+            int quantity = ProductArchive.getInstance().getProductInStoreQuantity(milkInStore.getProductInStoreId());
+            Assert.AreEqual(quantity,milkInStore.getAmount());
+        }
+
+        [TestMethod]
+        public void getAllProductsInStores()
+        {
+            Store store = new Store(1, "halavi", null);
+            Store store2 = new Store(2, "tiv-taam", null);
+            Store store3 = new Store(3, "super-li", null);
+            Store store4 = new Store(4, "soda-stream", null);
+            Product milk = productArchive.addProduct("milk");
+            Product soda = productArchive.addProduct("soda");
+            Product water = productArchive.addProduct("water");
+            Product pc = productArchive.addProduct("pc");
+            ProductInStore milkInStore = productArchive.addProductInStore(milk, store, 50, 50);
+            ProductInStore sodaInStore = productArchive.addProductInStore(soda, store2, 50, 50);
+            ProductInStore waterInStore = productArchive.addProductInStore(water, store3, 50, 50);
+            ProductInStore pcInStore = productArchive.addProductInStore(pc, store3, 50, 50);
+
+            LinkedList<ProductInStore> ans = ProductArchive.getInstance().getAllProductsInStores();
+            Assert.AreEqual(ans.Count, 4);
+        }
 
 
 

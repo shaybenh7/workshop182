@@ -158,14 +158,14 @@ namespace wsep182.Domain
         }
 
 
-        public ProductInStore getProductInStore(int productId, int storeId)
+ /*       public ProductInStore getProductInStore(int productId, int storeId)
         {
             foreach (ProductInStore p in productsInStores)
                 if (p.getProduct().getProductId() == productId && p.getStore().getStoreId() == storeId)
                     return p;
             return null;
         }
-
+*/
         public LinkedList<ProductInStore> getAllProductsInStore(int storeId)
         {
             LinkedList<ProductInStore> res = new LinkedList<ProductInStore>();
@@ -191,34 +191,16 @@ namespace wsep182.Domain
             return false;
         }
 
-        public int getProductInStoreQuantity(int productId, int storeId)
+        public int getProductInStoreQuantity(int producInStoretId)
         {
             foreach (ProductInStore p in productsInStores)
-                if (p.getProduct().getProductId() == productId && p.getStore().getStoreId() == storeId)
+                if (p.getProductInStoreId() == producInStoretId)
                 {
                     return (p.getIsActive() == 1) ? p.getAmount() : 0;
                 }
             return 0;
         }
 
-        //gets minus amount in case of buying a product
-        public Boolean decreaseIncreaseQuantity(int productId, int storeId, int amount)
-        {
-            foreach (ProductInStore p in productsInStores)
-                if (p.getProduct().getProductId() == productId && p.getStore().getStoreId() == storeId)
-                {
-                    lock (p)
-                    {
-                        if (p.getAmount() > amount)
-                        {
-                            p.increaseDecreaseQuantity(amount);
-                            return true;
-                        }
-                        else return false;
-                    }
-                }
-            return false;
-        }
 
         public LinkedList<ProductInStore> getAllProductsInStores()
         {

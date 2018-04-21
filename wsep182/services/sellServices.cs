@@ -48,7 +48,7 @@ namespace wsep182.services
         }
 
         // req 1.6 a
-        public ShoppingCart viewCart(User user)
+        public LinkedList<UserCart> viewCart(User user)
         {
             if (user == null)
                 return null;
