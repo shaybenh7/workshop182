@@ -65,6 +65,8 @@ namespace wsep182.services
         //req 1.7 a
         public Boolean removeFromCart(User user, Sale sale)
         {
+            if (user == null || sale == null)
+                return false;
             return user.removeFromCart(sale);
         }
 

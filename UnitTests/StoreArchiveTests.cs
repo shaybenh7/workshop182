@@ -95,7 +95,7 @@ namespace UnitTests
             User temp = new User("Vadim", "Vadim");
             Assert.IsTrue(sa.addStoreRole(new StoreManager(temp, s), s.getStoreId(), "Vadim"));
             Store s2 = sa.addStore("vadim and sons2", itamar);
-            Assert.IsTrue(sa.addStoreRole(new StoreManager(temp, s2), s.getStoreId(), "Vadim"));
+            Assert.IsTrue(sa.addStoreRole(new StoreManager(temp, s2), s2.getStoreId(), "Vadim"));
             Assert.AreEqual(2, sa.getAllStoreRolesOfAUser(temp.getUserName()).Count);
         }
         [TestMethod]

@@ -58,28 +58,28 @@ namespace Acceptance_Tests.StoreTests
         public void simpleRemoveSale()
         {
             Assert.IsTrue(ss.removeSaleFromStore(zahi, store, colaSale.SaleId));
-            Assert.AreEqual(ss.viewSalesByStore(store),0);
+            Assert.AreEqual(ss.viewSalesByStore(store).Count,0);
         }
 
         [TestMethod]
         public void RemoveSaleWithNullSession()
         {
             Assert.IsFalse(ss.removeSaleFromStore(null, store, colaSale.SaleId));
-            Assert.AreEqual(ss.viewSalesByStore(store), 1);
+            Assert.AreEqual(ss.viewSalesByStore(store).Count, 1);
         }
 
         [TestMethod]
         public void RemoveSaleWithNullStore()
         {
             Assert.IsFalse(ss.removeSaleFromStore(zahi, null, colaSale.SaleId));
-            Assert.AreEqual(ss.viewSalesByStore(store), 1);
+            Assert.AreEqual(ss.viewSalesByStore(store).Count, 1);
         }
 
         [TestMethod]
         public void RemoveSaleWithNoneExistingSaleId()
         {
             Assert.IsFalse(ss.removeSaleFromStore(zahi, store, 1000));
-            Assert.AreEqual(ss.viewSalesByStore(store), 1);
+            Assert.AreEqual(ss.viewSalesByStore(store).Count, 1);
         }
     }
 }
