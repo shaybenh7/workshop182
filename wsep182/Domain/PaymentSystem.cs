@@ -20,7 +20,7 @@ namespace wsep182.Domain
         }
         public Boolean payForProduct(params Object[] args)
         {
-            return false;
+            return true;
         }
 
     }

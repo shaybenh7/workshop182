@@ -152,6 +152,7 @@ namespace wsep182.Domain
 
         public Boolean buyProducts(User session, String creditCard, String couponId)
         {
+            LinkedList<UserCart> toDelete = new LinkedList<UserCart>();
             Boolean allBought = true;
             if (creditCard == null || creditCard.Equals(""))
                 return false;
@@ -178,7 +179,8 @@ namespace wsep182.Domain
                         int typeOfSale = sale.TypeOfSale;
                         BuyHistoryArchive.getInstance().addBuyHistory(productId, storeId, userName, price, date, amount,
                             typeOfSale);
-                        products.Remove(product);
+                        //products.Remove(product);
+                        toDelete.AddLast(product);
                         SalesArchive.getInstance().setNewAmountForSale(product.getSaleId(), sale.Amount - product.getAmount());
                     }
                     else
@@ -211,7 +213,8 @@ namespace wsep182.Domain
                             int typeOfSale = sale.TypeOfSale;
                             BuyHistoryArchive.getInstance().addBuyHistory(productId, storeId, userName, offer, date, amount,
                                 typeOfSale);
-                            products.Remove(product);
+                            //products.Remove(product);
+                            toDelete.AddLast(product);
                         }
                         else
                         {
@@ -219,6 +222,10 @@ namespace wsep182.Domain
                         }
                     }
                 }
+            }
+            foreach(UserCart uc in toDelete)
+            {
+                products.Remove(uc);
             }
             return allBought;
         }
