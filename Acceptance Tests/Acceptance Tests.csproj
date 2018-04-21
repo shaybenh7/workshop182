@@ -48,7 +48,6 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MixedTests\SingleUserScenarios.cs" />
     <Compile Include="SellTests\addProductToCartTest.cs" />
     <Compile Include="SellTests\addRaffleProductToCartTest.cs" />
     <Compile Include="SellTests\buyProductsTest.cs" />

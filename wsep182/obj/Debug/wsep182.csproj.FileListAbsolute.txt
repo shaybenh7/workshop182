@@ -53,7 +53,6 @@ C:\Programing\c#\workshop182\wsep182\bin\Debug\wsep182.pdb
 C:\Users\Bsniv\source\repos\wsep182\wsep182\bin\Debug\wsep182.exe.config
 C:\Users\Bsniv\source\repos\wsep182\wsep182\bin\Debug\wsep182.exe
 C:\Users\Bsniv\source\repos\wsep182\wsep182\bin\Debug\wsep182.pdb
-C:\Users\Bsniv\source\repos\wsep182\wsep182\obj\Debug\wsep182.csprojResolveAssemblyReference.cache
 C:\Users\Bsniv\source\repos\wsep182\wsep182\obj\Debug\wsep182.csproj.CoreCompileInputs.cache
 C:\Users\Bsniv\source\repos\wsep182\wsep182\obj\Debug\wsep182.exe
 C:\Users\Bsniv\source\repos\wsep182\wsep182\obj\Debug\wsep182.pdb

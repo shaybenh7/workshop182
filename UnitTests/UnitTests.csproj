@@ -59,10 +59,8 @@
     <Compile Include="ShoppingCartUnitTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StoreArchiveTests.cs" />
-    <Compile Include="StorePremissionsArchiveTests.cs" />
     <Compile Include="UserArchiveUnitTests.cs" />
     <Compile Include="UserCartArchiveUnitTest.cs" />
-    <Compile Include="UserUnitTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
