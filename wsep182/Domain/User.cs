@@ -141,7 +141,7 @@ namespace wsep182.Domain
             return state.viewUserHistory(userToGetHistory);
         }
 
-        internal Boolean getIsActive()
+        public Boolean getIsActive()
         {
             User user = UserArchive.getInstance().getUser(userName);
             if (user == null)

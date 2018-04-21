@@ -86,6 +86,7 @@ namespace UnitTests
             Assert.AreEqual(1, sa.getAllManagers(s.getStoreId()).Count);
 
         }
+
         [TestMethod]
         public void getAllStoreRolesOfAUser()
         {
