@@ -48,6 +48,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CartTest.cs" />
     <Compile Include="StoreRoleTest.cs" />
     <Compile Include="storeTest.cs" />
     <Compile Include="UserTest.cs" />

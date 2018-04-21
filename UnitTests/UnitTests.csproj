@@ -55,6 +55,7 @@
     <Compile Include="ProductArchiveUnitTests.cs" />
     <Compile Include="RaffleSalesArchiveTests.cs" />
     <Compile Include="SalesArchiveUnitTests.cs" />
+    <Compile Include="SaleUnitTests.cs" />
     <Compile Include="ShoppingCartUnitTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StoreArchiveTests.cs" />
