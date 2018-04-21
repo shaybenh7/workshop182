@@ -14,6 +14,7 @@ namespace Acceptance_Tests.StoreTests
         private storeServices ss;
         private sellServices ses;
         private User zahi;
+        private User admin;
 
         [TestInitialize]
         public void init()
@@ -34,6 +35,9 @@ namespace Acceptance_Tests.StoreTests
             zahi = us.startSession();
             us.register(zahi, "zahi", "123456");
             us.login(zahi, "zahi", "123456");
+            admin = us.startSession();
+            us.register(admin, "admin", "123456");
+            us.login(admin, "admin", "123456");
         }
 
 
@@ -60,7 +64,7 @@ namespace Acceptance_Tests.StoreTests
             Assert.IsTrue(sc.Count == 1);
             Assert.IsTrue(sc.First.Value.getSaleId() == saleId);
             Assert.IsTrue(ses.buyProducts(aviad, "1234", ""));
-            LinkedList<Purchase> historyList = ss.viewUserHistory(zahi, "aviad");
+            LinkedList<Purchase> historyList = ss.viewUserHistory(admin, "aviad");
             Assert.IsTrue(historyList.Count == 1);
             Assert.IsTrue(historyList.First.Value.ProductId == pis.getProduct().getProductId());
             Assert.IsTrue(historyList.First.Value.Amount == 2);
@@ -73,7 +77,7 @@ namespace Acceptance_Tests.StoreTests
             User aviad = us.startSession();
             Assert.IsTrue(us.register(aviad, "aviad", "123456"));
             Assert.IsTrue(us.login(aviad, "aviad", "123456"));
-            LinkedList<Purchase> historyList = ss.viewUserHistory(zahi, "aviad");
+            LinkedList<Purchase> historyList = ss.viewUserHistory(admin, "aviad");
             Assert.IsTrue(historyList.Count == 0);
         }
 
@@ -98,7 +102,7 @@ namespace Acceptance_Tests.StoreTests
             Assert.IsTrue(sc.Count == 1);
             Assert.IsTrue(sc.First.Value.getSaleId() == saleId);
             Assert.IsTrue(ses.buyProducts(aviad, "1234", ""));
-            LinkedList<Purchase> historyList = ss.viewUserHistory(zahi, "aviad");
+            LinkedList<Purchase> historyList = ss.viewUserHistory(admin, "aviad");
             Assert.IsTrue(historyList.Count == 1);
             Assert.IsTrue(historyList.First.Value.ProductId == pis.getProduct().getProductId());
             Assert.IsTrue(historyList.First.Value.Amount == 2);
@@ -121,7 +125,7 @@ namespace Acceptance_Tests.StoreTests
             Assert.IsTrue(sc2.Count == 1);
             Assert.IsTrue(sc2.First.Value.getSaleId() == saleId2);
             Assert.IsTrue(ses.buyProducts(vadim, "1234", ""));
-            LinkedList<Purchase> historyList2 = ss.viewUserHistory(zahi, "vadim");
+            LinkedList<Purchase> historyList2 = ss.viewUserHistory(admin, "vadim");
             Assert.IsTrue(historyList2.Count == 1);
             Assert.IsTrue(historyList2.First.Value.ProductId == pis2.getProduct().getProductId());
             Assert.IsTrue(historyList2.First.Value.Amount == 2);
@@ -147,7 +151,7 @@ namespace Acceptance_Tests.StoreTests
             Assert.IsTrue(sc.Count == 1);
             Assert.IsTrue(sc.First.Value.getSaleId() == saleId);
             Assert.IsTrue(ses.buyProducts(aviad, "1234", ""));
-            LinkedList<Purchase> historyList = ss.viewUserHistory(zahi, "aviad");
+            LinkedList<Purchase> historyList = ss.viewUserHistory(admin, "aviad");
             Assert.IsTrue(historyList.Count == 1);
             Assert.IsTrue(historyList.First.Value.ProductId == pis.getProduct().getProductId());
             Assert.IsTrue(historyList.First.Value.Amount == 2);
@@ -166,7 +170,7 @@ namespace Acceptance_Tests.StoreTests
             Assert.IsTrue(sc2.Count == 1);
             Assert.IsTrue(sc2.First.Value.getSaleId() == saleId2);
             Assert.IsTrue(ses.buyProducts(aviad, "1234", ""));
-            LinkedList<Purchase> historyList2 = ss.viewUserHistory(zahi, "aviad");
+            LinkedList<Purchase> historyList2 = ss.viewUserHistory(admin, "aviad");
             Assert.IsTrue(historyList2.Count == 2);
         }
 
@@ -189,7 +193,7 @@ namespace Acceptance_Tests.StoreTests
             Sale sale = sales.First.Value;
             ses.addProductToCart(aviad, sale, 100);
             Assert.IsFalse(ses.buyProducts(aviad, "1234", ""));
-            LinkedList<Purchase> historyList = ss.viewUserHistory(zahi, "aviad");
+            LinkedList<Purchase> historyList = ss.viewUserHistory(admin, "aviad");
             Assert.IsTrue(historyList.Count == 0);
 
         }
