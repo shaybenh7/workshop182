@@ -52,8 +52,9 @@ namespace wsep182.Domain
 
         public override Boolean editProductInStore(User session, ProductInStore p, int quantity, double price)
         {
-            if (premissions.checkPrivilege(p.getStore().getStoreId(), session.getUserName(), "editProductInStore"))
-                return base.editProductInStore(session, p, quantity, price);
+            if (session != null && p != null && price >= 0 && quantity >= 0)
+                if (premissions.checkPrivilege(p.getStore().getStoreId(), session.getUserName(), "editProductInStore"))
+                    return base.editProductInStore(session, p, quantity, price);
             return false;
         }
 

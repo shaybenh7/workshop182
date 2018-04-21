@@ -7,6 +7,7 @@ namespace UnitTests
     [TestClass]
     public class StoreArchiveTests
     {
+
         storeArchive sa;
         private User zahi;
         [TestInitialize]
@@ -64,6 +65,7 @@ namespace UnitTests
             Assert.IsTrue(sa.removeStoreRole(s.getStoreId(), temp.getUserName()));
             Assert.IsTrue(sa.getStoreRole(s, temp) is Customer);
         }
+
         [TestMethod]
         public void getAllOwners()
         {
@@ -71,7 +73,7 @@ namespace UnitTests
             Store s = sa.addStore("vadim and sons", itamar);
             User temp = new User("Vadim", "Vadim");
             Assert.IsTrue(sa.addStoreRole(new StoreOwner(temp, s), s.getStoreId(), "Vadim"));
-            Assert.AreEqual(2, sa.getAllOwners(s.getStoreId()).Count);
+            Assert.AreEqual(1, sa.getAllOwners(s.getStoreId()).Count);
 
         }
         [TestMethod]
