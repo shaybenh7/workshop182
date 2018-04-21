@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Security.Cryptography;
+
 
 namespace wsep182.Domain
 {
@@ -30,8 +29,20 @@ namespace wsep182.Domain
             foreach (User u in users)
                 if (u.getUserName().Equals(newUser.getUserName()))
                     return false;
+            newUser.setPassword(encrypt(newUser.getUserName() + newUser.getPassword()));
             users.AddLast(newUser);
             return true;
+        }
+
+        private String encrypt(String password)
+        {
+            byte[] pwd;
+            using (SHA512 shaM = new SHA512Managed())
+            {
+                pwd = System.Text.Encoding.UTF8.GetBytes(password);
+                pwd = shaM.ComputeHash(pwd);
+            }
+            return System.Text.Encoding.UTF8.GetString(pwd);
         }
 
         public Boolean updateUser(User newUser)
@@ -40,6 +51,7 @@ namespace wsep182.Domain
             {
                 if (u.getUserName().Equals(newUser.getUserName()))
                 {
+                    newUser.setPassword(encrypt(newUser.getUserName() + newUser.getPassword()));
                     users.Remove(u);
                     users.AddLast(newUser);
                     return true;
