@@ -94,7 +94,7 @@ namespace wsep182.Domain
             return null;
         }
 
-        public override StorePremissions getPremissions(User session)
+        public override Premissions getPremissions(User session, Store s)
         {
             return null;
         }

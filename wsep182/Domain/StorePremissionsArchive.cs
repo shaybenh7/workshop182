@@ -9,10 +9,10 @@ namespace wsep182.Domain
     public class StorePremissionsArchive
     {
         private static StorePremissionsArchive instance;
-        Dictionary<string, StorePremissions> privilegesOfaUser;
+        Dictionary<int, StorePremissions> privilegesOfaStore;
         private StorePremissionsArchive()
         {
-            privilegesOfaUser = new Dictionary<string, StorePremissions>();
+            privilegesOfaStore = new Dictionary<int, StorePremissions>();
         }
         public static StorePremissionsArchive getInstance()
         {
@@ -21,9 +21,11 @@ namespace wsep182.Domain
             return instance;
         }
 
-        public StorePremissions getAllPremissions(string username)
+        public Premissions getAllPremissions(int storeId, string username)
         {
-            return privilegesOfaUser[username];
+            if (!privilegesOfaStore.ContainsKey(storeId))
+                privilegesOfaStore.Add(storeId, new StorePremissions());
+            return privilegesOfaStore[storeId].getPrivileges(username);
         }
 
         public static void restartInstance()
@@ -31,90 +33,117 @@ namespace wsep182.Domain
             instance = new StorePremissionsArchive();
         }
 
-        public void initManagerPrivileges(string username)
+
+        public void addProductInStore(int storeId, string username, Boolean allow)
         {
-            privilegesOfaUser.Add(username, new StorePremissions());
+            if (!privilegesOfaStore.ContainsKey(storeId))
+                privilegesOfaStore.Add(storeId, new StorePremissions());
+            privilegesOfaStore[storeId].addProductInStore(username, allow);
         }
 
-
-        public void addProductInStore(string username, Boolean allow)
+        public void editProductInStore(int storeId, string username, Boolean allow)
         {
-            privilegesOfaUser[username].addProductInStore(allow);
+            if (!privilegesOfaStore.ContainsKey(storeId))
+                privilegesOfaStore.Add(storeId, new StorePremissions());
+            privilegesOfaStore[storeId].editProductInStore(username, allow);
         }
 
-        public void editProductInStore(string username, Boolean allow)
+        public void removeProductFromStore(int storeId, string username, Boolean allow)
         {
-            privilegesOfaUser[username].editProductInStore(allow);
+            if (!privilegesOfaStore.ContainsKey(storeId))
+                privilegesOfaStore.Add(storeId, new StorePremissions());
+            privilegesOfaStore[storeId].removeProductFromStore(username, allow);
         }
 
-        public void removeProductFromStore(string username, Boolean allow)
+        public void addStoreManager(int storeId, string username, Boolean allow)
         {
-            privilegesOfaUser[username].removeProductFromStore(allow);
+            if (!privilegesOfaStore.ContainsKey(storeId))
+                privilegesOfaStore.Add(storeId, new StorePremissions());
+            privilegesOfaStore[storeId].addStoreManager(username, allow);
         }
 
-        public void addStoreManager(string username, Boolean allow)
+        public void addDiscount(int storeId, string username, Boolean allow)
         {
-            privilegesOfaUser[username].addStoreManager(allow);
+            if (!privilegesOfaStore.ContainsKey(storeId))
+                privilegesOfaStore.Add(storeId, new StorePremissions());
+            privilegesOfaStore[storeId].addDiscount(username, allow);
         }
 
-        public void addDiscount(string username, Boolean allow)
+        public void addNewCoupon(int storeId, string username, Boolean allow)
         {
-            privilegesOfaUser[username].addDiscount(allow);
+            if (!privilegesOfaStore.ContainsKey(storeId))
+                privilegesOfaStore.Add(storeId, new StorePremissions());
+            privilegesOfaStore[storeId].addNewCoupon(username, allow);
         }
 
-        public void addNewCoupon(string username, Boolean allow)
+        public void removeDiscount(int storeId, string username, Boolean allow)
         {
-            privilegesOfaUser[username].addNewCoupon(allow);
+            if (!privilegesOfaStore.ContainsKey(storeId))
+                privilegesOfaStore.Add(storeId, new StorePremissions());
+            privilegesOfaStore[storeId].removeDiscount(username, allow);
         }
 
-        public void removeDiscount(string username, Boolean allow)
+        public void removeCoupon(int storeId, string username, Boolean allow)
         {
-            privilegesOfaUser[username].removeDiscount(allow);
+            if (!privilegesOfaStore.ContainsKey(storeId))
+                privilegesOfaStore.Add(storeId, new StorePremissions());
+            privilegesOfaStore[storeId].removeCoupon(username, allow);
         }
 
-        public void removeCoupon(string username, Boolean allow)
+        public void removeStoreManager(int storeId, string username, Boolean allow)
         {
-            privilegesOfaUser[username].removeCoupon(allow);
+            if (!privilegesOfaStore.ContainsKey(storeId))
+                privilegesOfaStore.Add(storeId, new StorePremissions());
+            privilegesOfaStore[storeId].removeStoreManager(username, allow);
         }
 
-        public void removeStoreManager(string username, Boolean allow)
+        public void addManagerPermission(int storeId, string username, Boolean allow)
         {
-            privilegesOfaUser[username].removeStoreManager(allow);
+            if (!privilegesOfaStore.ContainsKey(storeId))
+                privilegesOfaStore.Add(storeId, new StorePremissions());
+            privilegesOfaStore[storeId].addManagerPermission(username, allow);
         }
 
-        public void addManagerPermission(string username, Boolean allow)
+        public void removeManagerPermission(int storeId, string username, Boolean allow)
         {
-            privilegesOfaUser[username].addManagerPermission(allow);
+            if (!privilegesOfaStore.ContainsKey(storeId))
+                privilegesOfaStore.Add(storeId, new StorePremissions());
+            privilegesOfaStore[storeId].removeManagerPermission(username, allow);
         }
 
-        public void removeManagerPermission(string username, Boolean allow)
+        public void addSaleToStore(int storeId, string username, Boolean allow)
         {
-            privilegesOfaUser[username].removeManagerPermission(allow);
+            if (!privilegesOfaStore.ContainsKey(storeId))
+                privilegesOfaStore.Add(storeId, new StorePremissions());
+            privilegesOfaStore[storeId].addSaleToStore(username, allow);
         }
 
-        public void addSaleToStore(string username, Boolean allow)
+        public void removeSaleFromStore(int storeId, string username, Boolean allow)
         {
-            privilegesOfaUser[username].addSaleToStore(allow);
+            if (!privilegesOfaStore.ContainsKey(storeId))
+                privilegesOfaStore.Add(storeId, new StorePremissions());
+            privilegesOfaStore[storeId].removeSaleFromStore(username, allow);
         }
 
-        public void removeSaleFromStore(string username, Boolean allow)
+        public void editSale(int storeId, string username, Boolean allow)
         {
-            privilegesOfaUser[username].removeSaleFromStore(allow);
+            if (!privilegesOfaStore.ContainsKey(storeId))
+                privilegesOfaStore.Add(storeId, new StorePremissions());
+            privilegesOfaStore[storeId].editSale(username, allow);
         }
 
-        public void editSale(string username, Boolean allow)
+        public void viewPurchasesHistory(int storeId, string username, Boolean allow)
         {
-            privilegesOfaUser[username].editSale(allow);
+            if (!privilegesOfaStore.ContainsKey(storeId))
+                privilegesOfaStore.Add(storeId, new StorePremissions());
+            privilegesOfaStore[storeId].viewPurchasesHistory(username, allow);
         }
 
-        public void viewPurchasesHistory(string username, Boolean allow)
+        public Boolean checkPrivilege(int storeId, string username, string privilege)
         {
-            privilegesOfaUser[username].viewPurchasesHistory(allow);
-        }
-
-        public Boolean checkPrivilege(string username, string privilege)
-        {
-            return privilegesOfaUser[username].checkPrivilege(privilege);
+            if (!privilegesOfaStore.ContainsKey(storeId))
+                privilegesOfaStore.Add(storeId, new StorePremissions());
+            return privilegesOfaStore[storeId].checkPrivilege(username, privilege);
         }
         
 

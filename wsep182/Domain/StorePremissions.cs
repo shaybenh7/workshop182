@@ -8,147 +8,125 @@ namespace wsep182.Domain
 {
     public class StorePremissions
     {
-        Dictionary<string, Boolean> privileges;
+        Dictionary<string, Premissions> privileges;
 
-        public Dictionary<string, Boolean> getPrivileges()
+        public Premissions getPrivileges(string username)
         {
-            return privileges;
+            if (!privileges.ContainsKey(username))
+                privileges.Add(username, new Premissions());
+            return privileges[username];
         }
         //        bool addProduct;
-        public StorePremissions(LinkedList<String> newPrivileges)
-        {
-            privileges = new Dictionary<string, bool>();
-            foreach (String s in newPrivileges)
-                addPrivilege(s);
-        }
         public StorePremissions()
         {
-            privileges = new Dictionary<string, bool>();
+            privileges = new Dictionary<string, Premissions>();
         }
-        private void addPrivilege(string privilege)
+        public void addProductInStore(string username, Boolean allow)
         {
-            if (!privileges.ContainsKey(privilege))
-                privileges.Add(privilege, true);
-        }
-
-        private void removePrivilege(string privilege)
-        {
-            if (privileges.ContainsKey(privilege))
-                privileges.Remove(privilege);
-        }
-        public void addProductInStore(Boolean allow)
-        {
-            if (allow)
-                addPrivilege("addProductInStore");
-            else removePrivilege("addProductInStore");
+            if (!privileges.ContainsKey(username))
+                privileges.Add(username,new Premissions());
+            privileges[username].addProductInStore(allow);
         }
 
-        public void removeProductFromStore(Boolean allow)
+        public void removeProductFromStore(string username, Boolean allow)
         {
-            if (allow)
-                addPrivilege("removeProductFromStore");
-            else removePrivilege("removeProductFromStore");
+            if (!privileges.ContainsKey(username))
+                privileges.Add(username, new Premissions());
+            privileges[username].removeProductFromStore(allow);
         }
 
-        public void editProductInStore(Boolean allow)
+        public void editProductInStore(string username, Boolean allow)
         {
-            if (allow)
-                addPrivilege("editProductInStore");
-            else removePrivilege("editProductInStore");
+            if (!privileges.ContainsKey(username))
+                privileges.Add(username, new Premissions());
+            privileges[username].editProductInStore(allow);
         }
-        public void addStoreManager(Boolean allow)
+        public void addStoreManager(string username, Boolean allow)
         {
-            if (allow)
-                addPrivilege("addStoreManager");
-            else removePrivilege("addStoreManager");
+            if (!privileges.ContainsKey(username))
+                privileges.Add(username, new Premissions());
+            privileges[username].addStoreManager(allow);
         }
-        public void viewPurchasesHistory(Boolean allow)
+        public void viewPurchasesHistory(string username, Boolean allow)
         {
-            if (allow)
-                addPrivilege("viewPurchasesHistory");
-            else removePrivilege("viewPurchasesHistory");
+            if (!privileges.ContainsKey(username))
+                privileges.Add(username, new Premissions());
+            privileges[username].viewPurchasesHistory(allow);
         }
-        public void removeStoreManager(Boolean allow)
+        public void removeStoreManager(string username, Boolean allow)
         {
-            if (allow)
-                addPrivilege("removeStoreManager");
-            else removePrivilege("removeStoreManager");
-        }
-
-        public void addManagerPermission(Boolean allow)
-        {
-            if (allow)
-                addPrivilege("addManagerPermission");
-            else removePrivilege("addManagerPermission");
-        }
-        public void removeManagerPermission(Boolean allow)
-        {
-            if (allow)
-                addPrivilege("removeManagerPermission");
-            else removePrivilege("removeManagerPermission");
+            if (!privileges.ContainsKey(username))
+                privileges.Add(username, new Premissions());
+            privileges[username].removeStoreManager(allow);
         }
 
-        public void addSaleToStore(Boolean allow)
+        public void addManagerPermission(string username, Boolean allow)
         {
-            if (allow)
-                addPrivilege("addSaleToStore");
-            else removePrivilege("addSaleToStore");
+            if (!privileges.ContainsKey(username))
+                privileges.Add(username, new Premissions());
+            privileges[username].addManagerPermission(allow);
+        }
+        public void removeManagerPermission(string username, Boolean allow)
+        {
+            if (!privileges.ContainsKey(username))
+                privileges.Add(username, new Premissions());
+            privileges[username].removeManagerPermission(allow);
         }
 
-        public void removeSaleFromStore(Boolean allow)
+        public void addSaleToStore(string username, Boolean allow)
         {
-            if (allow)
-                addPrivilege("removeSaleFromStore");
-            else removePrivilege("removeSaleFromStore");
+            if (!privileges.ContainsKey(username))
+                privileges.Add(username, new Premissions());
+            privileges[username].addSaleToStore(allow);
         }
 
-        public void editSale(Boolean allow)
+        public void removeSaleFromStore(string username, Boolean allow)
         {
-            if (allow)
-                addPrivilege("editSale");
-            else removePrivilege("editSale");
+            if (!privileges.ContainsKey(username))
+                privileges.Add(username, new Premissions());
+            privileges[username].removeSaleFromStore(allow);
         }
 
-        public void addNewCoupon(Boolean allow)
+        public void editSale(string username, Boolean allow)
         {
-            if (allow)
-                addPrivilege("addNewCoupon");
-            else removePrivilege("addNewCoupon");
+            if (!privileges.ContainsKey(username))
+                privileges.Add(username, new Premissions());
+            privileges[username].editSale(allow);
         }
 
-        public void addDiscount(Boolean allow)
+        public void addNewCoupon(string username, Boolean allow)
         {
-            if (allow)
-                addPrivilege("addDiscount");
-            else removePrivilege("addDiscount");
+            if (!privileges.ContainsKey(username))
+                privileges.Add(username, new Premissions());
+            privileges[username].addNewCoupon(allow);
         }
 
-        public void removeDiscount(Boolean allow)
+        public void addDiscount(string username, Boolean allow)
         {
-            if (allow)
-                addPrivilege("removeDiscount");
-            else removePrivilege("removeDiscount");
+            if (!privileges.ContainsKey(username))
+                privileges.Add(username, new Premissions());
+            privileges[username].addDiscount(allow);
         }
 
-        public void removeCoupon(Boolean allow)
+        public void removeDiscount(string username, Boolean allow)
         {
-            if (allow)
-                addPrivilege("removeCoupon");
-            else removePrivilege("removeCoupon");
+            if (!privileges.ContainsKey(username))
+                privileges.Add(username, new Premissions());
+            privileges[username].removeDiscount(allow);
         }
 
-        public Boolean checkPrivilege(string privilege)
+        public void removeCoupon(string username, Boolean allow)
         {
-            Boolean res = false;
-            try
-            {
-                privileges.TryGetValue(privilege, out res);
-                return res;
-            }
-            catch (ArgumentNullException)
-            {
-                return false;
-            }
+            if (!privileges.ContainsKey(username))
+                privileges.Add(username, new Premissions());
+            privileges[username].removeCoupon(allow);
+        }
+
+        public Boolean checkPrivilege(string username, string privilege)
+        {
+            if (!privileges.ContainsKey(username))
+                privileges.Add(username, new Premissions());
+            return privileges[username].checkPrivilege(privilege);
         }
 
     }
