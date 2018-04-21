@@ -260,9 +260,9 @@ namespace wsep182.Domain
         }
 
 
-        public virtual Premissions getPremissions(User session, Store s)
+        public virtual Premissions getPremissions(User manager, Store s)
         {
-            return null;
+            return StorePremissionsArchive.getInstance().getAllPremissions(s.getStoreId(),manager.getUserName());
         }
 
         public User getUser()
