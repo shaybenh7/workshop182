@@ -7,7 +7,7 @@ using wsep182.Domain;
 namespace IntegrationTests
 {
     [TestClass]
-    public class managerTest
+    public class StoreRoleTest
     {
         private User zahi;  // owner of store
         private User aviad; //manager of store
@@ -17,6 +17,7 @@ namespace IntegrationTests
         private Store store;
         StoreRole zahiOwner;
         StoreRole aviadManeger;
+        ProductInStore cola;
 
         [TestInitialize]
         public void init()
@@ -50,6 +51,7 @@ namespace IntegrationTests
             aviadManeger = new StoreManager(aviad, store);
             zahiOwner.addStoreManager(zahi, store,"aviad");
             niv.logOut();
+            cola = zahiOwner.addProductInStore(zahi,store,"cola", 3.2, 10);
         }
 
         [TestMethod]
@@ -65,5 +67,30 @@ namespace IntegrationTests
             Assert.AreEqual(4.5, pis.getPrice());
             Assert.AreEqual(13, pis.getAmount());
         }
+        [TestMethod]
+        public void SimpleAddSaleeWithManagerPermission()
+        {
+            zahiOwner.addManagerPermission(zahi, "addSaleToStore", store, "aviad");
+            Assert.IsTrue(aviadManeger.addSaleToStore(aviad, cola.getProductInStoreId(), 1, 1, "20/5/2018")>-1);
+            Assert.AreEqual(store.getAllSales().Count, 1);
+        }
+        public void SimpleAddSaleeWithOwner()
+        {
+            Assert.IsTrue(zahiOwner.addSaleToStore(zahi, cola.getProductInStoreId(), 1, 1, "20/5/2018") > -1);
+            Assert.AreEqual(store.getAllSales().Count, 1);
+        }
+        [TestMethod]
+        public void SimpleAddRaffleSaleWithOwner()
+        {
+            Assert.IsTrue(zahiOwner.addSaleToStore(zahi, cola.getProductInStoreId(), 3, 1, "20/5/2018") > -1);
+        }
+        [TestMethod]
+        public void SimpleAddRaffleSaleWithManagerPermission()
+        {
+            zahiOwner.addManagerPermission(zahi, "addSaleToStore", store, "aviad");
+            Assert.IsTrue(aviadManeger.addSaleToStore(aviad, cola.getProductInStoreId(), 3, 1, "20/5/2018") > -1);
+            Assert.AreEqual(store.getAllSales().Count, 1);
+        }
+
     }
 }
