@@ -36,6 +36,10 @@ namespace wsep182.Domain
             if (amount > amountInStore || amount <= 0)
                 return false;
 
+            int amountForSale = SalesArchive.getInstance().getSale(saleId).Amount;
+            if (amount > amountForSale || amount <= 0)
+                return false;
+
             if (!(session.getState() is Guest))
                 UserCartsArchive.getInstance().updateUserCarts(session.getUserName(), saleId, amount);
 
@@ -211,14 +215,18 @@ namespace wsep182.Domain
         private Boolean checkValidDate(Sale sale)
         {
             DateTime now = DateTime.Now;
-            DateTime saleDueDate = DateTime.Parse(sale.DueDate);
-            int res = DateTime.Compare(now, saleDueDate);
-            if (res <= 0)
+            DateTime dueDateTime;
+            try
             {
-                return true;
+                dueDateTime = DateTime.Parse(sale.DueDate);
             }
-            else
+            catch (System.FormatException e)
+            {
                 return false;
+            }
+            if (DateTime.Compare(dueDateTime, DateTime.Now) < 0)
+                return false;
+            return true;
         }
 
         private double getRemainingSumForOffers(int saleId)

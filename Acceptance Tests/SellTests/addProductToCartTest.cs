@@ -58,7 +58,7 @@ namespace Acceptance_Tests.SellTests
 
             cola = ss.addProductInStore("cola", 3.2, 10, itamar, store);
             sprite = ss.addProductInStore("sprite", 5.3, 20, itamar, store);
-            ss.addSaleToStore(itamar, store, cola.getProductInStoreId(), 1, 5, "20/5/2018");
+            ss.addSaleToStore(itamar, store, cola.getProductInStoreId(), 1, 5, DateTime.Now.AddDays(10).ToString());
         }
 
 
@@ -91,8 +91,8 @@ namespace Acceptance_Tests.SellTests
         {
             us.login(zahi, "zahi", "123456");
             LinkedList<Sale> saleList = ss.viewSalesByStore(store);
-            Assert.IsNull(sellS.addProductToCart(null, saleList.First.Value, 1));
-            Assert.IsNull(sellS.addProductToCart(zahi, null, 1));
+            Assert.IsFalse(sellS.addProductToCart(null, saleList.First.Value, 1));
+            Assert.IsFalse(sellS.addProductToCart(zahi, null, 1));
         }
         [TestMethod]
         public void AddProductToCartZero()

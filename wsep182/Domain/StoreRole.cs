@@ -120,17 +120,21 @@ namespace wsep182.Domain
             return correlate(manager, s, permission, sR, true);
 
         }
-        public virtual int addSaleToStore(User session, int productInStoreId, int typeOfSale, int amount, String dueDate)
+        public virtual int addSaleToStore(User session, Store s, int productInStoreId, int typeOfSale, int amount, String dueDate)
         {
-            if (ProductArchive.getInstance().getProductInStore(productInStoreId) == null || typeOfSale > 3 || typeOfSale < 1 || amount < 0 || dueDate == null)
+            ProductInStore pis = ProductArchive.getInstance().getProductInStore(productInStoreId);
+            if (session == null || s == null || dueDate == null ||pis == null || typeOfSale > 3 || typeOfSale < 1 || pis.getAmount() < amount || amount < 0 || dueDate == null)
+                return -1;
+            if (pis.getStore().getStoreId() != s.getStoreId())
                 return -1;
             if (typeOfSale == 2)
             {
                 //will be implemented next version
                 return -1;
             }
-
-            return SalesArchive.getInstance().addSale(productInStoreId, typeOfSale, amount, dueDate).SaleId;
+            Sale sale = SalesArchive.getInstance().addSale(productInStoreId, typeOfSale, amount, dueDate);
+            
+            return (sale == null) ? -1 : sale.SaleId;
         }
 
         public virtual Boolean removeSaleFromStore(User session, Store s, int saleId)

@@ -145,7 +145,7 @@ namespace wsep182.services
             StoreRole sR = StoreRole.getStoreRole(s, session);
             if (sR == null)
                 return -1;
-            return sR.addSaleToStore(session, productInStoreId, typeOfSale, amount, dueDate);
+            return sR.addSaleToStore(session, s, productInStoreId, typeOfSale, amount, dueDate);
         }
 
         public Boolean removeSaleFromStore(User session, Store s, int saleId)

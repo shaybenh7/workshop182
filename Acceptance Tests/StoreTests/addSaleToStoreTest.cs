@@ -60,68 +60,68 @@ namespace Acceptance_Tests.SaleTests
         [TestMethod]
         public void SimpleAddSale()
         {
-           Assert.IsTrue(ss.addSaleToStore(itamar, store, cola.getProductInStoreId(), 1, 1, "20/5/2018")>-1);
+           Assert.IsTrue(ss.addSaleToStore(itamar, store, cola.getProductInStoreId(), 1, 1, DateTime.Now.AddMonths(1).ToString())>-1);
         }
         [TestMethod]
         public void SimpleAddRaffleSale()
         {
-            Assert.IsTrue(ss.addSaleToStore(itamar, store, cola.getProductInStoreId(), 3, 1, "20/5/2018") > -1);
+            Assert.IsTrue(ss.addSaleToStore(itamar, store, cola.getProductInStoreId(), 3, 1, DateTime.Now.AddMonths(1).ToString()) > -1);
         }
         [TestMethod]
         public void AddTypeNotSupportedSale()
         {
-            Assert.IsFalse(ss.addSaleToStore(itamar, store, cola.getProductInStoreId(), 2, 1, "20/5/2018") > -1);
+            Assert.IsFalse(ss.addSaleToStore(itamar, store, cola.getProductInStoreId(), 2, 1, DateTime.Now.AddMonths(1).ToString()) > -1);
         }
         [TestMethod]
         public void AddSaleNegativeAmount()
         {
-            Assert.IsFalse(ss.addSaleToStore(itamar, store, cola.getProductInStoreId(), 1, -1, "20/5/2018") > -1);
+            Assert.IsFalse(ss.addSaleToStore(itamar, store, cola.getProductInStoreId(), 1, -1, DateTime.Now.AddMonths(1).ToString()) > -1);
         }
         [TestMethod]
         public void AddSaleZeroAmount()
         {
-            Assert.IsTrue(ss.addSaleToStore(itamar, store, cola.getProductInStoreId(), 1, 0, "20/5/2018") > -1);
+            Assert.IsTrue(ss.addSaleToStore(itamar, store, cola.getProductInStoreId(), 1, 0, DateTime.Now.AddMonths(1).ToString()) > -1);
         }
         [TestMethod]
         public void AddSaleTwiceSameProduct()
         {
-            Assert.IsTrue(ss.addSaleToStore(itamar, store, cola.getProductInStoreId(), 1, 2, "20/5/2018") > -1);
-            Assert.IsTrue(ss.addSaleToStore(itamar, store, cola.getProductInStoreId(), 1, 3, "20/5/2018") > -1);
+            Assert.IsTrue(ss.addSaleToStore(itamar, store, cola.getProductInStoreId(), 1, 2, DateTime.Now.AddMonths(1).ToString()) > -1);
+            Assert.IsTrue(ss.addSaleToStore(itamar, store, cola.getProductInStoreId(), 1, 3, DateTime.Now.AddMonths(1).ToString()) > -1);
         }
         [TestMethod]
         public void AddSaleBiggerThenOneAmount()
         {
-            Assert.IsTrue(ss.addSaleToStore(itamar, store, cola.getProductInStoreId(), 1, 2, "20/5/2018") > -1);
-            Assert.IsFalse(ss.addSaleToStore(itamar, store, cola.getProductInStoreId(), 3, 2, "20/5/2018") > -1);
+            Assert.IsTrue(ss.addSaleToStore(itamar, store, cola.getProductInStoreId(), 1, 2, DateTime.Now.AddMonths(1).ToString()) > -1);
+            Assert.IsFalse(ss.addSaleToStore(itamar, store, cola.getProductInStoreId(), 1, 200, DateTime.Now.AddMonths(1).ToString()) > -1);
         }
         [TestMethod]
         public void AddSaleWithProductNotInStore()
         {
             Store store2 = ss.createStore("admin store", admin);
             ProductInStore milk = ss.addProductInStore("milk", 3.2, 10, admin, store2);
-            Assert.IsFalse(ss.addSaleToStore(itamar, store, milk.getProductInStoreId(), 1, 1, "20/5/2018") > -1);
+            Assert.IsFalse(ss.addSaleToStore(itamar, store, milk.getProductInStoreId(), 1, 1, DateTime.Now.AddMonths(1).ToString()) > -1);
         }
         [TestMethod]
         public void AddSaleWithOwnerOfAnotherStore()
         {
             Store store2 = ss.createStore("admin store", admin);
             ProductInStore milk = ss.addProductInStore("milk", 3.2, 10, admin, store2);
-            Assert.IsFalse(ss.addSaleToStore(admin, store, milk.getProductInStoreId(), 1, 1, "20/5/2018") > -1);
+            Assert.IsFalse(ss.addSaleToStore(admin, store, milk.getProductInStoreId(), 1, 1, DateTime.Now.AddMonths(1).ToString()) > -1);
         }
         [TestMethod]
         public void AddSaleWithNullParameters()
         {
             Store store2 = ss.createStore("admin store", admin);
             ProductInStore milk = ss.addProductInStore("milk", 3.2, 10, admin, store2);
-            Assert.IsNull(ss.addSaleToStore(null, store2, milk.getProductInStoreId(), 1, 1, "20/5/2018") );
-            Assert.IsNull(ss.addSaleToStore(admin, null, milk.getProductInStoreId(), 1, 1, "20/5/2018") );
-            Assert.IsNull(ss.addSaleToStore(admin, store2, milk.getProductInStoreId(), 1, 1, null));
+            Assert.IsTrue(ss.addSaleToStore(null, store2, milk.getProductInStoreId(), 1, 1, DateTime.Now.AddMonths(1).ToString()) == -1);
+            Assert.IsTrue(ss.addSaleToStore(admin, null, milk.getProductInStoreId(), 1, 1, DateTime.Now.AddMonths(1).ToString()) == -1);
+            Assert.IsTrue(ss.addSaleToStore(admin, store2, milk.getProductInStoreId(), 1, 1, null) == -1);
         }
         [TestMethod]
         public void AddSaleWithSateNotGood()
         {
-            Assert.IsFalse(ss.addSaleToStore(itamar, store, cola.getProductInStoreId(), 1, 1, "01/01/1992") > -1);
-            Assert.IsFalse(ss.addSaleToStore(itamar, store, cola.getProductInStoreId(), 1, 1, "15/15/2020") > -1);
+            Assert.IsFalse(ss.addSaleToStore(itamar, store, cola.getProductInStoreId(), 1, 1, DateTime.Now.AddMonths(-1).ToString()) > -1);
+            Assert.IsTrue(ss.addSaleToStore(itamar, store, cola.getProductInStoreId(), 1, 1, DateTime.Now.AddYears(10).ToString()) > -1);
             Assert.IsFalse(ss.addSaleToStore(itamar, store, cola.getProductInStoreId(), 1, 1, "HEY") > -1);
         }
 
