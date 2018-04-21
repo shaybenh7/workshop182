@@ -48,7 +48,18 @@ namespace wsep182.Domain
 
         public Sale addSale(int productInStoreId, int typeOfSale, int amount, String dueDate)
         {
-            foreach(Sale sale in sales)
+            DateTime dueDateTime;
+            try
+            {
+                dueDateTime = DateTime.Parse(dueDate);
+            }
+            catch (System.FormatException e)
+            {
+                return null;
+            }
+            if (DateTime.Compare(dueDateTime, DateTime.Now) < 0)
+                return null;
+            foreach (Sale sale in sales)
             {
                 if(sale.ProductInStoreId==productInStoreId && sale.TypeOfSale == typeOfSale && sale.DueDate.Equals(dueDate))
                 {
@@ -75,6 +86,17 @@ namespace wsep182.Domain
         }
         public Boolean editSale(int saleId, int amount, String dueDate)
         {
+            DateTime dueDateTime;
+            try
+            {
+                dueDateTime = DateTime.Parse(dueDate);
+            }
+            catch (System.FormatException e)
+            {
+                return false;
+            }
+            if (DateTime.Compare(dueDateTime, DateTime.Now) < 0)
+                return false;
             foreach (Sale sale in sales)
             {
                 if (sale.SaleId == saleId)

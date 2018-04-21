@@ -108,11 +108,10 @@ namespace wsep182.Domain
             return false;
         }
 
-        public override int addSaleToStore(User session, int productInStoreId, int typeOfSale, int amount, String dueDate)
+        public override int addSaleToStore(User session, Store s, int productInStoreId, int typeOfSale, int amount, String dueDate)
         {
-            Store s = ProductArchive.getInstance().getProductInStore(productInStoreId).getStore();
             if (premissions.checkPrivilege(s.getStoreId(), session.getUserName(), "addSaleToStore"))
-                return base.addSaleToStore(session, productInStoreId, typeOfSale, amount, dueDate);
+                return base.addSaleToStore(session, s, productInStoreId, typeOfSale, amount, dueDate);
             return -1;
         }
 

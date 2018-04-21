@@ -28,8 +28,16 @@ namespace wsep182.Domain
 
         public Boolean addNewCoupon(String couponId, int productInStoreId, int percentage, String dueDate)
         {
-            DateTime dueDateTime = DateTime.Parse(dueDate);
-            if (DateTime.Compare(dueDateTime,DateTime.Now)<0)
+            DateTime dueDateTime;
+            try
+            {
+                dueDateTime = DateTime.Parse(dueDate);
+            }
+            catch (System.FormatException e)
+            {
+                return false;
+            }
+            if (DateTime.Compare(dueDateTime, DateTime.Now) < 0)
                 return false;
             Coupon toAdd = new Coupon(couponId, productInStoreId, percentage, dueDate);
             foreach (Coupon coupon in coupons)

@@ -57,7 +57,7 @@ namespace Acceptance_Tests.SellTests
 
             cola = ss.addProductInStore("cola", 3.2, 10, itamar, store);
             sprite = ss.addProductInStore("sprite", 5.3, 20, itamar, store);
-            ss.addSaleToStore(itamar, store, cola.getProductInStoreId(), 3, 1, "20/5/2018");
+            ss.addSaleToStore(itamar, store, cola.getProductInStoreId(), 3, 1, DateTime.Now.AddMonths(10).ToString());
         }
 
 

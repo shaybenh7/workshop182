@@ -54,7 +54,7 @@ namespace IntegrationTests
         [TestMethod]
         public void AddProductToCart()
         {
-            int saleId=zahiOwner.addSaleToStore(zahi, cola.getProductInStoreId(), 1, 5, "20/5/2018");
+            int saleId=zahiOwner.addSaleToStore(zahi, store, cola.getProductInStoreId(), 1, 5, DateTime.Now.AddMonths(1).ToString());
             LinkedList<Sale> saleList = store.getAllSales();
             Assert.IsTrue(aviad.addToCart(saleList.First.Value.SaleId, 1));
             Assert.AreEqual(aviad.getShoppingCart().First.Value.getSaleId(),saleId);
@@ -62,14 +62,14 @@ namespace IntegrationTests
         [TestMethod]
         public void AddRaffleProductToCart()
         {
-            int saleId = zahiOwner.addSaleToStore(zahi, cola.getProductInStoreId(), 3, 1, "20/5/2018");
+            int saleId = zahiOwner.addSaleToStore(zahi, store, cola.getProductInStoreId(), 3, 1, DateTime.Now.AddMonths(1).ToString());
             LinkedList<Sale> saleList = store.getAllSales(); ;
             Assert.IsTrue(aviad.addToCartRaffle(saleList.First.Value, 1));
         }
         [TestMethod]
         public void EditAmount()
         {
-            int saleId = zahiOwner.addSaleToStore(zahi, cola.getProductInStoreId(), 1, 5, "20/5/2018");
+            int saleId = zahiOwner.addSaleToStore(zahi, store, cola.getProductInStoreId(), 1, 5, DateTime.Now.AddMonths(1).ToString());
             LinkedList<Sale> saleList = store.getAllSales();
             aviad.addToCart(saleList.First.Value.SaleId, 1);
             Boolean check = aviad.editCart(saleList.First.Value.SaleId, 4);
@@ -81,7 +81,7 @@ namespace IntegrationTests
         [TestMethod]
         public void viewSaleByProductInStoreId()
         {
-            int saleId = zahiOwner.addSaleToStore(zahi, cola.getProductInStoreId(), 1, 5, "20/5/2018");
+            int saleId = zahiOwner.addSaleToStore(zahi, store, cola.getProductInStoreId(), 1, 5, DateTime.Now.AddMonths(1).ToString());
             Assert.AreEqual(1, User.viewSalesByProductInStoreId(cola).Count);
         }
 
@@ -91,7 +91,7 @@ namespace IntegrationTests
         [TestMethod]
         public void Transcation()
         {
-            int saleId = zahiOwner.addSaleToStore(zahi, cola.getProductInStoreId(), 1, 5, "20/5/2018");
+            int saleId = zahiOwner.addSaleToStore(zahi, store, cola.getProductInStoreId(), 1, 5, DateTime.Now.AddMonths(1).ToString());
             LinkedList<Sale> sales = User.viewSalesByProductInStoreId(cola);
             Assert.IsTrue(sales.Count == 1);
             Sale sale = sales.First.Value;

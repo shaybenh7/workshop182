@@ -69,7 +69,7 @@ namespace wsep182.Domain
 
         }
 
-        public override int addSaleToStore(User session, int productInStoreId, int typeOfSale, int amount, String dueDate)
+        public override int addSaleToStore(User session, Store s, int productInStoreId, int typeOfSale, int amount, String dueDate)
         {
             return -1;
         }

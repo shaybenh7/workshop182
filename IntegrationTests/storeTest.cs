@@ -78,7 +78,7 @@ namespace IntegrationTests
         [TestMethod]
         public void ViewSlaeInStore()
         {
-            int saleId = zahiOwner.addSaleToStore(zahi, cola.getProductInStoreId(), 1, 1, "20/5/2018");
+            int saleId = zahiOwner.addSaleToStore(zahi, store, cola.getProductInStoreId(), 1, 1, "20/5/2018");
             LinkedList<Sale> saleList = store.getAllSales();
             Assert.AreEqual(saleList.Count, 1);
             Assert.AreEqual(saleId, saleList.First.Value.SaleId);
