@@ -103,7 +103,7 @@ namespace wsep182.Domain
                 return false;
 
             ProductInStore p = ProductArchive.getInstance().getProductInStore(sale.ProductInStoreId);
-            if (newAmount > p.getAmount() || newAmount <= 0)
+            if (newAmount > p.getAmount() || newAmount > sale.Amount ||newAmount <= 0)
                 return false;
             
 
