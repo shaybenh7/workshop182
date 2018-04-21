@@ -77,16 +77,7 @@ namespace IntegrationTests
             Assert.IsTrue(admin.removeUser("admin1"));
             Assert.IsFalse(admin1.login("admin1", "123456"));
         }
-        [TestMethod]
-        public void AdminRemoveAdminThatTryToRemoveUser()
-        {
-            admin1.login( "admin1", "123456");
-            Assert.IsTrue(admin.removeUser( "admin1"));
-            Assert.IsFalse(admin1.removeUser("zahi"));
-            Assert.IsTrue(zahi.login("zahi", "123456"));
-            User setion = new User("bla", "bla");
-            Assert.IsFalse(setion.login("admin1", "123456"));
-        }
+
         [TestMethod]
         public void RemoveUserTwice()
         {
