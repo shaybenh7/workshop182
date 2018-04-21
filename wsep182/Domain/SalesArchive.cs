@@ -48,6 +48,14 @@ namespace wsep182.Domain
 
         public Sale addSale(int productInStoreId, int typeOfSale, int amount, String dueDate)
         {
+            foreach(Sale sale in sales)
+            {
+                if(sale.ProductInStoreId==productInStoreId && sale.TypeOfSale == typeOfSale && sale.DueDate.Equals(dueDate))
+                {
+                    sale.Amount += amount;
+                    return sale;
+                }
+            }
             int saleId = getNextSaleId();
             Sale toAdd = new Sale(saleId, productInStoreId, typeOfSale, amount, dueDate);
             sales.AddLast(toAdd);

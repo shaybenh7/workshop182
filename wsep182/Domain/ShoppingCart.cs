@@ -25,10 +25,11 @@ namespace wsep182.Domain
         public Boolean addToCart(User session, int saleId, int amount)
         {
             Sale saleExist = SalesArchive.getInstance().getSale(saleId);
-            if (saleExist == null)
+            if (saleExist == null || !checkValidDate(saleExist))
             {
                 return false;
             }
+            
             if (saleExist.TypeOfSale != 1)
                 return false;
             int amountInStore = ProductArchive.getInstance().getProductInStore(saleExist.ProductInStoreId).getAmount();
@@ -57,7 +58,7 @@ namespace wsep182.Domain
 
         public Boolean addToCartRaffle(User session, Sale sale, double offer)
         {
-            if (sale.TypeOfSale != 3)
+            if (sale == null || sale.TypeOfSale != 3 || !checkValidDate(sale))
                 return false;
 
             UserCart isExist = UserCartsArchive.getInstance().getUserCart(session.getUserName(), sale.SaleId);
@@ -156,7 +157,7 @@ namespace wsep182.Domain
                     product.activateCoupon(couponId);
                 }
                 Sale sale = SalesArchive.getInstance().getSale(product.getSaleId());
-                if (sale.TypeOfSale == 1 && checkValidAmount(sale, product)) //regular buy
+                if (sale.TypeOfSale == 1 && checkValidAmount(sale, product) && checkValidDate(sale) ) //regular buy
                 {
                     PaymentSystem.getInstance().payForProduct(creditCard, session, product);
                     ShippingSystem.getInstance().sendShippingRequest();
@@ -206,6 +207,20 @@ namespace wsep182.Domain
                 return true;
             return false;
         }
+
+        private Boolean checkValidDate(Sale sale)
+        {
+            DateTime now = DateTime.Now;
+            DateTime saleDueDate = DateTime.Parse(sale.DueDate);
+            int res = DateTime.Compare(now, saleDueDate);
+            if (res <= 0)
+            {
+                return true;
+            }
+            else
+                return false;
+        }
+
         private double getRemainingSumForOffers(int saleId)
         {
             Sale currSale = SalesArchive.getInstance().getSale(saleId);

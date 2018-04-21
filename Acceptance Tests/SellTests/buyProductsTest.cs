@@ -117,7 +117,7 @@ namespace Acceptance_Tests.SellTests
             ProductInStore pis = ss.addProductInStore("cola", 3.2, 10, zahi, store);
             Assert.IsNotNull(pis);
             int saleId = ss.addSaleToStore(zahi, store, pis.getProductInStoreId(), 1, 6, DateTime.Now.AddDays(10).ToString());
-            int saleId2 = ss.addSaleToStore(zahi, store, pis.getProductInStoreId(), 1, 3, DateTime.Now.AddDays(10).ToString());
+            int saleId2 = ss.addSaleToStore(zahi, store, pis.getProductInStoreId(), 1, 3, DateTime.Now.AddDays(9).ToString());
             LinkedList<Sale> sales = ses.viewSalesByProductInStoreId(pis);
             Assert.IsTrue(sales.Count == 2);
             Sale sale = sales.First.Value;
@@ -134,7 +134,6 @@ namespace Acceptance_Tests.SellTests
         [TestMethod]
         public void TransactionWithExpiredDate()
         {
-
             User aviad = us.startSession();
             Assert.IsNotNull(aviad);
             Store store = ss.createStore("abowim", zahi);
@@ -166,7 +165,7 @@ namespace Acceptance_Tests.SellTests
             ProductInStore pis = ss.addProductInStore("cola", 3.2, 10, zahi, store);
             Assert.IsNotNull(pis);
             int saleId = ss.addSaleToStore(zahi, store, pis.getProductInStoreId(), 1, 6, DateTime.Now.AddDays(10).ToString());
-            int saleId2 = ss.addSaleToStore(zahi, store, pis.getProductInStoreId(), 1, 6, DateTime.Now.AddDays(10).ToString());
+            int saleId2 = ss.addSaleToStore(zahi, store, pis.getProductInStoreId(), 1, 4, DateTime.Now.AddDays(8).ToString());
 
             LinkedList<Sale> sales = ses.viewSalesByProductInStoreId(pis);
             Assert.IsTrue(sales.Count == 2);
@@ -259,7 +258,7 @@ namespace Acceptance_Tests.SellTests
             Assert.IsTrue(sales.Count == 1);
             Sale sale = sales.First.Value;
             Assert.IsTrue(ses.addProductToCart(aviad, sale, 2));
-            Assert.IsTrue(ses.editCart(aviad, sale, 0));
+            Assert.IsTrue(ses.removeFromCart(aviad, sale));
             Assert.IsFalse(ses.buyProducts(aviad, "1234", ""));
         }
 

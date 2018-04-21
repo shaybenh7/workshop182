@@ -27,7 +27,6 @@ namespace IntegrationTests
             UserArchive.restartInstance();
             UserCartsArchive.restartInstance();
             StorePremissionsArchive.restartInstance();
-
             BuyHistoryArchive.restartInstance();
             CouponsArchive.restartInstance();
             DiscountsArchive.restartInstance();
