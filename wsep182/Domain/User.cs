@@ -154,6 +154,11 @@ namespace wsep182.Domain
             isActive = state;
             this.state = new Guest();
         }
+
+        internal void setPassword(String newPassword)
+        {
+            password = newPassword;
+        }
         public Boolean removeFromCart(Sale sale)
         {
             return shoppingCart.removeFromCart(this, sale);

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -24,10 +25,21 @@ namespace wsep182.Domain
             User u = UserArchive.getInstance().getUser(username);
             if (u != null)
             {
+                password = encrypt(username + password);
                 if (u.getPassword() == password)
                     return u;
             }
             return null;
+        }
+        private String encrypt(String password)
+        {
+            byte[] pwd;
+            using (SHA512 shaM = new SHA512Managed())
+            {
+                pwd = System.Text.Encoding.UTF8.GetBytes(password);
+                pwd = shaM.ComputeHash(pwd);
+            }
+            return System.Text.Encoding.UTF8.GetString(pwd);
         }
         public override Boolean isLogedIn()
         {
