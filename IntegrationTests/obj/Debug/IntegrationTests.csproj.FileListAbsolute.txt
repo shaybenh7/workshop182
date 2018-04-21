@@ -1,0 +1,17 @@
+C:\Users\Bsniv\source\repos\wsep182\IntegrationTests\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll
+C:\Users\Bsniv\source\repos\wsep182\IntegrationTests\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll
+C:\Users\Bsniv\source\repos\wsep182\IntegrationTests\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll
+C:\Users\Bsniv\source\repos\wsep182\IntegrationTests\bin\Debug\IntegrationTests.dll
+C:\Users\Bsniv\source\repos\wsep182\IntegrationTests\bin\Debug\IntegrationTests.pdb
+C:\Users\Bsniv\source\repos\wsep182\IntegrationTests\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.dll
+C:\Users\Bsniv\source\repos\wsep182\IntegrationTests\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll
+C:\Users\Bsniv\source\repos\wsep182\IntegrationTests\bin\Debug\wsep182.exe
+C:\Users\Bsniv\source\repos\wsep182\IntegrationTests\bin\Debug\wsep182.pdb
+C:\Users\Bsniv\source\repos\wsep182\IntegrationTests\bin\Debug\wsep182.exe.config
+C:\Users\Bsniv\source\repos\wsep182\IntegrationTests\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.xml
+C:\Users\Bsniv\source\repos\wsep182\IntegrationTests\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.xml
+C:\Users\Bsniv\source\repos\wsep182\IntegrationTests\obj\Debug\IntegrationTests.csprojResolveAssemblyReference.cache
+C:\Users\Bsniv\source\repos\wsep182\IntegrationTests\obj\Debug\IntegrationTests.csproj.CoreCompileInputs.cache
+C:\Users\Bsniv\source\repos\wsep182\IntegrationTests\obj\Debug\IntegrationTests.csproj.CopyComplete
+C:\Users\Bsniv\source\repos\wsep182\IntegrationTests\obj\Debug\IntegrationTests.dll
+C:\Users\Bsniv\source\repos\wsep182\IntegrationTests\obj\Debug\IntegrationTests.pdb

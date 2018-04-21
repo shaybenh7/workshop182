@@ -48,12 +48,19 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BuyHistoryArchiveTests.cs" />
     <Compile Include="CouponArchiveUnitTest.cs" />
     <Compile Include="DicountArchiveUnitTests.cs" />
+    <Compile Include="GuestUnitTests.cs" />
     <Compile Include="ProductArchiveUnitTests.cs" />
+    <Compile Include="RaffleSalesArchiveTests.cs" />
     <Compile Include="SalesArchiveUnitTests.cs" />
     <Compile Include="ShoppingCartUnitTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StoreArchiveTests.cs" />
+    <Compile Include="StorePremissionsArchiveTests.cs" />
+    <Compile Include="UserArchiveUnitTests.cs" />
+    <Compile Include="UserCartArchiveUnitTest.cs" />
     <Compile Include="UserUnitTests.cs" />
   </ItemGroup>
   <ItemGroup>

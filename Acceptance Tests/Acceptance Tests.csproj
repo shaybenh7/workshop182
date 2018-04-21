@@ -53,6 +53,7 @@
     <Compile Include="SellTests\addRaffleProductToCartTest.cs" />
     <Compile Include="SellTests\buyProductsTest.cs" />
     <Compile Include="SellTests\editCartTest.cs" />
+    <Compile Include="SellTests\removeFromCartTest.cs" />
     <Compile Include="SellTests\viewCartTest.cs" />
     <Compile Include="SellTests\viewSalesByProductInStoreIdTests.cs" />
     <Compile Include="StoreTests\addCouponDiscountTests.cs" />
@@ -86,6 +87,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="StoreTests\editSaleTests.cs.orig" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\wsep182\wsep182.csproj">

@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Domain\Premissions.cs" />
     <Compile Include="Domain\Purchase.cs" />
     <Compile Include="Domain\BuyHistoryArchive.cs" />
     <Compile Include="Domain\Coupon.cs" />

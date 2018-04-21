@@ -49,6 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="StoreRoleTest.cs" />
+    <Compile Include="storeTest.cs" />
     <Compile Include="UserTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
