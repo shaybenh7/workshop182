@@ -71,10 +71,6 @@ namespace wsep182.Domain
             }
             if (!found)
                 return false;
-            for(int i = indexes.Count - 1; i >= 0; i--)
-            {
-                coupons.Remove(coupons.ElementAt(indexes.ElementAt(i)));
-            }
             return true;
         }
 

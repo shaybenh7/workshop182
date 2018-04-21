@@ -141,7 +141,9 @@ namespace wsep182.Domain
 
         public virtual Boolean editSale(User session,Store s,int saleId,int amount,String dueDate)
         {
-            if (session == null || s == null || SalesArchive.getInstance().getSale(saleId) == null || amount <= 0 || dueDate == null)
+            if (session == null || s == null || SalesArchive.getInstance().getSale(saleId) == null 
+                || amount < 0 || dueDate == null || 
+                ProductArchive.getInstance().getProductInStore(SalesArchive.getInstance().getSale(saleId).ProductInStoreId).getAmount() < amount)
                 return false;
             return SalesArchive.getInstance().editSale(saleId, amount, dueDate);
         }
