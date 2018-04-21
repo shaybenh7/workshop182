@@ -57,21 +57,21 @@ namespace Acceptance_Tests.StoreTests
         [TestMethod]
         public void simpleAddDiscount()
         {
-            Assert.IsTrue(ss.addDiscount(cola, 10, "20/6/2018", zahi, store));
+            Assert.IsTrue(ss.addDiscount(cola, 10, DateTime.Now.AddDays(10).ToString(), zahi, store));
             Assert.AreEqual(colaSale.getPriceAfterDiscount(1), 9);
         }
 
         [TestMethod]
         public void simpleAddDiscountMoreThan100()
         {
-            Assert.IsFalse(ss.addDiscount(cola, 101, "20/6/2018", zahi, store));
+            Assert.IsFalse(ss.addDiscount(cola, 101, DateTime.Now.AddDays(10).ToString(), zahi, store));
             Assert.AreEqual(colaSale.getPriceAfterDiscount(1), 10);
         }
 
         [TestMethod]
         public void simpleAddDiscountWithDueDateAllreadyPassed()
         {
-            Assert.IsFalse(ss.addDiscount(cola, 10, "20/6/2016", zahi, store));
+            Assert.IsFalse(ss.addDiscount(cola, 10, DateTime.Now.AddDays(-10).ToString(), zahi, store));
             Assert.AreEqual(colaSale.getPriceAfterDiscount(1), 10);
         }
 
@@ -85,22 +85,23 @@ namespace Acceptance_Tests.StoreTests
         [TestMethod]
         public void simpleAddDiscountWithNullSession()
         {
-            Assert.IsFalse(ss.addDiscount(cola, 10, "20/6/2016", null, store));
+            Assert.IsFalse(ss.addDiscount(cola, 10, DateTime.Now.AddDays(10).ToString(), null, store));
             Assert.AreEqual(colaSale.getPriceAfterDiscount(1), 10);
         }
 
         [TestMethod]
         public void simpleAddDiscountWithNullStore()
         {
-            Assert.IsFalse(ss.addDiscount(cola, 10, "20/6/2016", zahi, null));
+            Assert.IsFalse(ss.addDiscount(cola, 10, DateTime.Now.AddDays(10).ToString(), zahi, null));
             Assert.AreEqual(colaSale.getPriceAfterDiscount(1), 10);
         }
 
         [TestMethod]
         public void AddDiscountTwice()
         {
-            Assert.IsTrue(ss.addDiscount(cola, 10, "20/6/2018", zahi, store));
-            Assert.IsFalse(ss.addDiscount(cola, 20, "20/6/2018", zahi, store));
+            String nowTime = DateTime.Now.AddDays(10).ToString();
+            Assert.IsTrue(ss.addDiscount(cola, 10, nowTime, zahi, store));
+            Assert.IsFalse(ss.addDiscount(cola, 20, nowTime, zahi, store));
             Assert.AreEqual(colaSale.getPriceAfterDiscount(1), 9);
         }
 

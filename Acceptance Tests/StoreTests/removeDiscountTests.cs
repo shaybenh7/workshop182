@@ -41,7 +41,7 @@ namespace Acceptance_Tests.StoreTests
 
             cola = ss.addProductInStore("cola", 10, 100, zahi, store);
 
-            ss.addSaleToStore(zahi, store, cola.getProductInStoreId(), 1, 2, "20/5/2018");
+            ss.addSaleToStore(zahi, store, cola.getProductInStoreId(), 1, 2, DateTime.Now.AddDays(5).ToString());
 
             LinkedList<Sale> SL = ss.viewSalesByStore(store);
             foreach (Sale sale in SL)
@@ -51,7 +51,7 @@ namespace Acceptance_Tests.StoreTests
                     colaSale = sale;
                 }
             }
-            ss.addDiscount(cola, 10, "20/6/2018", zahi, store);
+            ss.addDiscount(cola, 10, DateTime.Now.AddDays(5).ToString(), zahi, store);
         }
 
         [TestMethod]
@@ -64,21 +64,21 @@ namespace Acceptance_Tests.StoreTests
         [TestMethod]
         public void RemoveDiscountWithNullProduct()
         {
-            Assert.IsTrue(ss.removeDiscount(null, store, zahi));
+            Assert.IsFalse(ss.removeDiscount(null, store, zahi));
             Assert.AreEqual(colaSale.getPriceAfterDiscount(1), 9);
         }
 
         [TestMethod]
         public void RemoveDiscountWithNullStore()
         {
-            Assert.IsTrue(ss.removeDiscount(cola, null, zahi));
+            Assert.IsFalse(ss.removeDiscount(cola, null, zahi));
             Assert.AreEqual(colaSale.getPriceAfterDiscount(1), 9);
         }
 
         [TestMethod]
         public void RemoveDiscountWithNullSession()
         {
-            Assert.IsTrue(ss.removeDiscount(cola, store, null));
+            Assert.IsFalse(ss.removeDiscount(cola, store, null));
             Assert.AreEqual(colaSale.getPriceAfterDiscount(1), 9);
         }
 

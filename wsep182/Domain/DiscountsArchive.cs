@@ -28,7 +28,10 @@ namespace wsep182.Domain
 
         public Boolean addNewDiscount(int productInStoreId, int percentage, String dueDate)
         {
-            foreach(Discount d in discounts)
+            DateTime dueDateTime = DateTime.Parse(dueDate);
+            if (DateTime.Compare(dueDateTime, DateTime.Now) < 0)
+                return false;
+            foreach (Discount d in discounts)
             {
                 if (d.ProductInStoreId == productInStoreId)
                 {

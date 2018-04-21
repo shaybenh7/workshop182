@@ -15,15 +15,15 @@ namespace UnitTests
         {
             CouponsArchive.restartInstance();
             couponArchive = CouponsArchive.getInstance();
-            couponArchive.addNewCoupon("firstCoupon", 1, 50, "jan 12, 2008");
-            couponArchive.addNewCoupon("secondCoupon", 2, 30, "jun 9, 2010");
+            couponArchive.addNewCoupon("firstCoupon", 1, 50, DateTime.Now.AddDays(10).ToString());
+            couponArchive.addNewCoupon("secondCoupon", 2, 30, DateTime.Now.AddDays(10).ToString());
         }
 
         [TestMethod]
         public void addNewCoupon1()
         {
             int sizeBeforeAdd = couponArchive.getAllCoupons().Count;
-            Boolean check = couponArchive.addNewCoupon("check", 3, 7, "dec 9, 1990");
+            Boolean check = couponArchive.addNewCoupon("check", 3, 7, DateTime.Now.AddDays(10).ToString());
             int sizeAfterAdd = couponArchive.getAllCoupons().Count;
             Assert.IsTrue(check);
             Assert.AreEqual(sizeBeforeAdd + 1, sizeAfterAdd);
