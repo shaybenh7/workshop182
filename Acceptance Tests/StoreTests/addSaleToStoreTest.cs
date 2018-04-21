@@ -28,7 +28,6 @@ namespace Acceptance_Tests.SaleTests
             CouponsArchive.restartInstance();
             DiscountsArchive.restartInstance();
             RaffleSalesArchive.restartInstance();
-            StorePremissionsArchive.restartInstance();
 
             us = userServices.getInstance();
             ss = storeServices.getInstance();

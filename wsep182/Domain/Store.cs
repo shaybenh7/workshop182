@@ -31,6 +31,10 @@ namespace wsep182.Domain
         {
             return name;
         }
+        public void setStoreName(String name)
+        {
+            this.name = name;
+        }
         public int getIsActive()
         {
             return isActive;
@@ -74,7 +78,10 @@ namespace wsep182.Domain
             }
             return ans;
         }
-
+        public void setIsActive(int active)
+        {
+            isActive = active;
+        }
         public Boolean closeStore()
         {
             //WILL BE IMPLEMENTED NEXT VERSION
