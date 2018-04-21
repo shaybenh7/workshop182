@@ -11,7 +11,7 @@ namespace wsep182.Domain
         private User user;
         private Store store;
 
-        public StoreRole(User u, Store s){
+        public StoreRole(User u, Store s) {
             user = u;
             store = s;
         }
@@ -34,7 +34,7 @@ namespace wsep182.Domain
             Product p2 = ProductArchive.getInstance().getProductByName(productName);
             if (p2 == null)
             {
-                
+
                 p2 = Product.addProduct(productName);
             }
             if (price >= 0 && amount >= 0)
@@ -46,7 +46,7 @@ namespace wsep182.Domain
 
         public virtual Boolean editProductInStore(User session, ProductInStore p, int quantity, double price)
         {
-            if (session!=null && p!=null && price >= 0 && quantity >= 0)
+            if (session != null && p != null && price >= 0 && quantity >= 0)
             {
                 p.Price = price;
                 p.Quantity = quantity;
@@ -73,7 +73,7 @@ namespace wsep182.Domain
             if (sr != null && (sr is Customer))
                 storeArchive.getInstance().removeStoreRole(s.getStoreId(), newManager.getUserName());
             StoreRole m = new StoreManager(newManager, s);
-            return storeArchive.getInstance().addStoreRole(m, s.getStoreId(),newManager.getUserName());
+            return storeArchive.getInstance().addStoreRole(m, s.getStoreId(), newManager.getUserName());
         }
         public virtual Boolean removeStoreManager(User session, Store s, String oldManager)
         {
@@ -85,9 +85,9 @@ namespace wsep182.Domain
         public virtual Boolean addStoreOwner(User session, Store s, String newOwnerUserName)
         {
             User newOwner = UserArchive.getInstance().getUser(newOwnerUserName);
-            if(newOwner == null || s == null || session == null)
+            if (newOwner == null || s == null || session == null)
             {
-                return false ;
+                return false;
             }
             StoreRole sr = storeArchive.getInstance().getStoreRole(s, newOwner);
             if (sr != null && (sr is StoreOwner))
@@ -96,7 +96,7 @@ namespace wsep182.Domain
                 removeStoreManager(session, s, newOwnerUserName);
             if (sr != null && (sr is Customer))
                 storeArchive.getInstance().removeStoreRole(s.getStoreId(), newOwner.getUserName());
-            StoreRole owner = new StoreOwner(newOwner,s);
+            StoreRole owner = new StoreOwner(newOwner, s);
             return storeArchive.getInstance().addStoreRole(owner, s.getStoreId(), newOwner.getUserName());
         }
         public virtual Boolean removeStoreOwner(User session, Store s, String ownerToDelete)
@@ -120,11 +120,11 @@ namespace wsep182.Domain
             return correlate(manager, s, permission, sR, true);
 
         }
-        public virtual int addSaleToStore(User session, int productInStoreId, int typeOfSale, int amount,String dueDate)
+        public virtual int addSaleToStore(User session, int productInStoreId, int typeOfSale, int amount, String dueDate)
         {
             if (ProductArchive.getInstance().getProductInStore(productInStoreId) == null || typeOfSale > 3 || typeOfSale < 1 || amount < 0 || dueDate == null)
                 return -1;
-            if(typeOfSale == 2)
+            if (typeOfSale == 2)
             {
                 //will be implemented next version
                 return -1;
@@ -139,10 +139,10 @@ namespace wsep182.Domain
             return SalesArchive.getInstance().removeSale(saleId);
         }
 
-        public virtual Boolean editSale(User session,Store s,int saleId,int amount,String dueDate)
+        public virtual Boolean editSale(User session, Store s, int saleId, int amount, String dueDate)
         {
-            if (session == null || s == null || SalesArchive.getInstance().getSale(saleId) == null 
-                || amount < 0 || dueDate == null || 
+            if (session == null || s == null || SalesArchive.getInstance().getSale(saleId) == null
+                || amount < 0 || dueDate == null ||
                 ProductArchive.getInstance().getProductInStore(SalesArchive.getInstance().getSale(saleId).ProductInStoreId).getAmount() < amount)
                 return false;
             return SalesArchive.getInstance().editSale(saleId, amount, dueDate);
@@ -150,14 +150,14 @@ namespace wsep182.Domain
 
         public virtual Boolean addDiscount(User session, ProductInStore p, int percentage, String dueDate)
         {
-            if (session == null || p == null || percentage < 0 || dueDate == null)
+            if (session == null || p == null || percentage < 0 || percentage >= 100 || dueDate == null)
                 return false;
             return DiscountsArchive.getInstance().addNewDiscount(p.getProductInStoreId(), percentage, dueDate);
         }
 
         public virtual Boolean addNewCoupon(User session, String couponId, ProductInStore p, int percentage, String dueDate)
         {
-            if (session == null || p == null || percentage < 0 || dueDate == null)
+            if (session == null || couponId == null || p == null || percentage < 0 || dueDate == null || percentage<=0)
                 return false;
             return CouponsArchive.getInstance().addNewCoupon(couponId, p.getProductInStoreId(), percentage, dueDate);
         }

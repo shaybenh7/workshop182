@@ -14,8 +14,8 @@ namespace UnitTests
         {
             DiscountsArchive.restartInstance();
             discountsArchive = DiscountsArchive.getInstance();
-            discountsArchive.addNewDiscount(1, 10, "jan 1,2010");
-            discountsArchive.addNewDiscount(2, 20, "feb 1,2010");
+            discountsArchive.addNewDiscount(1, 10, DateTime.Now.AddDays(10).ToString());
+            discountsArchive.addNewDiscount(2, 20, DateTime.Now.AddDays(15).ToString());
         }
 
         [TestMethod]
@@ -23,7 +23,7 @@ namespace UnitTests
         {
             
             int beforeInsertion = discountsArchive.getAllDiscounts().Count;
-            Boolean check = discountsArchive.addNewDiscount(3, 30, "mar 13, 2010");
+            Boolean check = discountsArchive.addNewDiscount(3, 30, DateTime.Now.AddDays(10).ToString());
             int afterInsertion = discountsArchive.getAllDiscounts().Count;
             Assert.IsTrue(check);
             Assert.AreEqual(beforeInsertion + 1, afterInsertion);
@@ -33,7 +33,7 @@ namespace UnitTests
         {
 
             int beforeInsertion = discountsArchive.getAllDiscounts().Count;
-            Boolean check = discountsArchive.addNewDiscount(1, 30, "mar 13, 2010");
+            Boolean check = discountsArchive.addNewDiscount(1, 30, DateTime.Now.AddDays(10).ToString());
             int afterInsertion = discountsArchive.getAllDiscounts().Count;
             Assert.IsFalse(check);
             Assert.AreEqual(beforeInsertion , afterInsertion);
@@ -61,16 +61,16 @@ namespace UnitTests
         [TestMethod]
         public void editExistingDiscount()
         {  
-            Boolean check = discountsArchive.editDiscount(1,50,"nov 13, 2050");    
+            Boolean check = discountsArchive.editDiscount(1,50, DateTime.Now.AddMonths(10).ToString());    
             Assert.IsTrue(check);
             Discount d = discountsArchive.getDiscount(1);
             Assert.AreEqual(d.Percentage, 50);
-            Assert.AreEqual(d.DueDate, "nov 13, 2050");
+            Assert.AreEqual(d.DueDate, DateTime.Now.AddMonths(10).ToString());
         }
         [TestMethod]
         public void editNonExistingDiscount()
         {
-            Boolean check = discountsArchive.editDiscount(3, 50, "nov 13, 2050");
+            Boolean check = discountsArchive.editDiscount(3, 50, DateTime.Now.AddMonths(10).ToString());
             Assert.IsFalse(check);
         }
         [TestMethod]

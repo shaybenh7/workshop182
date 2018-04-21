@@ -128,7 +128,7 @@ namespace wsep182.Domain
             {
                 return false;
             }
-            if (newProduct.getProduct() == null || newProduct.getStore() == null || newProduct.getAmount() <= 0 || newProduct.getPrice() < 0)
+            if (newProduct.getProduct() == null || newProduct.getStore() == null || newProduct.getAmount() < 0 || newProduct.getPrice() < 0)
                 return false;
             foreach (ProductInStore p in productsInStores)
                 if (p.getProduct().getProductId() == newProduct.getProduct().getProductId() && p.getStore().getStoreId() == newProduct.getStore().getStoreId())

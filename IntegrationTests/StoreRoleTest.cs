@@ -57,8 +57,8 @@ namespace IntegrationTests
         [TestMethod]
         public void editProductInStoreWithManagerPermission()
         {
-            ProductInStore pis = zahiOwner.addProductInStore(zahi,store,"cola", 10, 4);
-            Assert.AreEqual(1, store.getProductsInStore().Count);
+            ProductInStore pis = zahiOwner.addProductInStore(zahi,store,"cola2", 10, 4);
+            Assert.AreEqual(2, store.getProductsInStore().Count);
             aviadManeger.editProductInStore(aviad, pis, 13, 4.5);
             Assert.AreEqual(10, pis.getPrice());
             Assert.AreEqual(4, pis.getAmount());

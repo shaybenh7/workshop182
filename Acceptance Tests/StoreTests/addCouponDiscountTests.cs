@@ -106,7 +106,7 @@ namespace Acceptance_Tests.StoreTests
         [TestMethod]
         public void AddCouponWithzDueDateAllreadyPassed()
         {
-            Assert.IsFalse(ss.addCouponDiscount(zahi, store, "copun", cola, 10, "20/6/2017"));
+            Assert.IsFalse(ss.addCouponDiscount(zahi, store, "copun", cola, 10, DateTime.Now.AddDays(-1).ToString()));
             Assert.IsNull(ca.getCoupon("copun", cola.getProductInStoreId()));
         }
     }

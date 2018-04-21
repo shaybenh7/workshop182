@@ -169,7 +169,6 @@ namespace Acceptance_Tests.StoreTests
             Assert.AreEqual(managers.Count, 1);
             StoreManager SM = managers.First.Value;
             Assert.AreEqual(SM.getUser().getUserName(), aviad.getUserName());
-            Assert.AreEqual(SM.getUser().getPassword(), aviad.getPassword());
             Assert.AreEqual(SM.getStore(), store);
             Premissions SP = SM.getPremissions(aviad,store);
             Dictionary<string, Boolean> Dict = SP.getPrivileges();

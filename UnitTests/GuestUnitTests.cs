@@ -57,7 +57,6 @@ namespace UnitTests
             us.register(session, "zahi", "123456");
             User u = g.login("zahi", "123456");
             Assert.AreEqual(u.getUserName(),"zahi");
-            Assert.AreEqual(u.getPassword(), "123456");
         }
 
     }

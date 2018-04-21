@@ -106,7 +106,7 @@ namespace Acceptance_Tests.StoreTests
         [TestMethod]
         public void EditSaleWithDoesExistsSaleId()
         {
-            Assert.IsFalse(ss.editSale(itamar, store, 9, 1, "20/5/2018"));
+            Assert.IsFalse(ss.editSale(itamar, store, 9, 1, DateTime.Now.AddDays(20).ToString()));
         }
         [TestMethod]
         public void AddSaleWithDateNotGood()
