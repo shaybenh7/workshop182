@@ -275,6 +275,8 @@ namespace Acceptance_Tests.StoreTests
             ss.addManagerPermission("addNewCoupon", store, aviad.getUserName(), zahi);
             Boolean added = ss.addCouponDiscount(aviad, store, "coupon", pis, 10, "10.1.2019");
             Assert.AreEqual(true, added);
+            //Coupon c = CouponsArchive.getInstance().getCoupon("coupon", pis.getProductInStoreId());
+            //Assert.AreEqual(null, c);
             Assert.AreEqual(false, ss.removeCoupon(store, aviad, "coupon"));
             ss.addManagerPermission("removeCoupon", store, aviad.getUserName(), zahi);
             Assert.AreEqual(true, ss.removeCoupon(store, aviad, "coupon"));
